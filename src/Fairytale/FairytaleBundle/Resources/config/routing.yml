@@ -1,0 +1,3 @@
+fairytale_homepage:
+    resource: @FairytaleBundle/Controller
+    type:     annotation

@@ -1,3 +1,7 @@
+fairytale:
+    resource: "@FairytaleBundle/Resources/config/routing.yml"
+    prefix:   /fairytale/
+
 app:
     resource: @AppBundle/Controller/
     type:     annotation
