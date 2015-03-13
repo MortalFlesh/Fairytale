@@ -9,10 +9,11 @@ var ChapterMenuItem = React.createClass({
             display: 'inline-block',
             margin: '0 10px',
             cursor: 'pointer',
+            color: '#956722',
         };
 
         if (this.props.isActive) {
-            style.color = 'blue';
+            style.color = '#fdd9ae';
         }
 
         return (
