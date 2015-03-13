@@ -1,28 +1,16 @@
 var React = require('react');
 
-var $ = require('jquery-browserify');
+var ChapterParagraph = require('./chapterParagraph');
 
 var Chapter = React.createClass({
     render() {
         var data = this.props.data;
-        var style = {
-            lineHeight: '20px'
-        };
 
-        var paragraphs = data.paragraphs.map(function(paragraph){
-            var paragraphStyle = $.extend(true, {}, style);
-            if (paragraph.isNew == '1') {
-                paragraphStyle.background = 'green';
-            } else {
-                paragraphStyle.background = 'white';
-            }
-
-            return (
-                <p style={paragraphStyle}>
-                    {paragraph.content}
-                </p>
-            )
-        });
+        var paragraphs = data.paragraphs.map(paragraph =>
+            <ChapterParagraph isNew={paragraph.isNew}>
+                {paragraph.content}
+            </ChapterParagraph>
+        );
 
         return (
             <div className="Chapter" style={{paddingTop: 20}}>
