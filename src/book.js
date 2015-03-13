@@ -13,7 +13,6 @@ var Book = React.createClass({
                 title: '',
                 subTitle: '',
                 cover: '',
-                background: '',
                 chapters: [
                     {
                         chapter: {
@@ -44,7 +43,7 @@ var Book = React.createClass({
         var currentChapter = this.getCurrentChapter();
 
         var style = {
-            width: 800,
+            maxWidth: 800,
             margin: '0 auto',
         };
 
@@ -54,7 +53,7 @@ var Book = React.createClass({
 
                 <ChaptersMenu chapters={book.chapters} />
 
-                <Page chapter={currentChapter} />
+                <Page chapter={currentChapter} background={'./images/background.jpg'} />
             </div>
         );
     }

@@ -37,7 +37,6 @@ foreach($bookQ->fetchAll() as $bookR) {
         'title' => $bookR['title'],
         'subTitle' => $bookR['sub_title'],
         'cover' => $bookR['cover'],
-        'background' => $bookR['background'],
         'chapters' => $chapters,
     ];
 }

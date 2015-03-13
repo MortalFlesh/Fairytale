@@ -2,10 +2,10 @@ var React = require('react');
 
 var ChapterParagraph = React.createClass({
     render() {
-        var bgColor = 'white';
+        var bgColor = 'none';
 
         if (this.props.isNew == '1') {
-            bgColor = 'green';
+            bgColor = 'RGBA(0,255,0, 0.15)';
         }
 
         var style = {
