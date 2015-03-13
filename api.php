@@ -24,7 +24,7 @@ foreach($bookQ->fetchAll() as $bookR) {
         }
 
         $chapters[] = [
-            'chapter' => [
+            'header' => [
                 'number' => $chapterR['number'],
                 'title' => $chapterR['title'],
             ],

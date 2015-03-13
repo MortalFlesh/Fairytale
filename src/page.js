@@ -27,7 +27,7 @@ var Page = React.createClass({
         return (
             <div className="Page" style={style}>
                 <PageContent pagePadding={pagePadding} width={width} height={height}>
-                    <Chapter data={this.props.chapter} />
+                    <Chapter chapter={this.props.chapter} />
                 </PageContent>
             </div>
         );

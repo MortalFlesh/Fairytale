@@ -1,12 +1,13 @@
 var React = require('react');
 
 var ChapterParagraph = require('./chapterParagraph');
+var ChapterHeader = require('./chapterHeader');
 
 var Chapter = React.createClass({
     render() {
-        var data = this.props.data;
+        var chapter = this.props.chapter;
 
-        var paragraphs = data.paragraphs.map(paragraph =>
+        var paragraphs = chapter.paragraphs.map(paragraph =>
             <ChapterParagraph isNew={paragraph.isNew}>
                 {paragraph.content}
             </ChapterParagraph>
@@ -14,9 +15,7 @@ var Chapter = React.createClass({
 
         return (
             <div className="Chapter" style={{paddingTop: 20}}>
-                <h3 style={{textAlign: 'center'}}>
-                    <strong>{data.chapter.number}.</strong>{' ' + data.chapter.title}
-                </h3>
+                <ChapterHeader number={chapter.header.number} title={chapter.header.title} />
 
                 {paragraphs}
             </div>
