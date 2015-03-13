@@ -1,0 +1,34 @@
+{
+    "name": "fairytale",
+    "version": "1.0.0",
+    "description": "Fairytale book viewer.",
+    "author": "MortalFlesh",
+    "main": "src/index.js",
+    "scripts": {
+        "prebuild": "mkdir -p cache",
+        "build:scripts": "browserify . > cache/index.js",
+        "build": "npm run build:scripts",
+        "postbuild:scripts": "uglifyjs cache/index.js > cache/index.min.js",
+        "postbuild": "npm run postbuild:scripts",
+        "watch:scripts": "watch 'npm run build:scripts' src/",
+        "watch": "parallelshell 'npm run watch:scripts'",
+        "start": "npm run watch"
+    },
+    "dependencies": {
+        "react": "~0.12.2",
+        "jquery-browserify": "1.8.*"
+    },
+    "devDependencies": {
+        "babelify": "~5.0.3",
+        "browserify": "~9.0.0",
+        "parallelshell": "~1.1.0",
+        "uglify-js": "~2.4.16",
+        "watch": "~0.14.0"
+    },
+    "browserify": {
+        "transform": [
+            "babelify",
+            "reactify"
+        ]
+    }
+}
