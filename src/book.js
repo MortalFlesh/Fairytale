@@ -1,5 +1,6 @@
 var React = require('react');
-var jQuery = require('jquery-browserify');
+
+var Loader = require('./services/loader');
 
 var Header = require('./header');
 var ChaptersMenu = require('./chaptersMenu');
@@ -27,13 +28,9 @@ var Book = React.createClass({
         }
     },
     loadBook() {
-        jQuery.ajax({
-            url: this.props.url,
-            dataType: 'json',
-        })
-            .done(function (data) {
-                this.setState({book: data});
-            }.bind(this));
+        Loader.loadBook(this.props.url, function (data) {
+            this.setState({book: data});
+        }.bind(this));
     },
     componentDidMount() {
         this.loadBook();
