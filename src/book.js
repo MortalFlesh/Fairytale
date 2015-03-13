@@ -38,6 +38,9 @@ var Book = React.createClass({
         var currentChapterIndex = this.state.currentChapter - 1;
         return this.state.book.chapters[currentChapterIndex];
     },
+    onChapterChanged(chapterNumber) {
+        this.setState({currentChapter: chapterNumber});
+    },
     render() {
         var book = this.state.book;
         var currentChapter = this.getCurrentChapter();
@@ -52,7 +55,7 @@ var Book = React.createClass({
             <div className="Book" style={style}>
                 <Header title={book.title} subTitle={book.subTitle} />
 
-                <ChaptersMenu chapters={chapterHeaders} defaultChapter={this.state.currentChapter} />
+                <ChaptersMenu chapters={chapterHeaders} defaultChapter={this.state.currentChapter} onChapterChanged={this.onChapterChanged} />
 
                 <Page chapter={currentChapter} background={'./images/background.jpg'} />
             </div>

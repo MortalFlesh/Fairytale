@@ -32,8 +32,8 @@ var ChaptersMenu = React.createClass({
         var newChapter = parseInt(chapterNumber, 10);
         if (newChapter !== this.state.selectedChapter) {
             this.setState({selectedChapter: newChapter});
+            this.props.onChapterChanged(chapterNumber);
         }
-
     },
     render() {
         var state = this.state;
