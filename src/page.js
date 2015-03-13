@@ -2,6 +2,7 @@ var React = require('react');
 
 var ResponsiveService = require('./services/responsiveService');
 
+var PageContent = require('./pageContent');
 var Chapter = require('./chapter');
 
 var Page = React.createClass({
@@ -23,17 +24,11 @@ var Page = React.createClass({
             background: 'url(' + this.props.background + ')',
         };
 
-        var contentStyle = {
-            width: width - pagePadding * 2,
-            height: height - pagePadding * 2,
-            overflow: 'hidden',
-        };
-
         return (
             <div className="Page" style={style}>
-                <div class="PageContent" style={contentStyle}>
+                <PageContent pagePadding={pagePadding} width={width} height={height}>
                     <Chapter data={this.props.chapter} />
-                </div>
+                </PageContent>
             </div>
         );
     }
