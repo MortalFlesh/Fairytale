@@ -13,6 +13,6 @@ Book
  */
 
 React.render(
-    <Book url={"api.php"} />,
+    <Book url={"./api/api.php"} />,
     document.getElementById('content')
 );
