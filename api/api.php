@@ -1,5 +1,5 @@
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=fairytale', 'root', '');
+$pdo = new PDO('mysql:host=localhost;dbname=fairytale;charset=utf8', 'root', '');
 
 $book = [];
 
