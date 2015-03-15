@@ -14,7 +14,7 @@ var PageContent = React.createClass({
             width: '100%',
             height: '100%',
             overflow: 'auto',
-            paddingRight: 15,
+            paddingRight: this.props.scrollWidth,
         };
 
         return (

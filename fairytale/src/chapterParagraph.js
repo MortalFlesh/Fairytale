@@ -9,8 +9,10 @@ var ChapterParagraph = React.createClass({
         }
 
         var style = {
-            lineHeight: '20px',
             background: bgColor,
+            lineHeight: '20px',
+            textIndent: 30,
+            textAlign: 'justify',
         };
 
         return (

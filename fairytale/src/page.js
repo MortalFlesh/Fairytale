@@ -7,6 +7,7 @@ var Chapter = require('./chapter');
 
 var Page = React.createClass({
     render() {
+        var scrollWidth = 15;
         var pagePadding = 100;
         var maxWidth = 794;
         var maxHeight = 1122;
@@ -16,9 +17,11 @@ var Page = React.createClass({
 
         var pageRatio = width / maxWidth;
         pagePadding *= pageRatio;
+        width += scrollWidth;
 
-        var style={
+        var style = {
             padding: pagePadding,
+            paddingRight: pagePadding - scrollWidth,
             border: '1px solid black',
 
             background: 'url(' + this.props.background + ')',
@@ -26,7 +29,7 @@ var Page = React.createClass({
 
         return (
             <div className="Page" style={style}>
-                <PageContent pagePadding={pagePadding} width={width} height={height}>
+                <PageContent pagePadding={pagePadding} width={width} height={height} scrollWidth={scrollWidth}>
                     <Chapter chapter={this.props.chapter} />
                 </PageContent>
             </div>
