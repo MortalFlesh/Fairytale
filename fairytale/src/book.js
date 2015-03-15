@@ -34,6 +34,7 @@ var Book = React.createClass({
     },
     componentDidMount() {
         this.loadBook();
+        setInterval(this.loadBook, this.props.interval);
     },
     getCurrentChapter() {
         var currentChapterIndex = this.state.currentChapter - 1;

@@ -13,6 +13,6 @@ Book
  */
 
 React.render(
-    <Book url={"./api/api.php"} />,
+    <Book url={"./api/api.php"} interval={5000} />,
     document.getElementById('content')
 );
