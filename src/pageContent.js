@@ -10,9 +10,18 @@ var PageContent = React.createClass({
             overflow: 'hidden',
         };
 
+        var styleScroll = {
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            paddingRight: 15,
+        };
+
         return (
             <div className="PageContent" style={style}>
-                {this.props.children}
+                <div class="PageContent_Scroll" style={styleScroll}>
+                    {this.props.children}
+                </div>
             </div>
         );
     }
