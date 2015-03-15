@@ -27,8 +27,7 @@
     },
     "browserify": {
         "transform": [
-            "babelify",
-            "reactify"
+            "babelify"
         ]
     }
 }
