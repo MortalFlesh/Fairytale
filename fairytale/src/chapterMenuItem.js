@@ -7,7 +7,7 @@ var ChapterMenuItem = React.createClass({
     render() {
         var style = {
             display: 'inline-block',
-            margin: '0 10px',
+            margin: '0 8px',
             cursor: 'pointer',
             color: '#956722',
             textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
