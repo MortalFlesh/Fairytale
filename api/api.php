@@ -14,7 +14,7 @@ foreach($bookQ->fetchAll() as $bookR) {
     foreach($chaptersQ->fetchAll() as $chapterR) {
         $paragraphs = [];
 
-        $paragraphsQ = $pdo->query("SELECT * FROM paragraph WHERE chapter_id = " . $chapterR['number']);
+        $paragraphsQ = $pdo->query("SELECT * FROM paragraph WHERE chapter_id = " . $chapterR['number'] . " ORDER BY id");
         $paragraphsQ->setFetchMode(PDO::FETCH_ASSOC);
         foreach($paragraphsQ->fetchAll() as $paragraphR) {
             $paragraphs[] = [
