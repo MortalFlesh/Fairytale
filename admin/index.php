@@ -47,7 +47,7 @@ if ($_POST['save']) {
 <html>
 <head>
     <title>Fairytale - insert chapters</title>
-    <script type="text/javascript" src="./tinymce/js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="../admin/tinymce/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
             selector: "textarea",
