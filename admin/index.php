@@ -1,5 +1,43 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
+session_start();
+
+if (isset($_GET['logout'])) {
+    unset($_SESSION['logged']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit;
+}
+
+if ($_SESSION['logged'] !== true) {
+    if ($_POST['login']) {
+        $pdo = new PDO('mysql:host=localhost;dbname=fairytale', 'root', '');
+        $login = $pdo->prepare("SELECT * FROM user WHERE id = ?");
+        $login->execute([1]);
+
+        $result = $login->fetch(PDO::FETCH_ASSOC);
+        $passHash = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 10,]);
+
+        if (password_verify($result['password'], $passHash)) {
+            $_SESSION['logged'] = true;
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+    }
+    ?>
+    <html>
+        <head>
+            <title>Fairytale - Login</title>
+        </head>
+        <body>
+            <form action="" method="POST">
+                <input type="password" name="password" />
+                <input type="submit" name="login" />
+            </form>
+        </body>
+    </html>
+    <?php
+    exit;
+}
 
 function repairText($rawText) {
     $text = $rawText;
@@ -101,6 +139,7 @@ if ($_POST['save']) {
 
     <div>
         <input type="submit" name="save" value="OK" style="width: 100px; height: 50px;" />
+        <a style="padding-left: 200px;" href="?logout">Odhlásit</a>
     </div>
 </form>    
 </body>
