@@ -7,7 +7,7 @@ var Chapter = require('./chapter');
 
 var Page = React.createClass({
     render() {
-        var scrollWidth = 15;
+        var scrollWidth = 17;
         var pagePadding = 100;
         var maxWidth = 794;
         var maxHeight = 1122;

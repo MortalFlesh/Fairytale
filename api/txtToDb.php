@@ -20,23 +20,28 @@ if ($_POST['save']) {
     $isNew = (int)$_POST['isNew'];
     $append = (int)$_POST['append'];
 
-    if (!$append) {
-        $pdo->query("DELETE FROM chapter WHERE book_id = $bookId AND number = $chapterNumber");
-        $pdo->query("DELETE FROM paragraph WHERE chapter_id = $chapterNumber");
+    if (empty($title) || empty($text)) {
+        $status = 'error';
+    } else {
+        if (!$append) {
+            $pdo->query("DELETE FROM chapter WHERE book_id = $bookId AND number = $chapterNumber");
+            $pdo->query("DELETE FROM paragraph WHERE chapter_id = $chapterNumber");
+        }
+
+        $chapter = $pdo->query("INSERT IGNORE INTO chapter (number, title, book_id, image) VALUES ($chapterNumber, '$title', $bookId, '')");
+
+        $paragraphs = explode("\n", $text);
+        $inserts = [];
+
+        foreach($paragraphs as $paragraph) {
+            $paragraph = str_replace(["\n", '***', '**'], '~', $paragraph);
+            $inserts[] = "('$chapterNumber', '$paragraph', '$isNew')";
+        }
+
+        $pdo->query("INSERT INTO paragraph (chapter_id, content, is_new) VALUES " . implode(",", $inserts));
+
+        $status = 'ok';
     }
-
-    $chapter = $pdo->query("INSERT IGNORE INTO chapter (number, title, book_id, image) VALUES ($chapterNumber, '$title', $bookId, '')");
-
-    $paragraphs = explode("\n", $text);
-    $inserts = [];
-
-    foreach($paragraphs as $paragraph) {
-        $inserts[] = "('$chapterNumber', '$paragraph', '$isNew')";
-    }
-
-    $pdo->query("INSERT INTO paragraph (chapter_id, content, is_new) VALUES " . implode(",", $inserts));
-
-    $status = 'ok';
 }
 ?>
 <html>
