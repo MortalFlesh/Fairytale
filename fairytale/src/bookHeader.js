@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Header = React.createClass({
+var BookHeader = React.createClass({
     render() {
         var style = {
             header: {
@@ -24,7 +24,7 @@ var Header = React.createClass({
         };
 
         return (
-            <div className="Header" style={style.header}>
+            <div className="BookHeader" style={style.header}>
                 <h1 style={style.title}>
                     {this.props.title}
                 </h1>
@@ -36,4 +36,4 @@ var Header = React.createClass({
     }
 });
 
-module.exports = Header;
+module.exports = BookHeader;

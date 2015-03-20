@@ -3,7 +3,7 @@ var React = require('react');
 var Loader = require('./services/loader');
 
 var ResponsiveBox = require('./responsiveBox');
-var Header = require('./header');
+var BookHeader = require('./bookHeader');
 var ChaptersMenu = require('./chaptersMenu');
 var Page = require('./page');
 
@@ -55,7 +55,7 @@ var Book = React.createClass({
 
         return (
             <ResponsiveBox className="Book" style={style}>
-                <Header title={book.title} subTitle={book.subTitle} />
+                <BookHeader title={book.title} subTitle={book.subTitle} />
 
                 <ChaptersMenu chapters={chapterHeaders} defaultChapter={this.state.currentChapter} onChapterChanged={this.onChapterChanged} />
 
