@@ -7,7 +7,6 @@ var AppContent = require('./appContent');
 var Book = require('./book');
 var Characters = require('./characters');
 
-
 var App = React.createClass({
     mixins: [RouterMixin],
     routes: {
@@ -28,10 +27,10 @@ var App = React.createClass({
         return <Book url={"./api/api.php"} interval={60 * 1000} />;
     },
     characters() {
-        return <Characters/>;
+        return <Characters url={"./api/characters.json"} />;
     },
     character(name) {
-        return <Characters selected={name} />;
+        return <Characters url={"./api/characters.json"} selected={name} />;
     },
     notFound(path) {
         return <div class="not-found">Page Not Found: {path}</div>;

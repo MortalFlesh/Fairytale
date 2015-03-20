@@ -1,7 +1,7 @@
 var jQuery = require('jquery-browserify');
 
 var Loader = {
-    loadBook(url, done) {
+    loadJson(url, done) {
         jQuery.ajax({
             url: url,
             dataType: 'json',

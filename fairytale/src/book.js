@@ -28,7 +28,7 @@ var Book = React.createClass({
         }
     },
     loadBook() {
-        Loader.loadBook(this.props.url, function (data) {
+        Loader.loadJson(this.props.url, function (data) {
             this.setState({book: data});
         }.bind(this));
     },
