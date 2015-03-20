@@ -4,7 +4,7 @@ var Characters = React.createClass({
     render() {
         return (
             <div className="Characters">
-                ... characters ...
+                ... characters (selected: {this.props.selected}) ...
             </div>
         );
     }
