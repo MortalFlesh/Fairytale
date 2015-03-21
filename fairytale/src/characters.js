@@ -1,7 +1,6 @@
 var React = require('react');
 
 var Loader = require('./services/loader');
-var CharactersService = require('./services/charactersService');
 
 var Character = require('./character');
 
@@ -14,7 +13,7 @@ var Characters = React.createClass({
     },
     loadCharacters() {
         Loader.loadJson(this.props.url, function (data) {
-            var characters = CharactersService.transformDataToCharacters(data);
+            var characters = data;
 
             if (characters instanceof Array) {
                 this.setState({characters: characters});
