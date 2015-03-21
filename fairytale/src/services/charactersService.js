@@ -4,8 +4,8 @@ var CharactersService = {
     transformDataToCharacters(response) {
         var characters = [];
 
-        if (!response instanceof Object || !response.pohadka instanceof Object) {
-            return characters;
+        if (response instanceof Array || !response instanceof Object || !response.pohadka instanceof Object) {
+            return response;
         }
 
         var data = response.pohadka;
@@ -22,10 +22,10 @@ var CharactersService = {
     },
     transformInfos(infosData) {
         var infos = [];
-        $.each(infosData, (infoName, values) => {
+        $.each(infosData, (infoName, items) => {
             infos.push({
                 name: infoName,
-                data: values,
+                items: items,
             });
         });
         return infos;

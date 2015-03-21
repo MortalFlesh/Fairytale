@@ -27,10 +27,10 @@ var App = React.createClass({
         return <Book url={"./api/api.php"} interval={60 * 1000} />;
     },
     characters() {
-        return <Characters url={"./api/characters.json"} />;
+        return <Characters url={"./api/api.php?action=characters"} />;
     },
     character(name) {
-        return <Characters url={"./api/characters.json"} selected={name} />;
+        return <Characters url={"./api/api.php?action=characters"} selected={name} />;
     },
     notFound(path) {
         return <div class="not-found">Page Not Found: {path}</div>;
