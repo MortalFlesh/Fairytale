@@ -1,8 +1,8 @@
 var React = require('react');
 
-var Content = require('./content');
 var AppHeaderContent = require('./appHeaderContent');
-var Clear = require('./style/clear');
+var Content = require('./../content');
+var Clear = require('./../style/clear');
 
 var AppHeader = React.createClass({
     render() {

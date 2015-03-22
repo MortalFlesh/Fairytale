@@ -1,6 +1,6 @@
 var React = require('react');
 
-var App = require('./app');
+var App = require('./app/app');
 
 /*
 

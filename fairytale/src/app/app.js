@@ -3,10 +3,10 @@ var RouterMixin = require('react-mini-router').RouterMixin;
 
 var AppHeader = require('./appHeader');
 var AppContent = require('./appContent');
-var Content = require('./content');
 
-var Book = require('./book');
-var Characters = require('./characters');
+var Content = require('./../content');
+var Book = require('./../book');
+var Characters = require('./../characters');
 
 var App = React.createClass({
     mixins: [RouterMixin],
