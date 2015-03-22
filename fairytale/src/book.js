@@ -48,13 +48,8 @@ var Book = React.createClass({
         var currentChapter = this.getCurrentChapter();
         var chapterHeaders = book.chapters.map(chapter => chapter.header);
 
-        var style = {
-            maxWidth: 800,
-            margin: '0 auto',
-        };
-
         return (
-            <ResponsiveBox className="Book" style={style}>
+            <ResponsiveBox className="Book">
                 <BookHeader title={book.title} subTitle={book.subTitle} />
 
                 <ChaptersMenu chapters={chapterHeaders} defaultChapter={this.state.currentChapter} onChapterChanged={this.onChapterChanged} />

@@ -3,6 +3,7 @@ var RouterMixin = require('react-mini-router').RouterMixin;
 
 var AppHeader = require('./appHeader');
 var AppContent = require('./appContent');
+var Content = require('./content');
 
 var Book = require('./book');
 var Characters = require('./characters');
@@ -40,7 +41,9 @@ var App = React.createClass({
             <div className="App">
                 <AppHeader active={this.getActive()} />
                 <AppContent>
-                    {this.renderCurrentRoute()}
+                    <Content>
+                        {this.renderCurrentRoute()}
+                    </Content>
                 </AppContent>
             </div>
         )

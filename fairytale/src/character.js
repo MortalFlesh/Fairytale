@@ -8,17 +8,12 @@ var Character = React.createClass({
         var character = this.props.character;
         var infos = character.infos.map(info => <CharacterInfo info={info} />);
 
-        var padding = 50;
-        var border = 1;
-
         var style = {
-            padding: padding,
-            paddingBottom: padding - 30,
-            border: border + 'px solid black',
+            padding: '50px 50px 30px 50px',
+            border: '1px solid black',
             margin: '20px auto',
             borderRadius: 15,
             backgroundColor: '#fddbad',
-            width: 800 - (padding + border) * 2,
         };
 
         var titleStyle = {

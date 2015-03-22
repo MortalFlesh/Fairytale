@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Content = require('./content');
+
 var AppHeader = React.createClass({
     render() {
         var style = {
@@ -16,7 +18,10 @@ var AppHeader = React.createClass({
 
         return (
             <div className="AppHeader gradient-background" style={style}>
-                ...header (active: {this.props.active})...
+                <Content>
+                    <div>Logo</div>
+                    ...header (active: {this.props.active})...
+                </Content>
             </div>
         );
     }
