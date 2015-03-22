@@ -13,7 +13,7 @@ var Bar = React.createClass({
             width: 26,
             height: 26,
             borderRadius: 3,
-            border: '1px solid black',
+            border: '1px solid #956722',
             overflow: 'hidden',
         };
         
@@ -22,7 +22,7 @@ var Bar = React.createClass({
                 <Content>
                     <BarContent>
                         <div style={logoStyle}>
-                            Logo
+                            <img src="./fairytale/images/logo.png" alt="MF" />
                         </div>
                         <BarMenu url={this.props.url} active={this.props.active} />
                         <Clear/>
