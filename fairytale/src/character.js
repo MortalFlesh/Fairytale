@@ -29,7 +29,7 @@ var Character = React.createClass({
         };
 
         return (
-            <div className="Character" style={style}>
+            <div className="Character gradient-background" style={style}>
                 <h2 style={titleStyle}>
                     {character.name}
                 </h2>

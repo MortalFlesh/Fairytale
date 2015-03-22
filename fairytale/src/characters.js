@@ -36,8 +36,12 @@ var Characters = React.createClass({
             }
         });
 
+        var style = {
+            paddingTop: 1,
+        };
+
         return (
-            <div className="Characters">
+            <div className="Characters" style={style}>
                 {characters}
             </div>
         );
