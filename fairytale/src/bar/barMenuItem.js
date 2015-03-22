@@ -15,12 +15,14 @@ var BarMenuItem = React.createClass({
             textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
             border: '1px solid black',
             borderRadius: 3,
+            verticalAlign: 'top',
 
             textDecoration: 'none',
         };
 
         if (this.props.active) {
             style.textDecoration = 'underline';
+            style.color = '#fdd9ae';
         }
 
         return (

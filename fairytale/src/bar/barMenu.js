@@ -1,8 +1,10 @@
 var React = require('react');
 
 var BarMenuItem = require('./barMenuItem');
+var BarMenuSeparator = require('./barMenuSeparator');
 
 var Loader = require('./../services/loader.js');
+var ReactComponentsService = require('./../services/reactComponentsService');
 
 var BarMenu = React.createClass({
     getInitialState() {
@@ -28,6 +30,8 @@ var BarMenu = React.createClass({
         var items = state.items.map(item =>
             <BarMenuItem active={item.pathName === state.active} item={item} onClick={this.itemClickHandler} />
         );
+
+        items = ReactComponentsService.join(items, <BarMenuSeparator/>);
 
         return (
             <div className="BarMenu" style={style}>
