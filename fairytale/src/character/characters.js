@@ -12,13 +12,9 @@ var Characters = React.createClass({
         }
     },
     loadCharacters() {
-        Loader.loadJson(this.props.url, function (data) {
-            var characters = data;
-
-            if (characters instanceof Array) {
-                this.setState({characters: characters});
-            }
-        }.bind(this));
+        Loader.loadJson(this.props.url, response => {
+            this.setState({characters: response});
+        });
     },
     componentDidMount() {
         this.loadCharacters();

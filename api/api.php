@@ -69,6 +69,15 @@ if (empty($action) || $action === 'book') {
             'infos' => $infos,
         ];
     }
+} elseif ($action === 'menu-items') {
+    $itemsQ = $pdo->query("SELECT * FROM menu_item ORDER BY priority ASC");
+
+    foreach($itemsQ->fetchAll(PDO::FETCH_ASSOC) as $itemsR) {
+        $response[] = [
+            'name' => $itemsR['name'],
+            'pathName' => $itemsR['path_name'],
+        ];
+    }
 }
 
 header('Content-Type: application/json');

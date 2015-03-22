@@ -25,7 +25,7 @@ var App = React.createClass({
         }
     },
     book() {
-        return <Book url={"./api/api.php"} interval={60 * 1000} />;
+        return <Book url={"./api/api.php?action=book"} interval={60 * 1000} />;
     },
     characters() {
         return <Characters url={"./api/api.php?action=characters"} />;
@@ -39,7 +39,7 @@ var App = React.createClass({
     render() {
         return (
             <div className="App">
-                <AppHeader active={this.getActive()} />
+                <AppHeader url={"./api/api.php?action=menu-items"} active={this.getActive()} />
                 <AppContent>
                     <Content>
                         {this.renderCurrentRoute()}

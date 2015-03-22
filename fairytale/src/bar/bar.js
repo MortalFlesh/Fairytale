@@ -24,7 +24,7 @@ var Bar = React.createClass({
                         <div style={logoStyle}>
                             Logo
                         </div>
-                        <BarMenu active={this.props.active} />
+                        <BarMenu url={this.props.url} active={this.props.active} />
                         <Clear/>
                     </BarContent>
                 </Content>

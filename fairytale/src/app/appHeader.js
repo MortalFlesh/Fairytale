@@ -18,7 +18,7 @@ var AppHeader = React.createClass({
 
         return (
             <div className="AppHeader gradient-background" style={style}>
-                <Bar active={this.props.active} />
+                <Bar url={this.props.url} active={this.props.active} />
             </div>
         );
     }
