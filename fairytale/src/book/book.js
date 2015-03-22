@@ -5,7 +5,7 @@ var Loader = require('./../services/loader');
 var BookHeader = require('./bookHeader');
 
 var ChaptersMenu = require('./../chapter/chaptersMenu');
-var Page = require('./../page');
+var Page = require('./../page/page');
 
 var Book = React.createClass({
     getInitialState() {
