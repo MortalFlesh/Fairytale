@@ -23,7 +23,9 @@ var BarMenu = React.createClass({
 
         var state = this.state;
         var items = state.items.map(item =>
-            <BarMenuItem item={item} active={item.pathName === state.active} />
+            <BarMenuItem active={item.pathName === state.active} href={item.link}>
+                {item.name}
+            </BarMenuItem>
         );
 
         return (

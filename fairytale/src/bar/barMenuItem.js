@@ -1,23 +1,31 @@
 var React = require('react');
 
-var BarMenuLink = require('./barMenuLink');
-
 var BarMenuItem = React.createClass({
+    getInitialState() {
+        return {
+            active: this.props.active,
+        }
+    },
+    clickHandler() {
+        this.setState({active: true});
+    },
     render() {
-        var item = this.props.item;
-
         var style = {
             display: 'inline-block',
             padding: '0 5px',
             lineHeight: '28px',
+
+            textDecoration: 'none',
         };
 
+        if (this.state.active) {
+            style.textDecoration = 'underline';
+        }
+
         return (
-            <div className="BarMenuItem" style={style}>
-                <BarMenuLink active={this.props.active} href={item.link}>
-                    {item.name}
-                </BarMenuLink>
-            </div>
+            <a className="BarMenuItem" href={this.props.href} style={style} onClick={this.clickHandler}>
+                {this.props.children}
+            </a>
         );
     }
 });
