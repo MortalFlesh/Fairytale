@@ -1,7 +1,7 @@
 var React = require('react');
 
 var AppHeaderContent = require('./appHeaderContent');
-var Content = require('./../content');
+var Content = require('./../style/content');
 var Clear = require('./../style/clear');
 
 var AppHeader = React.createClass({
