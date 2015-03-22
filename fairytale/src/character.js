@@ -1,7 +1,7 @@
 var React = require('react');
 
 var CharacterInfo = require('./characterInfo');
-var Clear = require('./clear');
+var Clear = require('./style/clear');
 
 var Character = React.createClass({
     render() {
