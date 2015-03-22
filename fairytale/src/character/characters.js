@@ -1,8 +1,8 @@
 var React = require('react');
 
-var Loader = require('./services/loader');
-
 var Character = require('./character');
+
+var Loader = require('./../services/loader');
 
 var Characters = React.createClass({
     getInitialState() {
