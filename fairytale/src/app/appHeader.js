@@ -1,8 +1,6 @@
 var React = require('react');
 
-var AppHeaderContent = require('./appHeaderContent');
-var Content = require('./../style/content');
-var Clear = require('./../style/clear');
+var Bar = require('./../bar/bar');
 
 var AppHeader = React.createClass({
     render() {
@@ -18,32 +16,9 @@ var AppHeader = React.createClass({
             zIndex: 1000,
         };
 
-        var logoStyle = {
-            float: 'left',
-            width: 26,
-            height: 26,
-            borderRadius: 3,
-            border: '1px solid black',
-            overflow: 'hidden',
-        };
-
-        var menuStyle = {
-            float: 'right',
-        };
-
         return (
             <div className="AppHeader gradient-background" style={style}>
-                <Content>
-                    <AppHeaderContent>
-                        <div style={logoStyle}>
-                            Logo
-                        </div>
-                        <div style={menuStyle}>
-                            ...header (active: {this.props.active})...
-                        </div>
-                        <Clear/>
-                    </AppHeaderContent>
-                </Content>
+                <Bar active={this.props.active} />
             </div>
         );
     }

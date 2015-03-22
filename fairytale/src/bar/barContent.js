@@ -1,17 +1,17 @@
 var React = require('react');
 
-var AppHeaderContent = React.createClass({
+var BarContent = React.createClass({
     render() {
         var style = {
             padding: '8px 0',
         };
 
         return (
-            <div className="AppHeaderContent" style={style}>
+            <div className="BarContent" style={style}>
                 {this.props.children}
             </div>
         );
     }
 });
 
-module.exports = AppHeaderContent;
+module.exports = BarContent;
