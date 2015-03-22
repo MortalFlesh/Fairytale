@@ -3,6 +3,8 @@ error_reporting(!E_ALL);
 
 $pdo = new PDO('mysql:host=localhost;dbname=fairytale;charset=utf8', 'root', '');
 
+$homeUrl = 'http://localhost/Fairytale/#!';
+
 $action = $_GET['action'];
 $response = [];
 
@@ -76,6 +78,7 @@ if (empty($action) || $action === 'book') {
         $response[] = [
             'name' => $itemsR['name'],
             'pathName' => $itemsR['path_name'],
+            'link' => $homeUrl . $itemsR['link'],
         ];
     }
 }
