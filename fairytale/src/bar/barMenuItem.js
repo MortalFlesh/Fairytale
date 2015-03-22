@@ -9,8 +9,12 @@ var BarMenuItem = React.createClass({
 
         var style = {
             display: 'inline-block',
-            padding: '0 5px',
-            lineHeight: '28px',
+            padding: '0 15px',
+            lineHeight: '26px',
+            color: '#956722',
+            textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
+            border: '1px solid black',
+            borderRadius: 3,
 
             textDecoration: 'none',
         };
@@ -20,7 +24,7 @@ var BarMenuItem = React.createClass({
         }
 
         return (
-            <a className="BarMenuItem" href={item.link} style={style} onClick={this.clickHandler}>
+            <a className="BarMenuItem gradient-background" href={item.link} style={style} onClick={this.clickHandler}>
                 {item.name}
             </a>
         );
