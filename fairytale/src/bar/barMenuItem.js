@@ -1,15 +1,12 @@
 var React = require('react');
 
 var BarMenuItem = React.createClass({
-    getInitialState() {
-        return {
-            active: this.props.active,
-        }
-    },
     clickHandler() {
-        this.setState({active: true});
+        this.props.onClick(this.props.item.pathName);
     },
     render() {
+        var item = this.props.item;
+
         var style = {
             display: 'inline-block',
             padding: '0 5px',
@@ -18,13 +15,13 @@ var BarMenuItem = React.createClass({
             textDecoration: 'none',
         };
 
-        if (this.state.active) {
+        if (this.props.active) {
             style.textDecoration = 'underline';
         }
 
         return (
-            <a className="BarMenuItem" href={this.props.href} style={style} onClick={this.clickHandler}>
-                {this.props.children}
+            <a className="BarMenuItem" href={item.link} style={style} onClick={this.clickHandler}>
+                {item.name}
             </a>
         );
     }

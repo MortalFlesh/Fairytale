@@ -16,6 +16,9 @@ var BarMenu = React.createClass({
             this.setState({items: response});
         });
     },
+    itemClickHandler(pathName) {
+        this.setState({active: pathName});
+    },
     render() {
         var style = {
             float: 'right',
@@ -23,9 +26,7 @@ var BarMenu = React.createClass({
 
         var state = this.state;
         var items = state.items.map(item =>
-            <BarMenuItem active={item.pathName === state.active} href={item.link}>
-                {item.name}
-            </BarMenuItem>
+            <BarMenuItem active={item.pathName === state.active} item={item} onClick={this.itemClickHandler} />
         );
 
         return (
