@@ -1,7 +1,8 @@
 var React = require('react');
 
 var BarContent = require('./barContent'); 
-    
+var BarMenu = require('./barMenu');
+
 var Content = require('./../style/content');
 var Clear = require('./../style/clear');
 
@@ -15,10 +16,6 @@ var Bar = React.createClass({
             border: '1px solid black',
             overflow: 'hidden',
         };
-
-        var menuStyle = {
-            float: 'right',
-        };
         
         return (
             <div className="Bar">
@@ -27,9 +24,7 @@ var Bar = React.createClass({
                         <div style={logoStyle}>
                             Logo
                         </div>
-                        <div style={menuStyle}>
-                            ...header (active: {this.props.active})...
-                        </div>
+                        <BarMenu active={this.props.active} />
                         <Clear/>
                     </BarContent>
                 </Content>
