@@ -3,7 +3,7 @@ var React = require('react');
 var Loader = require('./services/loader');
 
 var BookHeader = require('./bookHeader');
-var ChaptersMenu = require('./chaptersMenu');
+var ChaptersMenu = require('./chapter/chaptersMenu');
 var Page = require('./page');
 
 var Book = React.createClass({

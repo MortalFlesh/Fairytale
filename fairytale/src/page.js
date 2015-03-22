@@ -3,7 +3,7 @@ var React = require('react');
 var ResponsiveService = require('./services/responsiveService');
 
 var PageContent = require('./pageContent');
-var Chapter = require('./chapter');
+var Chapter = require('./chapter/chapter');
 
 var Page = React.createClass({
     render() {
