@@ -2,7 +2,6 @@ var React = require('react');
 
 var Loader = require('./services/loader');
 
-var ResponsiveBox = require('./responsiveBox');
 var BookHeader = require('./bookHeader');
 var ChaptersMenu = require('./chaptersMenu');
 var Page = require('./page');
@@ -49,13 +48,13 @@ var Book = React.createClass({
         var chapterHeaders = book.chapters.map(chapter => chapter.header);
 
         return (
-            <ResponsiveBox className="Book">
+            <div className="Book">
                 <BookHeader title={book.title} subTitle={book.subTitle} />
 
                 <ChaptersMenu chapters={chapterHeaders} defaultChapter={this.state.currentChapter} onChapterChanged={this.onChapterChanged} />
 
                 <Page chapter={currentChapter} background={'./fairytale/images/background.jpg'} />
-            </ResponsiveBox>
+            </div>
         );
     }
 });
