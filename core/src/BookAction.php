@@ -6,8 +6,6 @@ use PDO;
 
 class BookAction
 {
-    const MIN_PARAGRAPHS = 2;
-
     /** @var PDO */
     private $pdo;
 
@@ -81,18 +79,10 @@ class BookAction
         $paragraphs = [];
 
         $paragraphsQ = $this->pdo->query("
-            SELECT * FROM (
-                (
-                    SELECT *
-                    FROM paragraph
-                    WHERE chapter_id = $chapterNumber AND is_new = 0
-                ) UNION (
-                    SELECT *
-                    FROM paragraph
-                    WHERE chapter_id = $chapterNumber AND is_new = 1
-                    LIMIT " . self::MIN_PARAGRAPHS . "
-                )
-            ) paragraphs ORDER BY id
+            SELECT *
+            FROM paragraph
+            WHERE chapter_id = $chapterNumber AND public = 1
+            ORDER BY id
         ");
         foreach($paragraphsQ->fetchAll(PDO::FETCH_ASSOC) as $paragraphR) {
             $paragraphs[] = [
