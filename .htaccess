@@ -1,0 +1,15 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} ^magmadin.cz [NC]
+RewriteRule (.*) http://www.magmadin.cz/$1 [R=301,QSA,L]
+
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files config.php>
+    Order Allow,Deny
+    Deny from all
+</Files>
