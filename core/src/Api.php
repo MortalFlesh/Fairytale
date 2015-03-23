@@ -50,42 +50,8 @@ class Api
 
     private function bookAction()
     {
-        $bookQ = $this->pdo->query("SELECT * FROM book");
-        
-        foreach($bookQ->fetchAll(PDO::FETCH_ASSOC) as $bookR) {
-            $chapters = [];
-
-            $chaptersQ = $this->pdo->query("SELECT * FROM chapter WHERE book_id = " . $bookR['id']);
-            $chaptersQ->setFetchMode(PDO::FETCH_ASSOC);
-            foreach($chaptersQ->fetchAll() as $chapterR) {
-                $paragraphs = [];
-
-                $paragraphsQ = $this->pdo->query("SELECT * FROM paragraph WHERE chapter_id = " . $chapterR['number'] . " ORDER BY id");
-                $paragraphsQ->setFetchMode(PDO::FETCH_ASSOC);
-                foreach($paragraphsQ->fetchAll() as $paragraphR) {
-                    $paragraphs[] = [
-                        'content' => $paragraphR['content'],
-                        'isNew' => $paragraphR['is_new'],
-                    ];
-                }
-
-                $chapters[] = [
-                    'header' => [
-                        'number' => $chapterR['number'],
-                        'title' => $chapterR['title'],
-                    ],
-                    'paragraphs' => $paragraphs,
-                    'image' => $chapterR['image'],
-                ];
-            }
-
-            $this->response = [
-                'title' => $bookR['title'],
-                'subTitle' => $bookR['sub_title'],
-                'cover' => $bookR['cover'],
-                'chapters' => $chapters,
-            ];
-        }
+        $bookAction = new BookAction($this->pdo);
+        $this->response = $bookAction->getResponse();
     }
 
     private function charactersAction()
