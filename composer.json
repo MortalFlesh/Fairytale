@@ -1,0 +1,12 @@
+{
+    "name": "mortalflesh/fairytale",
+    "require": {
+        "nette/robot-loader": "~2.3"
+    },
+    "authors": [
+        {
+            "name": "Mortal Flesh",
+            "email": "mortal_flesh@seznam.cz"
+        }
+    ]
+}

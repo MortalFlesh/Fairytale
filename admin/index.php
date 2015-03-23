@@ -8,9 +8,13 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
+require_once "./../core/core.php";
+
+$config = new \MF\Fairytale\Config();
+
 if ($_SESSION['logged'] !== true) {
     if ($_POST['login']) {
-        $pdo = new PDO('mysql:host=localhost;dbname=fairytale', 'root', '');
+        $pdo = $config->getPdoConnection();
         $login = $pdo->prepare("SELECT * FROM user WHERE id = ?");
         $login->execute([1]);
 
@@ -49,7 +53,7 @@ function repairText($rawText) {
 }
 
 if ($_POST['save']) {
-    $pdo = new PDO('mysql:host=localhost;dbname=fairytale', 'root', '');
+    $pdo = $config->getPdoConnection();
 
     $bookId = 1;
     $text = repairText($_POST['text']);

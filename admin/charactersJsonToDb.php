@@ -1,5 +1,9 @@
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=fairytale', 'root', '');
+require_once "./../core/core.php";
+
+$config = new \MF\Fairytale\Config();
+
+$pdo = $config->getPdoConnection();
 
 $json = file_get_contents('./../api/characters.json');
 $array = json_decode($json, true);

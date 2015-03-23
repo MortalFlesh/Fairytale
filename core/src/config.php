@@ -1,6 +1,10 @@
 <?php
 
-class config
+namespace MF\Fairytale;
+
+use PDO;
+
+class Config
 {
     /** @var PDO */
     private $pdo;

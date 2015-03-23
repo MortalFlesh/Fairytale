@@ -2,3 +2,5 @@
 /fairytale/node_modules
 /fairytale/cache
 /deploy.ini
+/core/src/config.php
+/vendor/

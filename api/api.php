@@ -1,9 +1,12 @@
 <?php
 error_reporting(!E_ALL);
 
-$pdo = new PDO('mysql:host=localhost;dbname=fairytale;charset=utf8', 'root', '');
+require_once "./../core/core.php";
 
-$homeUrl = 'http://localhost/Fairytale/#!';
+$config = new \MF\Fairytale\Config();
+
+$pdo = $config->getPdoConnection();
+$homeUrl = $config->getHomeUrl();
 
 $action = $_GET['action'];
 $response = [];
