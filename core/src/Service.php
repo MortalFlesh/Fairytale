@@ -35,12 +35,15 @@ class Service
         if (empty($service) || $service === 'chapters-update') {
             $this->chaptersUpdateAction();
         }
-        
+
         return $this->response;
     }
 
     private function chaptersUpdateAction()
     {
-        // todo
+        $chapterUpdateAction = new ChaptersUpdateAction();
+        $this->response['status'] = $chapterUpdateAction
+            ->run()
+            ->getStatus();
     }
 }
