@@ -43,6 +43,8 @@ class Api
             $this->charactersAction();
         } elseif ($action === 'menu-items') {
             $this->menuItemsAction();
+        } elseif ($action === 'service') {
+            $this->serviceAction();
         }
 
         return $this->response;
@@ -93,5 +95,11 @@ class Api
                 'link' => $this->homeUrl . $itemsR['link'],
             ];
         }
+    }
+
+    private function serviceAction()
+    {
+        $service = new Service($this->data, $this->pdo);
+        $this->response = $service->getResponse();
     }
 }
