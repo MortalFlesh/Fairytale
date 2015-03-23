@@ -82,9 +82,16 @@ class BookAction
 
         $paragraphsQ = $this->pdo->query("
             SELECT * FROM (
-                (SELECT * FROM paragraph WHERE chapter_id = 1 AND is_new = 0)
-                UNION
-                (SELECT * FROM paragraph WHERE chapter_id = 1 AND is_new = 1 LIMIT " . self::MIN_PARAGRAPHS . ")
+                (
+                    SELECT *
+                    FROM paragraph
+                    WHERE chapter_id = $chapterNumber AND is_new = 0
+                ) UNION (
+                    SELECT *
+                    FROM paragraph
+                    WHERE chapter_id = $chapterNumber AND is_new = 1
+                    LIMIT " . self::MIN_PARAGRAPHS . "
+                )
             ) paragraphs ORDER BY id
         ");
         foreach($paragraphsQ->fetchAll(PDO::FETCH_ASSOC) as $paragraphR) {
