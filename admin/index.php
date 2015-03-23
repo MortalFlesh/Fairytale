@@ -83,6 +83,11 @@ if ($_POST['save']) {
         $pdo->query("INSERT INTO paragraph (chapter_id, content, is_new, `public`) VALUES " . implode(",", $inserts));
 
         $status = 'ok';
+
+        $error = $pdo->errorInfo();
+        if ($error[0] !== '00000') {
+            $status = 'ERROR: ' . var_export($error, true);
+        }
     }
 }
 ?>
