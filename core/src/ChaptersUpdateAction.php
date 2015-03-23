@@ -6,6 +6,10 @@ use DateTime;
 
 class ChaptersUpdateAction
 {
+    const ALREADY_RUN = 'already_run';
+    const TRY_TO_RUN = 'trying';
+    const MAX_ATTEMPS = 5;
+
     const MIN_LIMIT = 2;
     const LIMIT_ROLLS = 3;
     const PARAGRAPH_MIN_LENGTH = 150;
@@ -35,6 +39,10 @@ class ChaptersUpdateAction
      */
     public function run()
     {
+        if (!$this->shouldRun()) {
+            return $this;
+        }
+
         $this->setAllPublicAsOld();
 
         $chapterId = $this->getFirstChapterIdToPublic();
@@ -53,11 +61,80 @@ class ChaptersUpdateAction
         }
 
         $this->setParagraphsAsNewAndPublic($paragraphs);
+        $this->setServiceStatus(self::ALREADY_RUN);
 
         $published = count($paragraphs);
 
-        $this->status = 'published: ' . $published;
+        if ($published > 0) {
+            $this->status = 'published: ' . $published;
+        } else {
+            $this->status = 'none-published';
+        }
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    private function shouldRun()
+    {
+        $status = $this->getServiceStatus();
+        $attemp = (int) $status['attemp'];
+        $currentAttemp = $attemp + 1;
+
+        /* var $statusTime DateTime */
+        $statusTime = $status['time'];
+        $now = new DateTime();
+
+        $noMessage = (empty($status['message']));
+        $tryingMsg = ($status['message'] === self::TRY_TO_RUN);
+        $alreadyRun = ($status['message'] === self::ALREADY_RUN);
+
+        $isToday = ($statusTime instanceof DateTime && $now->format('Y-m-d') === $statusTime->format('Y-m-d'));
+        $alreadyRunToday = ($alreadyRun && $isToday);
+
+        $canRun = (!$alreadyRunToday && ($noMessage || $tryingMsg));
+        $shouldRun = ($currentAttemp > self::MAX_ATTEMPS || $this->dice->roll(6) >= 5);
+
+        if ($canRun && $shouldRun) {
+            $this->status = 'running...';
+            return true;
+        } elseif (!$alreadyRunToday) {
+            $this->status = self::TRY_TO_RUN . ' ' . $currentAttemp;
+            $this->setServiceStatus(self::TRY_TO_RUN, $currentAttemp);
+        } else {
+            $this->status = self::ALREADY_RUN;
+        }
+        return false;
+    }
+
+    /**
+     * @param string $message
+     * @param int $attemp
+     */
+    private function setServiceStatus($message = '', $attemp = 0)
+    {
+        $now = new DateTime();
+        $time = $now->format(self::DB_DATE_FORMAT);
+
+        $this->pdo->query("
+            REPLACE INTO service (`name`, `message`, `attemp`, `time`)
+            VALUES ('" . __CLASS__ . "', '$message', $attemp, '$time')"
+        );
+    }
+
+    /**
+     * @return array
+     */
+    private function getServiceStatus()
+    {
+        $res = $this->pdo->query("SELECT * FROM service WHERE `name` = '" . __CLASS__ . "'");
+        $status = $res->fetch(PDO::FETCH_ASSOC);
+        return [
+            'message' => $status['message'],
+            'attemp' => (int) $status['attemp'] > 0 ? (int) $status['attemp'] : 0,
+            'time' => DateTime::createFromFormat(self::DB_DATE_FORMAT, $status['time']),
+        ];
     }
 
     /**
@@ -128,7 +205,7 @@ class ChaptersUpdateAction
         $newLimit = $limit;
 
         foreach ($paragraphs as $paragraph) {
-            if (mb_strlen($paragraph) < self::PARAGRAPH_MIN_LENGTH) {
+            if (mb_strlen($paragraph['content']) < self::PARAGRAPH_MIN_LENGTH) {
                 $newLimit++;
             }
         }
@@ -142,7 +219,7 @@ class ChaptersUpdateAction
     private function setParagraphsAsNewAndPublic(array $paragraphs)
     {
         $ids = [];
-        foreach($paragraphs as $paragraph) {
+        foreach ($paragraphs as $paragraph) {
             $ids[] = (int) $paragraph['id'];
         }
 
