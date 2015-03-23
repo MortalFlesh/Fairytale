@@ -41,7 +41,7 @@ class Service
 
     private function chaptersUpdateAction()
     {
-        $chapterUpdateAction = new ChaptersUpdateAction();
+        $chapterUpdateAction = new ChaptersUpdateAction($this->pdo, new Dice());
         $this->response['status'] = $chapterUpdateAction
             ->run()
             ->getStatus();

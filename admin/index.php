@@ -77,10 +77,10 @@ if ($_POST['save']) {
 
         foreach($paragraphs as $paragraph) {
             $paragraph = str_replace(["\n", '***', '**'], '~', $paragraph);
-            $inserts[] = "('$chapterNumber', '$paragraph', '$isNew')";
+            $inserts[] = "('$chapterNumber', '$paragraph', '$isNew', 0)";
         }
 
-        $pdo->query("INSERT INTO paragraph (chapter_id, content, is_new) VALUES " . implode(",", $inserts));
+        $pdo->query("INSERT INTO paragraph (chapter_id, content, is_new, `public`) VALUES " . implode(",", $inserts));
 
         $status = 'ok';
     }
@@ -136,7 +136,7 @@ if ($_POST['save']) {
 
         <div class="label-line">
             <label>
-                <input type="checkbox" name="isNew" value="1" />&nbsp;Označit jako nové
+                <input disabled type="checkbox" name="isNew" value="1" />&nbsp;<strike>Označit jako nové</strike> (dějě se automaticky)
             </label>
         </div>
     </div>

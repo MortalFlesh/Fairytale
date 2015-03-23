@@ -56,6 +56,10 @@ class BookAction
         foreach($chaptersQ->fetchAll(PDO::FETCH_ASSOC) as $chapterR) {
             $paragraphs = $this->loadParagraphs($chapterR['number']);
 
+            if (empty($paragraphs)) {
+                continue;
+            }
+
             $chapters[] = [
                 'header' => [
                     'number' => $chapterR['number'],

@@ -8,3 +8,5 @@ $loader = new \Nette\Loaders\RobotLoader();
 $loader->addDirectory($root . 'core/src/');
 $loader->setCacheStorage(new \Nette\Caching\Storages\FileStorage($root . 'fairytale/cache'));
 $loader->register();
+
+mb_internal_encoding('UTF-8');
