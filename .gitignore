@@ -3,4 +3,5 @@
 /fairytale/cache
 /deploy.ini
 /core/src/config.php
+/core/src/WhatsAppConfig.php
 /vendor/

@@ -1,7 +1,8 @@
 {
     "name": "mortalflesh/fairytale",
     "require": {
-        "nette/robot-loader": "~2.3"
+        "nette/robot-loader": "~2.3",
+        "venomous0x/whats-api": "dev-master"
     },
     "authors": [
         {

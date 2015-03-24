@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5cd30467d439e10a197bb4b9a76234c3",
+    "hash": "59018c47ba6cfba6fb7d7ab3431bf19f",
     "packages": [
         {
             "name": "nette/caching",
@@ -235,12 +235,52 @@
             "description": "Nette Utility Classes",
             "homepage": "http://nette.org",
             "time": "2015-02-24 21:21:17"
+        },
+        {
+            "name": "venomous0x/whats-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ioesandeep/WhatsAPI.git",
+                "reference": "f6ae9846d62d64deb71ddb87c8970addd0c441a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ioesandeep/WhatsAPI/zipball/f6ae9846d62d64deb71ddb87c8970addd0c441a3",
+                "reference": "f6ae9846d62d64deb71ddb87c8970addd0c441a3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/whatsprot.class.php",
+                    "src/events"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Firstname Lastname",
+                    "email": "email@example.com",
+                    "role": "TODO"
+                }
+            ],
+            "description": "Interface to WhatsApp Messenger",
+            "time": "2014-08-20 20:15:20"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "venomous0x/whats-api": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
