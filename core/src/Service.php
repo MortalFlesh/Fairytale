@@ -41,7 +41,11 @@ class Service
 
     private function chaptersUpdateAction()
     {
-        $chapterUpdateAction = new ChaptersUpdateAction($this->pdo, new Dice());
+        $chapterUpdateAction = new ChaptersUpdateAction(
+            $this->pdo,
+            new Dice(),
+            new WhatsAppService(new WhatsAppConfig())
+        );
         $this->response['status'] = $chapterUpdateAction
             ->run()
             ->getStatus();
