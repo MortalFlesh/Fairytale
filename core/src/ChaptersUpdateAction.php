@@ -3,6 +3,7 @@ namespace MF\Fairytale;
 
 use PDO;
 use DateTime;
+use Exception;
 
 class ChaptersUpdateAction
 {
@@ -24,14 +25,19 @@ class ChaptersUpdateAction
     /** @var Dice */
     private $dice;
 
+    /** @var WhatsAppService */
+    private $whatsAppService;
+
     /**
      * @param PDO $pdo
      * @param Dice $dice
+     * @param WhatsAppService $whatsAppService
      */
-    public function __construct(PDO $pdo, Dice $dice)
+    public function __construct(PDO $pdo, Dice $dice, WhatsAppService $whatsAppService)
     {
         $this->pdo = $pdo;
         $this->dice = $dice;
+        $this->whatsAppService = $whatsAppService;
     }
 
     /**
@@ -66,6 +72,7 @@ class ChaptersUpdateAction
         $published = count($paragraphs);
 
         if ($published > 0) {
+            $this->notify($published);
             $this->status = 'published: ' . $published;
         } else {
             $this->status = 'none-published';
@@ -235,6 +242,30 @@ class ChaptersUpdateAction
                     public_from = '$nowFormated'
                 WHERE id IN (" . implode(',', $ids) . ")
             ");
+        }
+    }
+
+    /**
+     * @param $publishedCount
+     */
+    private function notify($publishedCount)
+    {
+        $message = '';
+
+        if ($publishedCount === 1) {
+            $message .= 'Přibyl Ti ' . $publishedCount . ' nový odstavec';
+        } elseif ($publishedCount >= 2 && $publishedCount <= 4) {
+            $message .= 'Přibyly Ti ' . $publishedCount . ' nové odstavce';
+        } elseif ($publishedCount >= 5) {
+            $message .= 'Přibylo Ti ' . $publishedCount . ' nových odstavců';
+        }
+
+        $message .= ' v pohádce, tak se koukni na www.magmadin.cz :-*';
+
+        try {
+            $this->whatsAppService->sendMessage($message);
+        } catch (Exception $e) {
+            $this->status .= ' | with notify error';
         }
     }
 

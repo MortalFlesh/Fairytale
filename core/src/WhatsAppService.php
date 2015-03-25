@@ -17,6 +17,9 @@ class WhatsAppService
         $this->whatsappConfig = $whatsappConfig;
     }
 
+    /**
+     * @param $message
+     */
     public function sendMessage($message)
     {
         $userPhone = $this->whatsappConfig->getUserPhone();

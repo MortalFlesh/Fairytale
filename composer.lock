@@ -4,8 +4,56 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "59018c47ba6cfba6fb7d7ab3431bf19f",
+    "hash": "b8316a8907a2821ffcf46e2633eeb814",
     "packages": [
+        {
+            "name": "mgp25/whatsapi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mgp25/WhatsAPI-Official.git",
+                "reference": "3dc8921bea5238c9582bb1c8b2515c9a67c8cab3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mgp25/WhatsAPI-Official/zipball/3dc8921bea5238c9582bb1c8b2515c9a67c8cab3",
+                "reference": "3dc8921bea5238c9582bb1c8b2515c9a67c8cab3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-gd": "*",
+                "ext-openssl": "*",
+                "ext-pdo": "*",
+                "ext-sockets": "*",
+                "ext-sqlite3": "*",
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/",
+                    "src/events"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "WhatsAPI Official Contributing Team",
+                    "homepage": "https://github.com/mgp25/WhatsAPI-Official/graphs/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "The php WhatsApp library ",
+            "keywords": [
+                "whatsapi",
+                "whatsapp"
+            ],
+            "time": "2015-03-23 11:17:06"
+        },
         {
             "name": "nette/caching",
             "version": "v2.3.0",
@@ -235,51 +283,13 @@
             "description": "Nette Utility Classes",
             "homepage": "http://nette.org",
             "time": "2015-02-24 21:21:17"
-        },
-        {
-            "name": "venomous0x/whats-api",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ioesandeep/WhatsAPI.git",
-                "reference": "f6ae9846d62d64deb71ddb87c8970addd0c441a3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ioesandeep/WhatsAPI/zipball/f6ae9846d62d64deb71ddb87c8970addd0c441a3",
-                "reference": "f6ae9846d62d64deb71ddb87c8970addd0c441a3",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/whatsprot.class.php",
-                    "src/events"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Firstname Lastname",
-                    "email": "email@example.com",
-                    "role": "TODO"
-                }
-            ],
-            "description": "Interface to WhatsApp Messenger",
-            "time": "2014-08-20 20:15:20"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "venomous0x/whats-api": 20
+        "mgp25/whatsapi": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
