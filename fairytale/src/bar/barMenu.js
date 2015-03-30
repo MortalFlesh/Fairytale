@@ -27,11 +27,15 @@ var BarMenu = React.createClass({
         };
 
         var state = this.state;
-        var items = state.items.map(item =>
-            <BarMenuItem active={item.pathName === state.active} item={item} onClick={this.itemClickHandler} />
+        var items = state.items.map((item, i) =>
+            <BarMenuItem
+                key={i}
+                active={item.pathName === state.active}
+                item={item}
+                onClick={this.itemClickHandler} />
         );
 
-        items = ReactComponentsService.join(items, <BarMenuSeparator/>);
+        items = ReactComponentsService.join(items, key => <BarMenuSeparator key={key} />);
 
         return (
             <div className="BarMenu" style={style}>

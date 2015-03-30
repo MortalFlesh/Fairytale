@@ -6,7 +6,7 @@ var Clear = require('./../style/clear');
 var Character = React.createClass({
     render() {
         var character = this.props.character;
-        var infos = character.infos.map(info => <CharacterInfo info={info} />);
+        var infos = character.infos.map((info, i) => <CharacterInfo key={i} info={info} />);
 
         var style = {
             padding: '50px 50px 30px 50px',

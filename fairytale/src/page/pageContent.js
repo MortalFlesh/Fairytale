@@ -19,7 +19,7 @@ var PageContent = React.createClass({
 
         return (
             <div className="PageContent" style={style}>
-                <div class="PageContent_Scroll" style={styleScroll}>
+                <div className="PageContent_Scroll" style={styleScroll}>
                     {this.props.children}
                 </div>
             </div>

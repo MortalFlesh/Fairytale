@@ -8,7 +8,7 @@ var Chapter = React.createClass({
         var chapter = this.props.chapter;
 
         var paragraphs = chapter.paragraphs.map(paragraph =>
-            <ChapterParagraph isNew={paragraph.isNew}>
+            <ChapterParagraph key={paragraph.id} isNew={paragraph.isNew}>
                 {paragraph.content}
             </ChapterParagraph>
         );

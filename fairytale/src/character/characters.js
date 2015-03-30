@@ -26,9 +26,9 @@ var Characters = React.createClass({
         return (selected === '' || selected === name);
     },
     render() {
-        var characters = this.state.characters.map(character => {
+        var characters = this.state.characters.map((character, i) => {
             if (this.isSelected(character.name)) {
-                return <Character character={character} />;
+                return <Character key={i} character={character} />;
             }
         });
 

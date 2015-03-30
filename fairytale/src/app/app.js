@@ -34,7 +34,7 @@ var App = React.createClass({
         return <Characters url={"./api/api.php?action=characters"} selected={name} />;
     },
     notFound(path) {
-        return <div class="not-found">Page Not Found: {path}</div>;
+        return <div className="not-found">Page Not Found: {path}</div>;
     },
     render() {
         return (

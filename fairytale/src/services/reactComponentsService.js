@@ -1,18 +1,23 @@
 var reactComponentsService = {
     join(components, separator) {
-        var lastItemIndex = components.length - 1;
-        var joinedComponent = [];
+        var componentsLength = components.length;
+        var lastItemIndex = componentsLength - 1;
+        var joined = [];
 
         for (var i in components) {
-            joinedComponent.push(components[i]);
+            joined.push(components[i]);
 
             if (i < lastItemIndex) {
-                joinedComponent.push(separator);
+                if (separator instanceof Function) {
+                    joined.push(separator(componentsLength + i));
+                } else {
+                    joined.push(separator);
+                }
             }
         }
 
-        return joinedComponent;
-    }
+        return joined;
+    },
 };
 
 module.exports = reactComponentsService;

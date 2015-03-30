@@ -52,7 +52,10 @@ var Book = React.createClass({
             <div className="Book">
                 <BookHeader title={book.title} subTitle={book.subTitle} />
 
-                <ChaptersMenu chapters={chapterHeaders} defaultChapter={this.state.currentChapter} onChapterChanged={this.onChapterChanged} />
+                <ChaptersMenu
+                    chapters={chapterHeaders}
+                    defaultChapter={this.state.currentChapter}
+                    onChapterChanged={this.onChapterChanged} />
 
                 <Page chapter={currentChapter} background={'./fairytale/images/background.jpg'} />
             </div>

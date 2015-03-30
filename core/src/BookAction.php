@@ -90,6 +90,7 @@ class BookAction
         ");
         foreach($paragraphsQ->fetchAll(PDO::FETCH_ASSOC) as $paragraphR) {
             $paragraphs[] = [
+                'id' => $paragraphR['id'],
                 'content' => $paragraphR['content'],
                 'isNew' => $paragraphR['is_new'],
             ];

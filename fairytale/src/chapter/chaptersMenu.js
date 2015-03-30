@@ -39,7 +39,11 @@ var ChaptersMenu = React.createClass({
         var state = this.state;
 
         var chapters = this.state.chapters.map(chapter =>
-            <ChapterMenuItem isActive={state.selectedChapter == chapter.number} number={chapter.number} onClickHandler={this.menuItemClick}>
+            <ChapterMenuItem
+                key={chapter.number}
+                isActive={state.selectedChapter == chapter.number}
+                number={chapter.number}
+                onClickHandler={this.menuItemClick}>
                 <ChapterHeader number={chapter.number} title={chapter.title} />
             </ChapterMenuItem>
         );
