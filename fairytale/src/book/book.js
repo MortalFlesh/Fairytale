@@ -1,6 +1,8 @@
 var React = require('react');
+var jQuery = require('jquery-browserify');
 
 var Loader = require('./../services/loader');
+var CookiesService = require('./../services/cookieService');
 
 var BookHeader = require('./bookHeader');
 
@@ -44,6 +46,17 @@ var Book = React.createClass({
     onChapterChanged(chapterNumber) {
         this.setState({currentChapter: chapterNumber});
     },
+    onBookmarkClick(chapterNumber) {
+        this.onChapterChanged(chapterNumber);
+        setTimeout(function() {
+            var bookmark = CookiesService.get('bookmark');
+            var target = jQuery('#paragraph-' + bookmark.paragraph);
+
+            jQuery('.PageContent_Scroll').animate({
+                scrollTop: target.offset().top
+            }, 1000);
+        }, 200);
+    },
     render() {
         var book = this.state.book;
         var currentChapter = this.getCurrentChapter();
@@ -58,7 +71,7 @@ var Book = React.createClass({
                     defaultChapter={this.state.currentChapter}
                     onChapterChanged={this.onChapterChanged} />
 
-                <Bookmark onClick={this.onChapterChanged} />
+                <Bookmark onClick={this.onBookmarkClick} />
 
                 <Page
                     chapter={currentChapter}

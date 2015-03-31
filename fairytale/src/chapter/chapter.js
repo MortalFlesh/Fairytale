@@ -7,7 +7,7 @@ var CookieService = require('./../services/cookieService');
 
 var Chapter = React.createClass({
     onBookmarkedHandler() {
-        this.setState();
+        this.forceUpdate();
     },
     render() {
         var chapter = this.props.chapter;

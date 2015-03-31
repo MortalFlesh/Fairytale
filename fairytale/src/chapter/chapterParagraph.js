@@ -63,6 +63,7 @@ var ChapterParagraph = React.createClass({
 
         return (
             <p className="ChapterParagraph"
+               id={"paragraph-" + this.props.paragraph.id}
                title="Přidat záložku"
                style={style}
                onMouseEnter={this.mouseEnterHandler}
