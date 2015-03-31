@@ -93,6 +93,7 @@ class BookAction
                 'id' => $paragraphR['id'],
                 'content' => $paragraphR['content'],
                 'isNew' => $paragraphR['is_new'],
+                'chapter' => $paragraphR['chapter_id'],
             ];
         }
 
