@@ -1,6 +1,6 @@
 var React = require('react');
 
-var cookiesService = require('./../services/cookieService');
+var CookiesService = require('./../services/cookieService');
 
 var ChapterParagraph = React.createClass({
     getInitialState() {
@@ -30,7 +30,7 @@ var ChapterParagraph = React.createClass({
         this.setState({hover: false});
     },
     onClickHandler() {
-        cookiesService.set('bookmark', {
+        CookiesService.set('bookmark', {
             chapter: parseInt(this.props.paragraph.chapter),
             paragraph: parseInt(this.props.paragraph.id),
         });

@@ -6,6 +6,7 @@ var BookHeader = require('./bookHeader');
 
 var ChaptersMenu = require('./../chapter/chaptersMenu');
 var Page = require('./../page/page');
+var Bookmark = require('./../book/bookmark');
 
 var Book = React.createClass({
     getInitialState() {
@@ -57,7 +58,13 @@ var Book = React.createClass({
                     defaultChapter={this.state.currentChapter}
                     onChapterChanged={this.onChapterChanged} />
 
-                <Page chapter={currentChapter} background={'./fairytale/images/background.jpg'} />
+                <Bookmark onClick={this.onChapterChanged} />
+
+                <Page
+                    chapter={currentChapter}
+                    background={'./fairytale/images/background.jpg'}
+                    onChapterChanged={this.onChapterChanged}
+                />
             </div>
         );
     }

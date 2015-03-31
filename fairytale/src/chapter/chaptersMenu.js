@@ -22,6 +22,9 @@ var ChaptersMenu = React.createClass({
         if (this.state.selectedChapter === 1 && this.state.chapters !== this.props.chapters) {
             state.chapters = this.props.chapters;
             stateChanged = true;
+        } else if (this.state.selectedChapter !== this.props.defaultChapter) {
+            state.selectedChapter = this.props.defaultChapter;
+            stateChanged = true;
         }
 
         if (stateChanged) {
