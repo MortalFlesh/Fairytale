@@ -34,7 +34,7 @@ var Bookmark = React.createClass({
 
         return (
             <div className="Bookmark" style={style}>
-                <a style={linkStyle} onClick={this.onClickHandler} />
+                <a title="Přejít na uloženou kapitolu" style={linkStyle} onClick={this.onClickHandler} />
             </div>
         );
     }

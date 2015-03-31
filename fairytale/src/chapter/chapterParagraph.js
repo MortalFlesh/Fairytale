@@ -34,6 +34,7 @@ var ChapterParagraph = React.createClass({
             chapter: parseInt(this.props.paragraph.chapter),
             paragraph: parseInt(this.props.paragraph.id),
         });
+        this.props.onBookmarked();
     },
     render() {
         var bgColor = 'none';
@@ -54,8 +55,8 @@ var ChapterParagraph = React.createClass({
             cursor: 'alias',
         };
 
-        if (this.state.hover) {
-            style.borderColor = 'black';
+        if (this.state.hover || this.props.bookmark) {
+            style.borderColor = 'RGBA(149, 103, 34, 0.9)';
         }
 
         var content = this.repairContent(this.props.children);
