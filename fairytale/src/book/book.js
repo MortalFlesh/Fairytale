@@ -48,12 +48,19 @@ var Book = React.createClass({
     },
     onBookmarkClick(chapterNumber) {
         this.onChapterChanged(chapterNumber);
-        setTimeout(function() {
-            var bookmark = CookiesService.get('bookmark');
-            var target = jQuery('#paragraph-' + bookmark.paragraph);
 
-            jQuery('.PageContent_Scroll').animate({
-                scrollTop: target.offset().top
+        setTimeout(function() {
+            var pageContent = jQuery('.PageContent_Scroll');
+
+            jQuery('html, body').animate({
+                scrollTop: pageContent.offset().top - 150
+            }, 1000);
+
+            var bookmarkedParagraph = jQuery('.bookmark-paragraph');
+            setTimeout(function() {
+                jQuery('.PageContent_Scroll').animate({
+                    scrollTop: bookmarkedParagraph.offset().top - 500
+                }, 1000);
             }, 1000);
         }, 200);
     },

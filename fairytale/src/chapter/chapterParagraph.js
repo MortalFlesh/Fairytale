@@ -37,6 +37,7 @@ var ChapterParagraph = React.createClass({
         this.props.onBookmarked();
     },
     render() {
+        var className = "ChapterParagraph";
         var bgColor = 'none';
 
         if (this.props.paragraph.isNew == '1') {
@@ -59,11 +60,18 @@ var ChapterParagraph = React.createClass({
             style.borderColor = 'RGBA(149, 103, 34, 0.9)';
         }
 
+        if (this.props.bookmark) {
+            className += ' bookmark-paragraph';
+            //style.backgroundImage = 'url("./fairytale/images/bookmark-paragraph.png")';
+            //style.backgroundRepeat = 'no-repeat';
+            //style.backgroundPosition = '550px -5px';
+            // todo - add component for bookmarkParagraph with style above
+        }
+
         var content = this.repairContent(this.props.children);
 
         return (
-            <p className="ChapterParagraph"
-               id={"paragraph-" + this.props.paragraph.id}
+            <p className={className}
                title="Přidat záložku"
                style={style}
                onMouseEnter={this.mouseEnterHandler}
