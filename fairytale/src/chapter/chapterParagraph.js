@@ -2,6 +2,8 @@ var React = require('react');
 
 var CookiesService = require('./../services/cookieService');
 
+var ParagraphBookmark = require('./paragraphBookmark');
+
 var ChapterParagraph = React.createClass({
     getInitialState() {
         return {
@@ -60,23 +62,27 @@ var ChapterParagraph = React.createClass({
             style.borderColor = 'RGBA(149, 103, 34, 0.9)';
         }
 
-        if (this.props.bookmark) {
-            className += ' bookmark-paragraph';
-            //style.backgroundImage = 'url("./fairytale/images/bookmark-paragraph.png")';
-            //style.backgroundRepeat = 'no-repeat';
-            //style.backgroundPosition = '550px -5px';
-            // todo - add component for bookmarkParagraph with style above
-        }
-
         var content = this.repairContent(this.props.children);
+
+        if (this.props.bookmark) {
+            var newContent = [];
+
+            newContent.push(<ParagraphBookmark />);
+
+            for (var i in content) {
+                newContent.push(content[i]);
+            }
+
+            content = newContent;
+        }
 
         return (
             <p className={className}
-               title="Přidat záložku"
-               style={style}
-               onMouseEnter={this.mouseEnterHandler}
-               onMouseLeave={this.mouseLeaveHandler}
-               onClick={this.onClickHandler}
+                title="Přidat záložku"
+                style={style}
+                onMouseEnter={this.mouseEnterHandler}
+                onMouseLeave={this.mouseLeaveHandler}
+                onClick={this.onClickHandler}
             >
                 {content}
             </p>
