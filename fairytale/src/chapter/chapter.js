@@ -9,6 +9,12 @@ var Chapter = React.createClass({
     onBookmarkedHandler() {
         this.forceUpdate();
     },
+    markAsFirstParagraph(i, content) {
+        var firstLetter = content[0];
+        var isFirstLetterValid = new RegExp(/[a-záÁčČďĎéěÉĚíÍóÓřŘšŠťŤůŮúÚýÝžŽ]/i).test(firstLetter);
+
+        return (i === 0 && isFirstLetterValid);
+    },
     render() {
         var chapter = this.props.chapter;
 
@@ -20,13 +26,14 @@ var Chapter = React.createClass({
         }
 
         var i = 0;
+
         var paragraphs = chapter.paragraphs.map(paragraph =>
             <ChapterParagraph
                 key={paragraph.id}
                 paragraph={paragraph}
                 bookmark={bookmarkedId == paragraph.id}
                 onBookmarked={this.onBookmarkedHandler}
-                isFirstParagraph={i++ === 0}
+                isFirstParagraph={this.markAsFirstParagraph(i++, paragraph.content)}
             >
                 {paragraph.content}
             </ChapterParagraph>

@@ -6,6 +6,7 @@ var ChapterFirstLetter = React.createClass({
     render() {
         var style = {
             color: Style.colors.title,
+            textShadow: Style.shadow.title,
             float: 'left',
             fontSize: 80,
             fontWeight: 'bold',
