@@ -41,7 +41,7 @@ var Chapter = React.createClass({
 
         return (
             <div className="Chapter" style={{paddingTop: 20}}>
-                <ChapterHeader number={chapter.header.number} title={chapter.header.title} />
+                <ChapterHeader number={chapter.header.number} title={chapter.header.title} inChapter={true} />
 
                 {paragraphs}
             </div>
