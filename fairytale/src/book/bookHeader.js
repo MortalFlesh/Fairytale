@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Style = require('./../services/styleService');
+
 var BookHeader = React.createClass({
     render() {
         var style = {
@@ -9,16 +11,16 @@ var BookHeader = React.createClass({
             },
             title: {
                 textAlign: 'center',
-                color: '#fdd9ae',
+                color: Style.colors.titleActive,
                 fontSize: 50,
-                textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
+                textShadow: Style.shadow.title,
                 margin: 0,
             },
             subTitle: {
                 textAlign: 'center',
-                color: '#fdd9ae',
+                color: Style.colors.titleActive,
                 fontSize: 30,
-                textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
+                textShadow: Style.shadow.title,
                 margin: 0,
             },
         };

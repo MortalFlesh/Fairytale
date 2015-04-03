@@ -12,7 +12,7 @@ var ChapterMenuItem = React.createClass({
             margin: '0 8px',
             cursor: 'pointer',
             color: Style.colors.title,
-            textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
+            textShadow: Style.shadow.title,
         };
 
         if (this.props.isActive) {

@@ -14,7 +14,7 @@ var BarMenuItem = React.createClass({
             padding: '0 15px',
             lineHeight: '26px',
             color: Style.colors.title,
-            textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
+            textShadow: Style.shadow.title,
             border: '1px solid black',
             borderRadius: 3,
             verticalAlign: 'top',

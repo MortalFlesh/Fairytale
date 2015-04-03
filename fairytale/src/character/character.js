@@ -22,7 +22,7 @@ var Character = React.createClass({
             marginTop: 0,
             color: Style.colors.title,
             fontSize: 40,
-            textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
+            textShadow: Style.shadow.title,
         };
 
         return (
