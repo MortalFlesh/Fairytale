@@ -10,7 +10,31 @@ var ChapterParagraph = React.createClass({
             hover: false,
         };
     },
-    repairContent(rawContent) {
+    getStyle() {
+        var bgColor = 'none';
+        var borderColor = 'transparent';
+
+        if (this.props.paragraph.isNew == '1') {
+            bgColor = 'RGBA(0,255,0, 0.15)';
+        }
+
+        if (this.state.hover || this.props.bookmark) {
+            borderColor = 'RGBA(149, 103, 34, 0.9)';
+        }
+
+        return {
+            background: bgColor,
+            lineHeight: '20px',
+            textIndent: 30,
+            textAlign: 'justify',
+            padding: 5,
+            border: '1px solid',
+            borderColor: borderColor,
+            borderRadius: 5,
+            cursor: 'alias',
+        };
+    },
+    buildContent(rawContent) {
         return rawContent.split('@').map(part => {
             var firstLetter = part[0];
 
@@ -39,30 +63,8 @@ var ChapterParagraph = React.createClass({
         this.props.onBookmarked();
     },
     render() {
-        var className = "ChapterParagraph";
-        var bgColor = 'none';
-
-        if (this.props.paragraph.isNew == '1') {
-            bgColor = 'RGBA(0,255,0, 0.15)';
-        }
-
-        var style = {
-            background: bgColor,
-            lineHeight: '20px',
-            textIndent: 30,
-            textAlign: 'justify',
-            padding: 5,
-            border: '1px solid',
-            borderColor: 'transparent',
-            borderRadius: 5,
-            cursor: 'alias',
-        };
-
-        if (this.state.hover || this.props.bookmark) {
-            style.borderColor = 'RGBA(149, 103, 34, 0.9)';
-        }
-
-        var content = this.repairContent(this.props.children);
+        var style = this.getStyle();
+        var content = this.buildContent(this.props.children);
 
         if (this.props.bookmark) {
             var newContent = [];
@@ -77,7 +79,7 @@ var ChapterParagraph = React.createClass({
         }
 
         return (
-            <p className={className}
+            <p className="ChapterParagraph"
                 title="Přidat záložku"
                 style={style}
                 onMouseEnter={this.mouseEnterHandler}
