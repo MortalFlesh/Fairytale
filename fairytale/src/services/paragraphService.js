@@ -32,27 +32,38 @@ var paragraphService = {
         return '@^' + letter + '@';
     },
     repairContentStyle(rawContent) {
+        if (rawContent.length < 2) {
+            return <br />;
+        }
+
+        return rawContent.split('@').map(part => this.transformPart(part));
+    },
+    transformPart(part) {
         const chapterFirstLetter = '^';
         const bold = '#';
         const italic = '*';
         const empty = '*';
 
-        return rawContent.split('@').map(part => {
-            var firstLetter = part[0];
-            var realPart = part.substring(1);
+        var transformed = part;
+        var firstLetter = part[0];
+        var realPart = part.substring(1);
 
-            if (firstLetter === chapterFirstLetter) {
-                return <ChapterFirstLetter>{realPart}</ChapterFirstLetter>
-            } else if (firstLetter === bold) {
-                return <strong>{realPart}</strong>
-            } else if (firstLetter === italic) {
-                return <em>{realPart}</em>
-            } else if (firstLetter === empty || rawContent.length < 2) {
-                return <br />
-            } else {
-                return part;
-            }
-        });
+        switch(firstLetter) {
+            case chapterFirstLetter:
+                transformed = <ChapterFirstLetter>{realPart}</ChapterFirstLetter>;
+                break;
+            case bold:
+                transformed = <strong>{realPart}</strong>;
+                break;
+            case italic:
+                transformed = <em>{realPart}</em>;
+                break;
+            case empty:
+                transformed = <br />;
+                break;
+        }
+
+        return transformed;
     },
     addBookmark(content) {
         var contentWithBookmark = [];
