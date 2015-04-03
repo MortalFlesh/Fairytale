@@ -54,7 +54,11 @@ var ChapterParagraph = React.createClass({
     },
     render() {
         var style = this.getStyle();
-        var content = ParagraphService.buildContent(this.props.children, this.props.bookmark);
+        var content = ParagraphService.buildContent(
+            this.props.children,
+            this.props.bookmark,
+            this.props.isFirstParagraph
+        );
 
         return (
             <p className="ChapterParagraph"
