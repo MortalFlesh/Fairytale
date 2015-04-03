@@ -3,8 +3,6 @@ var React = require('react');
 var CookiesService = require('./../services/cookieService');
 var ParagraphService = require('./../services/paragraphService');
 
-var ParagraphBookmark = require('./paragraphBookmark');
-
 var ChapterParagraph = React.createClass({
     getDefaultProps() {
         return {
@@ -56,18 +54,7 @@ var ChapterParagraph = React.createClass({
     },
     render() {
         var style = this.getStyle();
-        var content = ParagraphService.buildContent(this.props.children);
-
-        if (this.props.bookmark) {
-            var newContent = [];
-            newContent.push(<ParagraphBookmark />);
-
-            for (var i in content) {
-                newContent.push(content[i]);
-            }
-
-            content = newContent;
-        }
+        var content = ParagraphService.buildContent(this.props.children, this.props.bookmark);
 
         return (
             <p className="ChapterParagraph"

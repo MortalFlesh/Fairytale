@@ -1,5 +1,18 @@
+var React = require('react');
+
+var ParagraphBookmark = require('./../chapter/paragraphBookmark');
+
 var paragraphService = {
-    buildContent(rawContent) {
+    buildContent(rawContent, isBookmarked) {
+        var content = this.repairContentStyle(rawContent);
+
+        if (isBookmarked) {
+            content = this.addBookmark(content);
+        }
+
+        return content;
+    },
+    repairContentStyle(rawContent) {
         return rawContent.split('@').map(part => {
             var firstLetter = part[0];
 
@@ -13,6 +26,16 @@ var paragraphService = {
                 return part;
             }
         });
+    },
+    addBookmark(content) {
+        var contentWithBookmark = [];
+        contentWithBookmark.push(<ParagraphBookmark />);
+
+        for (var i in content) {
+            contentWithBookmark.push(content[i]);
+        }
+
+        return contentWithBookmark;
     },
 };
 
