@@ -1,10 +1,17 @@
 var React = require('react');
 
 var CookiesService = require('./../services/cookieService');
+var ParagraphService = require('./../services/paragraphService');
 
 var ParagraphBookmark = require('./paragraphBookmark');
 
 var ChapterParagraph = React.createClass({
+    getDefaultProps() {
+        return {
+            bookmark: false,
+            isFirstParagraph: false
+        }
+    },
     getInitialState() {
         return {
             hover: false,
@@ -34,21 +41,6 @@ var ChapterParagraph = React.createClass({
             cursor: 'alias',
         };
     },
-    buildContent(rawContent) {
-        return rawContent.split('@').map(part => {
-            var firstLetter = part[0];
-
-            if (firstLetter === '#') {
-                return <strong>{part.substring(1)}</strong>
-            } else if (firstLetter === '*') {
-                return <em>{part.substring(1)}</em>
-            } else if (firstLetter === '~' || rawContent.length < 2) {
-                return <br />
-            } else {
-                return part;
-            }
-        });
-    },
     mouseEnterHandler(event) {
         this.setState({hover: true});
     },
@@ -64,11 +56,10 @@ var ChapterParagraph = React.createClass({
     },
     render() {
         var style = this.getStyle();
-        var content = this.buildContent(this.props.children);
+        var content = ParagraphService.buildContent(this.props.children);
 
         if (this.props.bookmark) {
             var newContent = [];
-
             newContent.push(<ParagraphBookmark />);
 
             for (var i in content) {

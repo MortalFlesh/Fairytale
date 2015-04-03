@@ -19,12 +19,14 @@ var Chapter = React.createClass({
             bookmarkedId = bookmark.paragraph;
         }
 
+        var i = 0;
         var paragraphs = chapter.paragraphs.map(paragraph =>
             <ChapterParagraph
                 key={paragraph.id}
                 paragraph={paragraph}
                 bookmark={bookmarkedId == paragraph.id}
                 onBookmarked={this.onBookmarkedHandler}
+                isFirstParagraph={i++ === 0}
             >
                 {paragraph.content}
             </ChapterParagraph>
