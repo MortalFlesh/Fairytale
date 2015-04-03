@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Style = require('./../services/styleService');
+
 var BarMenuItem = React.createClass({
     clickHandler() {
         this.props.onClick(this.props.item.pathName);
@@ -11,7 +13,7 @@ var BarMenuItem = React.createClass({
             display: 'inline-block',
             padding: '0 15px',
             lineHeight: '26px',
-            color: '#956722',
+            color: Style.colors.title,
             textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
             border: '1px solid black',
             borderRadius: 3,
@@ -22,7 +24,7 @@ var BarMenuItem = React.createClass({
 
         if (this.props.active) {
             style.textDecoration = 'underline';
-            style.color = '#fdd9ae';
+            style.color = Style.colors.titleActive;
         }
 
         return (

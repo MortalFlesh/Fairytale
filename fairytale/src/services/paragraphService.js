@@ -9,7 +9,7 @@ var paragraphService = {
             rawContent = this.makeFirstLetterNice(rawContent);
         }
 
-        var content = this.repairContentStyle(rawContent);
+        var content = this.transformContentStyle(rawContent);
 
         if (isBookmarked) {
             content = this.addBookmark(content);
@@ -31,7 +31,7 @@ var paragraphService = {
     markLetter(letter) {
         return '@^' + letter + '@';
     },
-    repairContentStyle(rawContent) {
+    transformContentStyle(rawContent) {
         if (rawContent.length < 2) {
             return <br />;
         }

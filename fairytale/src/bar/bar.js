@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Style = require('./../services/styleService');
+
 var BarContent = require('./barContent'); 
 var BarMenu = require('./barMenu');
 
@@ -13,7 +15,7 @@ var Bar = React.createClass({
             width: 26,
             height: 26,
             borderRadius: 3,
-            border: '1px solid #956722',
+            border: '1px solid ' + Style.colors.title,
             overflow: 'hidden',
         };
         

@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Style = require('./../services/styleService');
+
 var CookiesService = require('./../services/cookieService');
 var ParagraphService = require('./../services/paragraphService');
 
@@ -18,19 +20,24 @@ var ChapterParagraph = React.createClass({
     getStyle() {
         var bgColor = 'none';
         var borderColor = 'transparent';
+        var textIdent = 30;
 
         if (this.props.paragraph.isNew == '1') {
-            bgColor = 'RGBA(0,255,0, 0.15)';
+            bgColor = Style.colors.newParagraph;
         }
 
         if (this.state.hover || this.props.bookmark) {
-            borderColor = 'RGBA(149, 103, 34, 0.9)';
+            borderColor = Style.colors.bookmarkParagraphBorder;
+        }
+
+        if (this.props.isFirstParagraph) {
+            textIdent = 0;
         }
 
         return {
             background: bgColor,
             lineHeight: '20px',
-            textIndent: 30,
+            textIndent: textIdent,
             textAlign: 'justify',
             padding: 5,
             border: '1px solid',

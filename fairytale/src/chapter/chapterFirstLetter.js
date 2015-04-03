@@ -1,9 +1,15 @@
 var React = require('react');
 
+var Style = require('./../services/styleService');
+
 var ChapterFirstLetter = React.createClass({
     render() {
         var style = {
-            color: 'red',
+            color: Style.colors.title,
+            float: 'left',
+            fontSize: 80,
+            fontWeight: 'bold',
+            margin: '20px 0',
         };
 
         return (

@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Style = require('./../services/styleService');
+
 var ChapterMenuItem = React.createClass({
     handleOnClick() {
         this.props.onClickHandler(this.props.number);
@@ -9,12 +11,12 @@ var ChapterMenuItem = React.createClass({
             display: 'inline-block',
             margin: '0 8px',
             cursor: 'pointer',
-            color: '#956722',
+            color: Style.colors.title,
             textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
         };
 
         if (this.props.isActive) {
-            style.color = '#fdd9ae';
+            style.color = Style.colors.titleActive;
             style.textDecoration = 'underline';
         }
 

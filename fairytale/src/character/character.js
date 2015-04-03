@@ -3,6 +3,8 @@ var React = require('react');
 var CharacterInfo = require('./characterInfo');
 var Clear = require('./../style/clear');
 
+var Style = require('./../services/styleService');
+
 var Character = React.createClass({
     render() {
         var character = this.props.character;
@@ -13,12 +15,12 @@ var Character = React.createClass({
             border: '1px solid black',
             margin: '20px auto',
             borderRadius: 15,
-            backgroundColor: '#fddbad',
+            backgroundColor: Style.colors.titleActive,
         };
 
         var titleStyle = {
             marginTop: 0,
-            color: '#956722',
+            color: Style.colors.title,
             fontSize: 40,
             textShadow: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
         };
