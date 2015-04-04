@@ -1,11 +1,13 @@
 var React = require('react');
 
 var Style = require('./../services/styleService');
+var ChapterNewParagraph = require('./chapterNewParagraph');
 
 var ChapterHeader = React.createClass({
     getDefaultProps() {
         return {
             inChapter: false,
+            newPargraphsCount: 0,
         };
     },
     render() {
@@ -14,15 +16,21 @@ var ChapterHeader = React.createClass({
             margin: '7px 0',
         };
 
+        var content = [];
+        content.push(<strong>{this.props.number}.</strong>);
+        content.push(' ' + this.props.title);
+
         if (this.props.inChapter) {
             style.fontSize = 40;
             style.color = Style.colors.title;
             style.textShadow = Style.shadow.title;
+        } else if (this.props.newPargraphsCount > 0) {
+            content.push(<ChapterNewParagraph count={this.props.newPargraphsCount} />)
         }
 
         return (
-            <h3 style={style}>
-                <strong>{this.props.number}.</strong>{' ' + this.props.title}
+            <h3 className="ChapterHeader" style={style}>
+                {content}
             </h3>
         );
     }
