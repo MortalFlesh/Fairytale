@@ -45,7 +45,6 @@ class BookAction
 
     /**
      * @param $bookId
-     *
      * @return array
      */
     private function loadChapters($bookId)
@@ -64,6 +63,7 @@ class BookAction
                 'header' => [
                     'number' => $chapterR['number'],
                     'title' => $chapterR['title'],
+                    'newPargraphsCount' => $this->calcNewPargraphsCount($paragraphs),
                 ],
                 'paragraphs' => $paragraphs,
                 'image' => $chapterR['image'],
@@ -75,7 +75,6 @@ class BookAction
 
     /**
      * @param $chapterNumber
-     *
      * @return array
      */
     private function loadParagraphs($chapterNumber)
@@ -98,5 +97,22 @@ class BookAction
         }
 
         return $paragraphs;
+    }
+
+    /**
+     * @param array $paragrpahs
+     * @return int
+     */
+    private function calcNewPargraphsCount(array $paragrpahs)
+    {
+        $count = 0;
+
+        foreach($paragrpahs as $paragraph) {
+            if ($paragraph['isNew']) {
+                $count++;
+            }
+        }
+
+        return $count;
     }
 }

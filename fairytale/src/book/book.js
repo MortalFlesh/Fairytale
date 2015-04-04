@@ -76,7 +76,8 @@ var Book = React.createClass({
                 <ChaptersMenu
                     chapters={chapterHeaders}
                     defaultChapter={this.state.currentChapter}
-                    onChapterChanged={this.onChapterChanged} />
+                    onChapterChanged={this.onChapterChanged}
+                />
 
                 <Bookmark onClick={this.onBookmarkClick} />
 

@@ -9,7 +9,8 @@ var ChaptersMenu = React.createClass({
             chapters: [
                 {
                     number: 1,
-                    title: ''
+                    title: '',
+                    newPargraphsCount: 0,
                 },
             ],
             selectedChapter: this.props.defaultChapter,
@@ -46,8 +47,13 @@ var ChaptersMenu = React.createClass({
                 key={chapter.number}
                 isActive={state.selectedChapter == chapter.number}
                 number={chapter.number}
-                onClickHandler={this.menuItemClick}>
-                <ChapterHeader number={chapter.number} title={chapter.title} />
+                onClickHandler={this.menuItemClick}
+            >
+                <ChapterHeader
+                    number={chapter.number}
+                    title={chapter.title}
+                    newPargraphsCount={chapter.newPargraphsCount}
+                />
             </ChapterMenuItem>
         );
 
