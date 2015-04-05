@@ -7,7 +7,10 @@ var BookHeader = require('./bookHeader');
 
 var ChaptersMenu = require('./../chapter/chaptersMenu');
 var Page = require('./../page/page');
-var Bookmark = require('./../book/bookmark');
+
+var EmptyRibbonSpace = require('./../ribbon/emptyRibbonSpace');
+var DiceRibbon = require('./../ribbon/diceRibbon');
+var Bookmark = require('./../ribbon/bookmark');
 
 var Book = React.createClass({
     getInitialState() {
@@ -78,6 +81,8 @@ var Book = React.createClass({
                     onChapterChanged={this.onChapterChanged}
                 />
 
+                <EmptyRibbonSpace width={470} />
+                <DiceRibbon />
                 <Bookmark onClick={this.onBookmarkClick} />
 
                 <Page

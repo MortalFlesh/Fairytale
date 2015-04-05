@@ -1,24 +1,22 @@
 var React = require('react');
 
-var CookieService = require('./../services/cookieService');
+var Cookie = require('./../services/cookieService');
+var Style = require('./../services/styleService');
+var Json = require('./../services/jsonService');
 
 var Bookmark = React.createClass({
     onClickHandler() {
-        var bookmark = CookieService.get('bookmark');
+        var bookmark = Cookie.get('bookmark');
         this.props.onClick(bookmark.chapter);
     },
     render() {
-        var bookmark = CookieService.get('bookmark');
+        var bookmark = Cookie.get('bookmark');
 
-        var style = {
+        var style = Json.extendsJson(Style.ribbonCommonStyle, {
+            backgroundImage: 'url("./fairytale/images/bookmark.png")',
             display: 'none',
-            width: 224,
-            height: 108,
-            background: 'url("./fairytale/images/bookmark.png")',
-            float: 'right',
-            margin: '-7px 25px',
-            textAlign: 'center',
-        };
+            width: 100,
+        });
 
         if (bookmark !== null) {
             style.display = 'block';
