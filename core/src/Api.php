@@ -3,6 +3,7 @@
 namespace MF\Fairytale;
 
 use MF\Fairytale\Service\Cookies;
+use MF\Fairytale\Service\ServiceStatus;
 use PDO;
 
 class Api
@@ -108,7 +109,7 @@ class Api
 
     private function rollForNewChaptersAction()
     {
-        $action = new RollForNewChapterAction($this->data, $this->pdo, new Cookies());
+        $action = new RollForNewChapterAction($this->data, $this->pdo, new Cookies(), new ServiceStatus($this->pdo));
         $this->response = $action->getResponse();
     }
 }

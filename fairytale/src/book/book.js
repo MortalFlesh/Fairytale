@@ -78,6 +78,8 @@ var Book = React.createClass({
                 if (response.status === 'ok') {
                     message = 'Hod byl správný! :-)';
                     this.loadBook();
+                } else if (response.status === 'hack') {
+                    message = 'Dobrý pokus, ale zkus to až zítra!';
                 }
 
                 alert(message);

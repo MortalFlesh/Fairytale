@@ -1,6 +1,7 @@
 <?php
 namespace MF\Fairytale;
 
+use MF\Fairytale\Service\ServiceStatus;
 use PDO;
 use DateTime;
 use Exception;
@@ -14,7 +15,6 @@ class ChaptersUpdateAction
     const MIN_LIMIT = 2;
     const LIMIT_ROLLS = 3;
     const PARAGRAPH_MIN_LENGTH = 150;
-    const DB_DATE_FORMAT = 'Y-m-d H:i:s';
 
     /** @var string */
     private $status;
@@ -28,16 +28,21 @@ class ChaptersUpdateAction
     /** @var WhatsAppService */
     private $whatsAppService;
 
+    /** @var ServiceStatus */
+    private $serviceStatus;
+
     /**
      * @param PDO $pdo
      * @param Dice $dice
      * @param WhatsAppService $whatsAppService
+     * @param ServiceStatus $serviceStatus
      */
-    public function __construct(PDO $pdo, Dice $dice, WhatsAppService $whatsAppService)
+    public function __construct(PDO $pdo, Dice $dice, WhatsAppService $whatsAppService, ServiceStatus $serviceStatus)
     {
         $this->pdo = $pdo;
         $this->dice = $dice;
         $this->whatsAppService = $whatsAppService;
+        $this->serviceStatus = $serviceStatus;
     }
 
     /**
@@ -67,7 +72,7 @@ class ChaptersUpdateAction
         }
 
         $this->setParagraphsAsNewAndPublic($paragraphs);
-        $this->setServiceStatus(self::ALREADY_RUN);
+        $this->serviceStatus->setStatus(__CLASS__, self::ALREADY_RUN);
 
         $published = count($paragraphs);
 
@@ -85,7 +90,7 @@ class ChaptersUpdateAction
      */
     private function shouldRun()
     {
-        $status = $this->getServiceStatus();
+        $status = $this->serviceStatus->getStatus(__CLASS__);
         $attemp = (int) $status['attemp'];
         $currentAttemp = $attemp + 1;
 
@@ -108,40 +113,11 @@ class ChaptersUpdateAction
             return true;
         } elseif (!$alreadyRunToday) {
             $this->status = self::TRY_TO_RUN . ' ' . $currentAttemp;
-            $this->setServiceStatus(self::TRY_TO_RUN, $currentAttemp);
+            $this->serviceStatus->setStatus(__CLASS__, self::TRY_TO_RUN, $currentAttemp);
         } else {
             $this->status = self::ALREADY_RUN;
         }
         return false;
-    }
-
-    /**
-     * @param string $message
-     * @param int $attemp
-     */
-    private function setServiceStatus($message = '', $attemp = 0)
-    {
-        $now = new DateTime();
-        $time = $now->format(self::DB_DATE_FORMAT);
-
-        $this->pdo->query("
-            REPLACE INTO service (`name`, `message`, `attemp`, `time`)
-            VALUES ('" . __CLASS__ . "', '$message', $attemp, '$time')"
-        );
-    }
-
-    /**
-     * @return array
-     */
-    private function getServiceStatus()
-    {
-        $res = $this->pdo->query("SELECT * FROM service WHERE `name` = '" . __CLASS__ . "'");
-        $status = $res->fetch(PDO::FETCH_ASSOC);
-        return [
-            'message' => $status['message'],
-            'attemp' => (int) $status['attemp'] > 0 ? (int) $status['attemp'] : 0,
-            'time' => DateTime::createFromFormat(self::DB_DATE_FORMAT, $status['time']),
-        ];
     }
 
     /**
@@ -231,7 +207,7 @@ class ChaptersUpdateAction
         }
 
         $now = new DateTime();
-        $nowFormated = $now->format(self::DB_DATE_FORMAT);
+        $nowFormated = $now->format(DB_DATE_FORMAT);
 
         if (!empty($ids)) {
             $this->pdo->query("

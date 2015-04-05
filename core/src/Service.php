@@ -1,6 +1,7 @@
 <?php
 namespace MF\Fairytale;
 
+use MF\Fairytale\Service\ServiceStatus;
 use PDO;
 
 class Service
@@ -44,7 +45,8 @@ class Service
         $chapterUpdateAction = new ChaptersUpdateAction(
             $this->pdo,
             new Dice(),
-            new WhatsAppService(new WhatsAppConfig())
+            new WhatsAppService(new WhatsAppConfig()),
+            new ServiceStatus($this->pdo)
         );
         $this->response['status'] = $chapterUpdateAction
             ->run()

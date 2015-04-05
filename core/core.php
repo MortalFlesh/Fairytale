@@ -10,3 +10,5 @@ $loader->setCacheStorage(new \Nette\Caching\Storages\FileStorage($root . 'fairyt
 $loader->register();
 
 mb_internal_encoding('UTF-8');
+
+define('DB_DATE_FORMAT', 'Y-m-d H:i:s');
