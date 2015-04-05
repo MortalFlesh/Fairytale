@@ -3,7 +3,7 @@ error_reporting(!E_ALL);
 
 require_once "./../core/core.php";
 
-$api = new \MF\Fairytale\Api($_GET, new \MF\Fairytale\Config());
+$api = new \MF\Fairytale\Api($_REQUEST, new \MF\Fairytale\Config());
 
 $response = $api->getResponse();
 

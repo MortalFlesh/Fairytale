@@ -32,10 +32,10 @@ var DiceRibbon = React.createClass({
 
         if (roll >= 1 && roll <= 6) {
             const hours = 20;
-            Cookie.set('dice-rolled', true, hours);
+            Cookie.set('dice-rolled', {roll: roll}, hours);
 
             this.checkRollAvailability();
-            this.props.onClick();
+            this.props.onClick(roll);
         }
     },
     render() {

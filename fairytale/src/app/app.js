@@ -25,7 +25,10 @@ var App = React.createClass({
         }
     },
     book() {
-        return <Book url={"./api/api.php?action=book"} interval={60 * 1000} />;
+        return <Book
+            url={"./api/api.php?action=book"}
+            rollForNewChaptersUrl={"./api/api.php?action=roll-for-new-chapters"}
+            interval={60 * 1000} />;
     },
     characters() {
         return <Characters url={"./api/api.php?action=characters"} />;

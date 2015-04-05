@@ -2,6 +2,7 @@
 
 namespace MF\Fairytale;
 
+use MF\Fairytale\Service\Cookies;
 use PDO;
 
 class Api
@@ -45,6 +46,8 @@ class Api
             $this->menuItemsAction();
         } elseif ($action === 'service') {
             $this->serviceAction();
+        } elseif ($action === 'roll-for-new-chapters') {
+            $this->rollForNewChaptersAction();
         }
 
         return $this->response;
@@ -59,15 +62,15 @@ class Api
     private function charactersAction()
     {
         $charactersQ = $this->pdo->query("SELECT * FROM `character`");
-        foreach($charactersQ->fetchAll(PDO::FETCH_ASSOC) as $characterR) {
+        foreach ($charactersQ->fetchAll(PDO::FETCH_ASSOC) as $characterR) {
             $infos = [];
 
             $infosQ = $this->pdo->query("SELECT * FROM `character_info` WHERE `character_id` = " . $characterR['id']);
-            foreach($infosQ->fetchAll(PDO::FETCH_ASSOC) as $infoR) {
+            foreach ($infosQ->fetchAll(PDO::FETCH_ASSOC) as $infoR) {
                 $items = [];
 
                 $itemsQ = $this->pdo->query("SELECT * FROM `character_info_item` WHERE character_info_id = " . $infoR['id']);
-                foreach($itemsQ->fetchAll(PDO::FETCH_ASSOC) AS $itemR) {
+                foreach ($itemsQ->fetchAll(PDO::FETCH_ASSOC) AS $itemR) {
                     $items[] = $itemR['value'];
                 }
 
@@ -88,7 +91,7 @@ class Api
     {
         $itemsQ = $this->pdo->query("SELECT * FROM menu_item ORDER BY priority ASC");
 
-        foreach($itemsQ->fetchAll(PDO::FETCH_ASSOC) as $itemsR) {
+        foreach ($itemsQ->fetchAll(PDO::FETCH_ASSOC) as $itemsR) {
             $this->response[] = [
                 'name' => $itemsR['name'],
                 'pathName' => $itemsR['path_name'],
@@ -101,5 +104,11 @@ class Api
     {
         $service = new Service($this->data, $this->pdo);
         $this->response = $service->getResponse();
+    }
+
+    private function rollForNewChaptersAction()
+    {
+        $action = new RollForNewChapterAction($this->data, $this->pdo, new Cookies());
+        $this->response = $action->getResponse();
     }
 }

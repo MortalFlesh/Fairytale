@@ -66,8 +66,23 @@ var Book = React.createClass({
             }, 1000);
         }, 200);
     },
-    onDiceRibbonClick() {
-        console.log('reloadBook');
+    onDiceRibbonClick(roll) {
+        Loader.loadJsonWithData(
+            this.props.rollForNewChaptersUrl,
+            {
+                roll: roll,
+            },
+            response => {
+                var message = 'Hod bohužel nebyl správný :-(';
+
+                if (response.status === 'ok') {
+                    message = 'Hod byl správný! :-)';
+                    this.loadBook();
+                }
+
+                alert(message);
+            }
+        );
     },
     render() {
         var book = this.state.book;
