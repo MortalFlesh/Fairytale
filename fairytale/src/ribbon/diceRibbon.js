@@ -4,7 +4,14 @@ var Cookie = require('./../services/cookieService');
 var Style = require('./../services/styleService');
 var Json = require('./../services/jsonService');
 
+var RibbonLink = require('./ribbonLink');
+
 var DiceRibbon = React.createClass({
+    onClickHandler() {
+        console.log('onClick');
+        var x = prompt('Zadej výsledek hodu:', '0');
+        console.log('vysledek: ', x);
+    },
     render() {
         var diceRolled = Cookie.get('dice-rolled');
 
@@ -19,7 +26,7 @@ var DiceRibbon = React.createClass({
 
         return (
             <div className="DiceRibbon" style={style}>
-
+                <RibbonLink title="Hodit kostkou" onClickHandler={this.onClickHandler} />
             </div>
         );
     }

@@ -4,6 +4,8 @@ var Cookie = require('./../services/cookieService');
 var Style = require('./../services/styleService');
 var Json = require('./../services/jsonService');
 
+var RibbonLink = require('./ribbonLink');
+
 var Bookmark = React.createClass({
     onClickHandler() {
         var bookmark = Cookie.get('bookmark');
@@ -22,17 +24,9 @@ var Bookmark = React.createClass({
             style.display = 'block';
         }
 
-        var linkStyle = {
-            display: 'inline-block',
-            width: 78,
-            height: 95,
-            cursor: 'pointer',
-            marginLeft: 7,
-        };
-
         return (
             <div className="Bookmark" style={style}>
-                <a title="Přejít na uloženou kapitolu" style={linkStyle} onClick={this.onClickHandler} />
+                <RibbonLink title="Přejít na uloženou kapitolu" onClickHandler={this.onClickHandler} />
             </div>
         );
     }
