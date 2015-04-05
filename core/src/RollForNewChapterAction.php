@@ -25,18 +25,23 @@ class RollForNewChapterAction
     /** @var ServiceStatus */
     private $serviceStatus;
 
+    /** @var Dice */
+    private $dice;
+
     /**
      * @param array $data
      * @param PDO $pdo
      * @param Cookies $cookies
      * @param ServiceStatus $serviceStatus
+     * @param Dice $dice
      */
-    public function __construct(array $data, PDO $pdo, Cookies $cookies, ServiceStatus $serviceStatus)
+    public function __construct(array $data, PDO $pdo, Cookies $cookies, ServiceStatus $serviceStatus, Dice $dice)
     {
         $this->data = $data;
         $this->pdo = $pdo;
         $this->cookies = $cookies;
         $this->serviceStatus = $serviceStatus;
+        $this->dice = $dice;
     }
 
     /**
@@ -46,18 +51,18 @@ class RollForNewChapterAction
     {
         $response = ['status' => 'fail'];
 
+        if ($this->alreadyRolledToday()) {
+            $response['status'] = 'hack';
+            return $response;
+        }
+
+        $this->setRolledForToday();
+
         $roll = (int) $this->data['roll'];
         $diceData = $this->cookies->get(self::COOKIE_NAME);
 
         if ($this->isRollValid($roll) && $this->isDiceDataValid($diceData)) {
-            if ($this->alreadyRolledToday()) {
-                $response['status'] = 'hack';
-                return $response;
-            }
-            
-            $this->setRolledForToday();
-
-            $response['status'] = 'ok';
+            $response['status'] = $this->publishNewChapter();
         }
 
         return $response;
@@ -69,7 +74,7 @@ class RollForNewChapterAction
      */
     private function isRollValid($roll)
     {
-        return ($roll >= 1 && $roll <= 6);
+        return ($roll >= 1 && $roll <= 6 && $this->dice->roll(6) === $roll);
     }
 
     /**
@@ -105,6 +110,15 @@ class RollForNewChapterAction
         $this->cookies->set(self::COOKIE_NAME, $diceData, self::HOURS_FOR_COOKIE);
 
         $this->serviceStatus->setStatus(__CLASS__, self::ALREADY_ROLLED);
+    }
+
+    /**
+     * @return string
+     */
+    private function publishNewChapter()
+    {
+        // todo will publish some new paragraphs
+        return 'ok';
     }
 
 }
