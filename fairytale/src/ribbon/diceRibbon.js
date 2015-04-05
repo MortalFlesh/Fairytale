@@ -7,26 +7,54 @@ var Json = require('./../services/jsonService');
 var RibbonLink = require('./ribbonLink');
 
 var DiceRibbon = React.createClass({
+    getInitialState() {
+        return {
+            ableToRoll: false,
+        };
+    },
+    componentDidMount() {
+        this.checkRollAvailability();
+        setInterval(this.checkRollAvailability, this.props.refreshRate);
+    },
+    checkRollAvailability() {
+        var isAbleToRoll = this.isAbleToRollADice();
+        if (isAbleToRoll !== this.state.ableToRoll) {
+            this.setState({ableToRoll: isAbleToRoll});
+        }
+    },
+    isAbleToRollADice() {
+        var diceRolled = Cookie.get('dice-rolled');
+        return (diceRolled === null);
+    },
     onClickHandler() {
-        console.log('onClick');
-        var x = prompt('Zadej výsledek hodu:', '0');
-        console.log('vysledek: ', x);
+        const diceResult = prompt('Zadej výsledek hodu:', '0');
+        var roll = parseInt(diceResult, 10);
+
+        if (roll >= 1 && roll <= 6) {
+            const hours = 20;
+            Cookie.set('dice-rolled', true, hours);
+
+            this.checkRollAvailability();
+            this.props.onClick();
+        }
     },
     render() {
-        var diceRolled = Cookie.get('dice-rolled');
+        var content = [];
 
         var style = Json.extendsJson(Style.ribbonCommonStyle, {
-            backgroundImage: 'url("./fairytale/images/roll-a-dice.png")',
+            backgroundImage: 'url("./fairytale/images/roll-a-dice-inactive.png")',
             width: 100,
         });
 
-        if (diceRolled !== null) {
+        if (this.state.ableToRoll) {
+            style.backgroundImage = 'url("./fairytale/images/roll-a-dice.png")';
 
+            content.push(<RibbonLink title="Hodit kostkou" onClickHandler={this.onClickHandler} />);
         }
 
         return (
             <div className="DiceRibbon" style={style}>
-                <RibbonLink title="Hodit kostkou" onClickHandler={this.onClickHandler} />
+                {content}
             </div>
         );
     }

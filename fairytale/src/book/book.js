@@ -66,6 +66,9 @@ var Book = React.createClass({
             }, 1000);
         }, 200);
     },
+    onDiceRibbonClick() {
+        console.log('reloadBook');
+    },
     render() {
         var book = this.state.book;
         var currentChapter = this.getCurrentChapter();
@@ -82,7 +85,7 @@ var Book = React.createClass({
                 />
 
                 <EmptyRibbonSpace width={470} />
-                <DiceRibbon />
+                <DiceRibbon onClick={this.onDiceRibbonClick} refreshRate={this.props.interval} />
                 <Bookmark onClick={this.onBookmarkClick} />
 
                 <Page

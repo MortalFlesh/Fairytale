@@ -15,11 +15,11 @@ function encode(value) {
 }
 
 var cookieService = {
-    set(name, value, days) {
+    set(name, value, hours) {
         var expires = '';
-        if (days) {
+        if (hours > 0) {
             var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
             expires = "; expires=" + date.toGMTString();
         }
         document.cookie = name + "=" + decode(value) + expires + "; path=/";
