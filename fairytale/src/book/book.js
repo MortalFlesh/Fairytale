@@ -2,7 +2,6 @@ var React = require('react');
 var jQuery = require('jquery-browserify');
 
 var Loader = require('./../services/loader');
-var CookiesService = require('./../services/cookieService');
 
 var BookHeader = require('./bookHeader');
 
