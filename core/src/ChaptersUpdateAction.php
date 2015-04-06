@@ -1,6 +1,7 @@
 <?php
 namespace MF\Fairytale;
 
+use MF\Fairytale\Exception\NothingToPublishException;
 use MF\Fairytale\Service\ServiceStatus;
 use PDO;
 use DateTime;
@@ -56,32 +57,19 @@ class ChaptersUpdateAction
 
         $this->setAllPublicAsOld();
 
-        $chapterId = $this->getFirstChapterIdToPublic();
-        if ($chapterId <= 0) {
+        try {
+            $published = $this->publishParagraphs();
+
+            if ($published > 0) {
+                $this->notify($published);
+                $this->status = 'published: ' . $published;
+            } else {
+                $this->status = 'none-published';
+            }
+        } catch(NothingToPublishException $e) {
             $this->status = 'nothing-to-publish';
-            return $this;
         }
 
-        $limit = $this->calcLimit();
-
-        $paragraphs = $this->loadParagraphsToPublish($chapterId, $limit);
-        $newLimit = $this->checkParagraphsAndGetNewLimit($paragraphs, $limit);
-
-        if ($newLimit !== $limit) {
-            $paragraphs = $this->loadParagraphsToPublish($chapterId, $newLimit);
-        }
-
-        $this->setParagraphsAsNewAndPublic($paragraphs);
-        $this->serviceStatus->setStatus(__CLASS__, self::ALREADY_RUN);
-
-        $published = count($paragraphs);
-
-        if ($published > 0) {
-            $this->notify($published);
-            $this->status = 'published: ' . $published;
-        } else {
-            $this->status = 'none-published';
-        }
         return $this;
     }
 
@@ -118,6 +106,31 @@ class ChaptersUpdateAction
             $this->status = self::ALREADY_RUN;
         }
         return false;
+    }
+
+    /**
+     * @return int
+     */
+    private function publishParagraphs()
+    {
+        $chapterId = $this->getFirstChapterIdToPublic();
+        if ($chapterId <= 0) {
+            throw new NothingToPublishException();
+        }
+
+        $limit = $this->calcLimit();
+
+        $paragraphs = $this->loadParagraphsToPublish($chapterId, $limit);
+        $newLimit = $this->checkParagraphsAndGetNewLimit($paragraphs, $limit);
+
+        if ($newLimit !== $limit) {
+            $paragraphs = $this->loadParagraphsToPublish($chapterId, $newLimit);
+        }
+
+        $this->setParagraphsAsNewAndPublic($paragraphs);
+        $this->serviceStatus->setStatus(__CLASS__, self::ALREADY_RUN);
+
+        return count($paragraphs);
     }
 
     /**
