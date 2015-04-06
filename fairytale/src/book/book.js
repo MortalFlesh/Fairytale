@@ -76,8 +76,22 @@ var Book = React.createClass({
                 var message = 'Hod bohužel nebyl správný :-(';
 
                 if (response.status === 'ok') {
-                    message = 'Hod byl správný! :-)';
+                    var count = parseInt(response.publishedCount, 10);
+                    var publishedMessage = '';
+
+                    if (count === 1) {
+                        publishedMessage += '1 nový odstavec';
+                    } else if (count >= 2 && count <= 4) {
+                        publishedMessage += count + ' nové odstavce';
+                    } else if (count >= 5) {
+                        publishedMessage += count + ' nových odstavců';
+                    }
+
+                    message = 'Hod byl správný! Máš navíc ' + publishedMessage + ' :-)';
+
                     this.loadBook();
+                } else if (response.status === 'nothing-to-publish') {
+                    message = 'Hod byl sice správný, ale není už víc napsané :-(';
                 } else if (response.status === 'hack') {
                     message = 'Dobrý pokus, ale zkus to až zítra!';
                 }

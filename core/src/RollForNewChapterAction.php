@@ -3,7 +3,8 @@
 namespace MF\Fairytale;
 
 use DateTime;
-use MF\Fairytale\Service\Cookies;
+use MF\Fairytale\Exception\NothingToPublishException;
+use MF\Fairytale\Service\ParagraphPublisher;
 use MF\Fairytale\Service\ServiceStatus;
 use PDO;
 
@@ -19,9 +20,6 @@ class RollForNewChapterAction
     /** @var PDO */
     private $pdo;
 
-    /** @var Cookies */
-    private $cookies;
-
     /** @var ServiceStatus */
     private $serviceStatus;
 
@@ -31,15 +29,13 @@ class RollForNewChapterAction
     /**
      * @param array $data
      * @param PDO $pdo
-     * @param Cookies $cookies
      * @param ServiceStatus $serviceStatus
      * @param Dice $dice
      */
-    public function __construct(array $data, PDO $pdo, Cookies $cookies, ServiceStatus $serviceStatus, Dice $dice)
+    public function __construct(array $data, PDO $pdo, ServiceStatus $serviceStatus, Dice $dice)
     {
         $this->data = $data;
         $this->pdo = $pdo;
-        $this->cookies = $cookies;
         $this->serviceStatus = $serviceStatus;
         $this->dice = $dice;
     }
@@ -56,13 +52,12 @@ class RollForNewChapterAction
             return $response;
         }
 
-        $this->setRolledForToday();
+        $this->serviceStatus->setStatus(__CLASS__, self::ALREADY_ROLLED);
 
         $roll = (int) $this->data['roll'];
-        $diceData = $this->cookies->get(self::COOKIE_NAME);
 
-        if ($this->isRollValid($roll) && $this->isDiceDataValid($diceData)) {
-            $response['status'] = $this->publishNewChapter();
+        if ($this->isRollValid($roll)) {
+            $response = $this->publishNewChapter();
         }
 
         return $response;
@@ -75,14 +70,6 @@ class RollForNewChapterAction
     private function isRollValid($roll)
     {
         return ($roll >= 1 && $roll <= 6 && $this->dice->roll(6) === $roll);
-    }
-
-    /**
-     * @param array $diceData
-     * @return bool
-     */
-    private function isDiceDataValid($diceData){
-        return (is_array($diceData) && array_key_exists('roll', $diceData) && !array_key_exists('time', $diceData));
     }
 
     /**
@@ -101,24 +88,24 @@ class RollForNewChapterAction
         return ($alreadyRolled && $isToday);
     }
 
-    private function setRolledForToday()
-    {
-        $now = new DateTime();
-        $time = $now->format(DB_DATE_FORMAT);
-
-        $diceData['time'] = $time;
-        $this->cookies->set(self::COOKIE_NAME, $diceData, self::HOURS_FOR_COOKIE);
-
-        $this->serviceStatus->setStatus(__CLASS__, self::ALREADY_ROLLED);
-    }
-
     /**
-     * @return string
+     * @return array
      */
     private function publishNewChapter()
     {
-        // todo will publish some new paragraphs
-        return 'ok';
+        try {
+            $publisher = new ParagraphPublisher($this->pdo, $this->dice);
+            $publishedCount = $publisher->publishParagraphs();
+
+            return [
+                'status' => 'ok',
+                'publishedCount' => $publishedCount,
+            ];
+        } catch(NothingToPublishException $e) {
+            return [
+                'status' => 'nothing-to-publish',
+            ];
+        }
     }
 
 }

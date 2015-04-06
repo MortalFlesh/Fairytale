@@ -109,7 +109,12 @@ class Api
 
     private function rollForNewChaptersAction()
     {
-        $action = new RollForNewChapterAction($this->data, $this->pdo, new Cookies(), new ServiceStatus($this->pdo));
+        $action = new RollForNewChapterAction(
+            $this->data,
+            $this->pdo,
+            new ServiceStatus($this->pdo),
+            new Dice()
+        );
         $this->response = $action->getResponse();
     }
 }
