@@ -45,7 +45,7 @@ class ChaptersUpdateAction
         $this->whatsAppService = $whatsAppService;
         $this->serviceStatus = $serviceStatus;
 
-        $this->publisher = new ParagraphPublisher($this->pdo, $this->dice);
+        $this->publisher = new ParagraphPublisher($this->pdo, $this->dice, $this->whatsAppService);
     }
 
     /**

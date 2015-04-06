@@ -10,6 +10,7 @@ class WhatsAppConfig
     private $password;
     private $debug;
     private $destination;
+    private $adminDestionation;
 
     /**
      * @return mixed
@@ -57,5 +58,13 @@ class WhatsAppConfig
     public function getDestination()
     {
         return $this->destination;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdminDestination()
+    {
+        return $this->adminDestionation;
     }
 }

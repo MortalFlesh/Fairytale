@@ -5,10 +5,13 @@ namespace MF\Fairytale\Service;
 use DateTime;
 use MF\Fairytale\Dice;
 use MF\Fairytale\Exception\NothingToPublishException;
+use MF\Fairytale\WhatsAppService;
 use PDO;
 
 class ParagraphPublisher
 {
+    const LOW_PREPARED_PARAGRAPH_COUNT = 30;
+
     const MIN_LIMIT = 2;
     const LIMIT_ROLLS = 3;
     const PARAGRAPH_MIN_LENGTH = 150;
@@ -19,14 +22,19 @@ class ParagraphPublisher
     /** @var Dice */
     private $dice;
 
+    /** @var WhatsAppService */
+    private $whatsapp;
+
     /**
      * @param PDO $pdo
      * @param Dice $dice
+     * @param WhatsAppService $whatsapp
      */
-    public function __construct(PDO $pdo, Dice $dice)
+    public function __construct(PDO $pdo, Dice $dice, WhatsAppService $whatsapp)
     {
         $this->pdo = $pdo;
         $this->dice = $dice;
+        $this->whatsapp = $whatsapp;
     }
 
     /**
@@ -49,6 +57,8 @@ class ParagraphPublisher
         }
 
         $this->setParagraphsAsNewAndPublic($paragraphs);
+
+        $this->checkPreparedParagraphsCount();
 
         return count($paragraphs);
     }
@@ -144,6 +154,16 @@ class ParagraphPublisher
                     `public_from` = '$nowFormated'
                 WHERE `id` IN (" . implode(',', $ids) . ")
             ");
+        }
+    }
+
+    private function checkPreparedParagraphsCount()
+    {
+        $res = $this->pdo->query("SELECT COUNT(id) FROM paragraph WHERE `public` = 0");
+        $count = (int) $res->fetchColumn();
+
+        if ($count <= self::LOW_PREPARED_PARAGRAPH_COUNT) {
+            $this->whatsapp->sendAdminMessage('Nizký počet (' . $count . ') odstavců v pohádce!');
         }
     }
 }

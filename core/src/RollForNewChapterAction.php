@@ -26,18 +26,22 @@ class RollForNewChapterAction
     /** @var Dice */
     private $dice;
 
+    /** @var WhatsAppService */
+    private $whatsAppService;
+
     /**
      * @param array $data
      * @param PDO $pdo
      * @param ServiceStatus $serviceStatus
      * @param Dice $dice
      */
-    public function __construct(array $data, PDO $pdo, ServiceStatus $serviceStatus, Dice $dice)
+    public function __construct(array $data, PDO $pdo, ServiceStatus $serviceStatus, Dice $dice, WhatsAppService $whatsAppService)
     {
         $this->data = $data;
         $this->pdo = $pdo;
         $this->serviceStatus = $serviceStatus;
         $this->dice = $dice;
+        $this->whatsAppService = $whatsAppService;
     }
 
     /**
@@ -94,7 +98,7 @@ class RollForNewChapterAction
     private function publishNewChapter()
     {
         try {
-            $publisher = new ParagraphPublisher($this->pdo, $this->dice);
+            $publisher = new ParagraphPublisher($this->pdo, $this->dice, $this->whatsAppService);
             $publishedCount = $publisher->publishParagraphs();
 
             return [

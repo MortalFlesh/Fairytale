@@ -113,7 +113,8 @@ class Api
             $this->data,
             $this->pdo,
             new ServiceStatus($this->pdo),
-            new Dice()
+            new Dice(),
+            new WhatsAppService(new WhatsAppConfig())
         );
         $this->response = $action->getResponse();
     }
