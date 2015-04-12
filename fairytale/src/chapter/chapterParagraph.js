@@ -1,9 +1,9 @@
-var React = require('react');
+import React from 'react';
 
-var Style = require('./../services/styleService');
+import Style from './../services/styleService';
 
-var CookiesService = require('./../services/cookieService');
-var ParagraphService = require('./../services/paragraphService');
+import CookiesService from './../services/cookieService';
+import ParagraphService from './../services/paragraphService';
 
 var ChapterParagraph = React.createClass({
     getDefaultProps() {

@@ -1,16 +1,16 @@
-var React = require('react');
-var jQuery = require('jquery-browserify');
+import React from 'react';
+import jQuery from 'jquery-browserify';
 
-var Loader = require('./../services/loader');
+import Loader from './../services/loader';
 
-var BookHeader = require('./bookHeader');
+import BookHeader from './bookHeader';
 
-var ChaptersMenu = require('./../chapter/chaptersMenu');
-var Page = require('./../page/page');
+import ChaptersMenu from './../chapter/chaptersMenu';
+import Page from './../page/page';
 
-var EmptyRibbonSpace = require('./../ribbon/emptyRibbonSpace');
-var DiceRibbon = require('./../ribbon/diceRibbon');
-var Bookmark = require('./../ribbon/bookmark');
+import EmptyRibbonSpace from './../ribbon/emptyRibbonSpace';
+import DiceRibbon from './../ribbon/diceRibbon';
+import Bookmark from "./../ribbon/bookmark";
 
 var Book = React.createClass({
     getInitialState() {

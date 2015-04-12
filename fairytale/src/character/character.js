@@ -1,9 +1,9 @@
-var React = require('react');
+import React from 'react';
 
-var CharacterInfo = require('./characterInfo');
-var Clear = require('./../style/clear');
+import CharacterInfo from './characterInfo';
+import Clear from './../style/clear';
 
-var Style = require('./../services/styleService');
+import Style from './../services/styleService';
 
 var Character = React.createClass({
     render() {

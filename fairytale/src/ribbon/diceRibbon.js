@@ -1,10 +1,10 @@
-var React = require('react');
+import React from 'react';
 
-var Cookie = require('./../services/cookieService');
-var Style = require('./../services/styleService');
-var Json = require('./../services/jsonService');
+import Cookie from './../services/cookieService';
+import Style from './../services/styleService';
+import Json from './../services/jsonService';
 
-var RibbonLink = require('./ribbonLink');
+import RibbonLink from './ribbonLink';
 
 var DiceRibbon = React.createClass({
     getInitialState() {

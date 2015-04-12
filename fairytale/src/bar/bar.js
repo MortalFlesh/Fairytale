@@ -1,12 +1,12 @@
-var React = require('react');
+import React from 'react';
 
-var Style = require('./../services/styleService');
+import Style from './../services/styleService';
 
-var BarContent = require('./barContent'); 
-var BarMenu = require('./barMenu');
+import BarContent from './barContent';
+import BarMenu from './barMenu';
 
-var Content = require('./../style/content');
-var Clear = require('./../style/clear');
+import Content from './../style/content';
+import Clear from './../style/clear';
 
 var Bar = React.createClass({
     render() {

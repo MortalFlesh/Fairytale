@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Style = require('./../services/styleService');
-var ChapterNewParagraph = require('./chapterNewParagraph');
+import Style from './../services/styleService';
+import ChapterNewParagraph from './chapterNewParagraph';
 
 var ChapterHeader = React.createClass({
     getDefaultProps() {

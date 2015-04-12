@@ -1,9 +1,9 @@
-var React = require('react');
+import React from 'react';
 
-var PageContent = require('./pageContent');
+import PageContent from './pageContent';
 
-var ResponsiveService = require('./../services/responsiveService');
-var Chapter = require('./../chapter/chapter');
+import ResponsiveService from './../services/responsiveService';
+import Chapter from './../chapter/chapter';
 
 var Page = React.createClass({
     render() {

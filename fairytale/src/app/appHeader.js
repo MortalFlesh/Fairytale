@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Bar = require('./../bar/bar');
+import Bar from './../bar/bar';
 
 var AppHeader = React.createClass({
     render() {

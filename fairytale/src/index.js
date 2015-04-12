@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var App = require('./app/app');
+import App from './app/app';
 
 /*
 
@@ -21,7 +21,9 @@ Characters
         [infos]
  */
 
+var appElement = document.getElementById('app');
+
 React.render(
     <App/>,
-    document.getElementById('app')
+    appElement
 );

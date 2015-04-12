@@ -1,10 +1,10 @@
-var React = require('react');
+import React from 'react';
 
-var BarMenuItem = require('./barMenuItem');
-var BarMenuSeparator = require('./barMenuSeparator');
+import BarMenuItem from './barMenuItem';
+import BarMenuSeparator from './barMenuSeparator';
 
-var Loader = require('./../services/loader.js');
-var ReactComponentsService = require('./../services/reactComponentsService');
+import Loader from './../services/loader.js';
+import ReactComponentsService from './../services/reactComponentsService';
 
 var BarMenu = React.createClass({
     getInitialState() {

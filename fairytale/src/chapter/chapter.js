@@ -1,9 +1,9 @@
-var React = require('react');
+import React from 'react';
 
-var ChapterParagraph = require('./chapterParagraph');
-var ChapterHeader = require('./chapterHeader');
+import ChapterParagraph from './chapterParagraph';
+import ChapterHeader from './chapterHeader';
 
-var CookieService = require('./../services/cookieService');
+import CookieService from './../services/cookieService';
 
 var Chapter = React.createClass({
     onBookmarkedHandler() {

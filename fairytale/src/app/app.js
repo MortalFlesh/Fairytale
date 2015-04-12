@@ -1,12 +1,12 @@
-var React = require('react');
-var RouterMixin = require('react-mini-router').RouterMixin;
+import React from 'react';
+import {RouterMixin} from 'react-mini-router';
 
-var AppHeader = require('./appHeader');
-var AppContent = require('./appContent');
+import AppHeader from './appHeader';
+import AppContent from './appContent';
 
-var Content = require('./../style/content');
-var Book = require('./../book/book');
-var Characters = require('./../character/characters');
+import Content from './../style/content';
+import Book from './../book/book';
+import Characters from './../character/characters';
 
 var App = React.createClass({
     mixins: [RouterMixin],

@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var CharacterInfoTitle = require('./characterInfoTitle');
+import CharacterInfoTitle from './characterInfoTitle';
 
 var CharacterInfo = React.createClass({
     render() {

@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Style = require('./../services/styleService');
-var Json = require('./../services/jsonService');
+import Style from './../services/styleService';
+import Json from './../services/jsonService';
 
 var EmptyRibbonSpace = React.createClass({
     getDefaultProps() {

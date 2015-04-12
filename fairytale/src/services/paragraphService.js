@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var ParagraphBookmark = require('./../chapter/paragraphBookmark');
-var ChapterFirstLetter = require('./../chapter/chapterFirstLetter');
+import ParagraphBookmark from './../chapter/paragraphBookmark';
+import ChapterFirstLetter from './../chapter/chapterFirstLetter';
 
 var paragraphService = {
     buildContent(rawContent, isBookmarked, isFirstParagraph) {

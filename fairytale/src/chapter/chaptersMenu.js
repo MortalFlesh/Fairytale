@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var ChapterMenuItem = require('./chapterMenuItem');
-var ChapterHeader = require('./chapterHeader');
+import ChapterMenuItem from './chapterMenuItem';
+import ChapterHeader from './chapterHeader';
 
 var ChaptersMenu = React.createClass({
     getDefaultProps() {

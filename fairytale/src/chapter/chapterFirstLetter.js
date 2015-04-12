@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Style = require('./../services/styleService');
+import Style from './../services/styleService';
 
 var ChapterFirstLetter = React.createClass({
     render() {

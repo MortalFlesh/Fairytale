@@ -1,4 +1,4 @@
-var jQuery = require('jquery-browserify');
+import jQuery from 'jquery-browserify';
 
 var jsonService = {
     extendsJson(json, extension) {
