@@ -31,7 +31,7 @@ var DiceRibbon = React.createClass({
         return (diceRolled === null);
     },
     onClickHandler() {
-        this.props.dialogBox('Zadej výsledek hodu:', diceResult => {
+        this.props.dialogBox(diceResult => {
             var roll = parseInt(diceResult, 10);
 
             if (roll >= 1 && roll <= 6) {

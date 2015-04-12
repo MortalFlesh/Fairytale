@@ -1,19 +1,31 @@
 import React from 'react';
 
+import DialogBox from './../dialogBox/dialogBox'
+
 import DiceRibbon from './../ribbon/diceRibbon';
 import Bookmark from "./../ribbon/bookmark";
 
 var Ribbons = React.createClass({
-    dialogBox(title, callback) {
-        var x = prompt(title);
-        callback(x);
+    getInitialState() {
+        return {
+            dialogBoxOpen: false,
+        };
+    },
+    dialogBox(callback) {
+        //var x = prompt(title);
+        //callback(x);
+
+        this.setState({dialogBoxOpen: true});
+    },
+    dialogBoxClose() {
+        this.setState({dialogBoxOpen: false});
     },
     render() {
         var style = {
             display: 'flex',
-            float: 'left',
             flexDirection: 'row',
             justifyContent: 'flex-end',
+            float: 'left',
             width: 740,
         };
 
@@ -35,6 +47,10 @@ var Ribbons = React.createClass({
                     onClick={this.props.onDiceRibbonClick}
                     refreshRate={this.props.refreshRate}
                 />
+
+                <DialogBox visible={this.state.dialogBoxOpen} onClose={this.dialogBoxClose}>
+                    <strong>Zadej výsledek hodu:</strong>
+                </DialogBox>
             </div>
         );
     }
