@@ -40,6 +40,7 @@ var DialogBox = React.createClass({
                 <div style={lineStyle}>
                     <DialogBoxClose onClick={this.props.onClose}/>
                 </div>
+
                 {this.props.children}
             </div>
         );

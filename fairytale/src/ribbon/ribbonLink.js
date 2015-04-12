@@ -11,7 +11,7 @@ var RibbonLink = React.createClass({
         };
 
         return (
-            <a title={this.props.title} style={style} onClick={this.props.onClickHandler} />
+            <a title={this.props.title} style={style} onClick={this.props.onClick} />
         );
     }
 });
