@@ -1,12 +1,16 @@
 import React from 'react';
 
 import Cookie from './../services/cookieService';
-import Style from './../services/styleService';
 import Json from './../services/jsonService';
 
 import RibbonLink from './ribbonLink';
 
 var DiceRibbon = React.createClass({
+    getDefaultProps() {
+        return {
+            baseStyle: {},
+        };
+    },
     getInitialState() {
         return {
             ableToRoll: false,
@@ -41,13 +45,12 @@ var DiceRibbon = React.createClass({
     render() {
         var content = [];
 
-        var style = Json.extendsJson(Style.ribbonCommonStyle, {
-            backgroundImage: 'url("./fairytale/images/roll-a-dice-inactive.png")',
-            width: 100,
+        var style = Json.extendsJson(this.props.baseStyle, {
+            backgroundImage: 'url("./fairytale/images/dice-ribbon-inactive.png")',
         });
 
         if (this.state.ableToRoll) {
-            style.backgroundImage = 'url("./fairytale/images/roll-a-dice.png")';
+            style.backgroundImage = 'url("./fairytale/images/dice-ribbon.png")';
 
             content.push(<RibbonLink title="Hodit kostkou" onClickHandler={this.onClickHandler} />);
         }
