@@ -31,16 +31,17 @@ var DiceRibbon = React.createClass({
         return (diceRolled === null);
     },
     onClickHandler() {
-        const diceResult = prompt('Zadej výsledek hodu:', '0');
-        var roll = parseInt(diceResult, 10);
+        this.props.dialogBox('Zadej výsledek hodu:', diceResult => {
+            var roll = parseInt(diceResult, 10);
 
-        if (roll >= 1 && roll <= 6) {
-            const hours = 20;
-            Cookie.set('dice-rolled', {roll: roll}, hours);
+            if (roll >= 1 && roll <= 6) {
+                const hours = 20;
+                Cookie.set('dice-rolled', {roll: roll}, hours);
 
-            this.checkRollAvailability();
-            this.props.onClick(roll);
-        }
+                this.checkRollAvailability();
+                this.props.onClick(roll);
+            }
+        });
     },
     render() {
         var content = [];

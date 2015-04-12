@@ -4,6 +4,10 @@ import DiceRibbon from './../ribbon/diceRibbon';
 import Bookmark from "./../ribbon/bookmark";
 
 var Ribbons = React.createClass({
+    dialogBox(title, callback) {
+        var x = prompt(title);
+        callback(x);
+    },
     render() {
         var style = {
             display: 'flex',
@@ -25,7 +29,12 @@ var Ribbons = React.createClass({
         return (
             <div className="Ribbons" style={style}>
                 <Bookmark baseStyle={ribbonBaseStyle} onClick={this.props.onBookmarkClick} />
-                <DiceRibbon baseStyle={ribbonBaseStyle} onClick={this.props.onDiceRibbonClick} refreshRate={this.props.refreshRate} />
+                <DiceRibbon
+                    baseStyle={ribbonBaseStyle}
+                    dialogBox={this.dialogBox}
+                    onClick={this.props.onDiceRibbonClick}
+                    refreshRate={this.props.refreshRate}
+                />
             </div>
         );
     }
