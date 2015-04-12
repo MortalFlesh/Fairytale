@@ -2,16 +2,13 @@ import React from 'react';
 import jQuery from 'jquery-browserify';
 
 import Loader from './../services/loader';
-import Style from './../services/styleService';
 
 import BookHeader from './bookHeader';
 
 import ChaptersMenu from './../chapter/chaptersMenu';
 import Page from './../page/page';
 
-import EmptyRibbonSpace from './../ribbon/emptyRibbonSpace';
-import DiceRibbon from './../ribbon/diceRibbon';
-import Bookmark from "./../ribbon/bookmark";
+import Ribbons from './../ribbon/ribbons';
 
 var Book = React.createClass({
     getInitialState() {
@@ -116,9 +113,11 @@ var Book = React.createClass({
                     onChapterChanged={this.onChapterChanged}
                 />
 
-                <EmptyRibbonSpace baseStyle={Style.ribbonCommonStyle} width={470} />
-                <DiceRibbon baseStyle={Style.ribbonCommonStyle} onClick={this.onDiceRibbonClick} refreshRate={this.props.interval} />
-                <Bookmark baseStyle={Style.ribbonCommonStyle} onClick={this.onBookmarkClick} />
+                <Ribbons
+                    onDiceRibbonClick={this.onDiceRibbonClick}
+                    refreshRate={this.props.interval}
+                    onBookmarkClick={this.onBookmarkClick}
+                />
 
                 <Page
                     chapter={currentChapter}

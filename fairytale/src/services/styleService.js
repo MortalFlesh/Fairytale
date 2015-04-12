@@ -8,15 +8,6 @@ var style = {
     shadow: {
         title: '-1px -1px 1px #000, 1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000',
     },
-    ribbonCommonStyle: {
-        float: 'left',
-        width: 100,
-        height: 108,
-        margin: '-7px 25px',
-        textAlign: 'center',
-        backgroundPosition: 'top center',
-        backgroundRepeat: 'no-repeat',
-    }
 };
 
 module.exports = style;
