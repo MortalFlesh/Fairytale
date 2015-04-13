@@ -2,11 +2,13 @@ import React from 'react';
 
 var ChapterNewParagraph = React.createClass({
     render() {
-        var style = {
+        const style = {
+            position: 'relative',
             color: 'green',
             float: 'right',
             fontSize: 12,
-            margin: '-5px -10px',
+            margin: '-5px 2px',
+            zIndex: 20,
         };
 
         return (

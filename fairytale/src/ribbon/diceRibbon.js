@@ -4,8 +4,9 @@ import Cookie from './../services/cookieService';
 import Json from './../services/jsonService';
 
 import RibbonLink from './ribbonLink';
+import DiceIcon from './diceIcon';
 
-import DialogBox from './../dialogBox/dialogBox'
+import DialogBox from './../dialogBox/dialogBox';
 
 var DiceRibbon = React.createClass({
     getDefaultProps() {
@@ -24,13 +25,13 @@ var DiceRibbon = React.createClass({
         setInterval(this.checkRollAvailability, this.props.refreshRate);
     },
     checkRollAvailability() {
-        var isAbleToRoll = this.isAbleToRollADice();
+        const isAbleToRoll = this.isAbleToRollADice();
         if (isAbleToRoll !== this.state.ableToRoll) {
             this.setState({ableToRoll: isAbleToRoll});
         }
     },
     isAbleToRollADice() {
-        var diceRolled = Cookie.get('dice-rolled');
+        const diceRolled = Cookie.get('dice-rolled');
         return (diceRolled === null);
     },
     dialogBoxOpen() {
@@ -39,28 +40,10 @@ var DiceRibbon = React.createClass({
     dialogBoxClose() {
         this.setState({dialogBoxOpen: false});
     },
-    roll1() {
-        this.roll(1);
-    },
-    roll2() {
-        this.roll(2);
-    },
-    roll3() {
-        this.roll(3);
-    },
-    roll4() {
-        this.roll(4);
-    },
-    roll5() {
-        this.roll(5);
-    },
-    roll6() {
-        this.roll(6);
-    },
     roll(diceResult) {
         this.dialogBoxClose();
 
-        var roll = parseInt(diceResult, 10);
+        const roll = parseInt(diceResult, 10);
 
         if (roll >= 1 && roll <= 6) {
             const hours = 20;
@@ -71,12 +54,23 @@ var DiceRibbon = React.createClass({
         }
     },
     render() {
-        var style = Json.extendsJson(this.props.baseStyle, {
+        let style = Json.extendsJson(this.props.baseStyle, {
             backgroundImage: 'url("./fairytale/images/dice-ribbon-inactive.png")',
         });
 
+        const dicesContainerStyle = {
+            width: 160,
+            padding: '0 0 10px 10px',
+        };
+
+        let dices = [];
+
         if (this.state.ableToRoll) {
             style.backgroundImage = 'url("./fairytale/images/dice-ribbon.png")';
+
+            dices = [1, 2, 3, 4, 5, 6].map(number =>
+                <DiceIcon key={number} onClick={this.roll} number={number} />
+            );
         }
 
         return (
@@ -89,15 +83,11 @@ var DiceRibbon = React.createClass({
                     <DialogBox visible={this.state.dialogBoxOpen} onClose={this.dialogBoxClose}>
                         <strong>Zadej výsledek hodu:</strong>
 
-                        <button onClick={this.roll1}>1</button>
-                        <button onClick={this.roll2}>2</button>
-                        <button onClick={this.roll3}>3</button>
-                        <button onClick={this.roll4}>4</button>
-                        <button onClick={this.roll5}>5</button>
-                        <button onClick={this.roll6}>6</button>
+                        <div style={dicesContainerStyle}>
+                            {dices}
+                        </div>
                     </DialogBox>
                 }
-
             </div>
         );
     }

@@ -11,26 +11,27 @@ var ChapterHeader = React.createClass({
         };
     },
     render() {
-        var style = {
+        let style = {
             textAlign: 'center',
             margin: '7px 0',
         };
 
-        var content = [];
-        content.push(<strong>{this.props.number}.</strong>);
-        content.push(' ' + this.props.title);
+        let showCount = false;
 
         if (this.props.inChapter) {
             style.fontSize = 40;
             style.color = Style.colors.title;
             style.textShadow = Style.shadow.title;
         } else if (this.props.newPargraphsCount > 0) {
-            content.push(<ChapterNewParagraph count={this.props.newPargraphsCount} />)
+            style.position = 'relative';
+            showCount = true;
         }
 
         return (
             <h3 className="ChapterHeader" style={style}>
-                {content}
+                <strong>{this.props.number}.</strong>{' ' + this.props.title}
+                
+                {showCount && <ChapterNewParagraph count={this.props.newPargraphsCount} />}
             </h3>
         );
     }
