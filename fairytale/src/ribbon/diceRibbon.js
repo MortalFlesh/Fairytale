@@ -71,32 +71,33 @@ var DiceRibbon = React.createClass({
         }
     },
     render() {
-        var content = [];
-
         var style = Json.extendsJson(this.props.baseStyle, {
             backgroundImage: 'url("./fairytale/images/dice-ribbon-inactive.png")',
         });
 
         if (this.state.ableToRoll) {
             style.backgroundImage = 'url("./fairytale/images/dice-ribbon.png")';
-
-            content.push(<RibbonLink title="Hodit kostkou" onClick={this.dialogBoxOpen} />);
         }
 
         return (
             <div className="DiceRibbon" style={style}>
-                {content}
+                {this.state.ableToRoll &&
+                    <RibbonLink title="Hodit kostkou" onClick={this.dialogBoxOpen} />
+                }
 
-                <DialogBox visible={this.state.dialogBoxOpen} onClose={this.dialogBoxClose}>
-                    <strong>Zadej výsledek hodu:</strong>
+                {this.state.ableToRoll &&
+                    <DialogBox visible={this.state.dialogBoxOpen} onClose={this.dialogBoxClose}>
+                        <strong>Zadej výsledek hodu:</strong>
 
-                    <button onClick={this.roll1}>1</button>
-                    <button onClick={this.roll2}>2</button>
-                    <button onClick={this.roll3}>3</button>
-                    <button onClick={this.roll4}>4</button>
-                    <button onClick={this.roll5}>5</button>
-                    <button onClick={this.roll6}>6</button>
-                </DialogBox>
+                        <button onClick={this.roll1}>1</button>
+                        <button onClick={this.roll2}>2</button>
+                        <button onClick={this.roll3}>3</button>
+                        <button onClick={this.roll4}>4</button>
+                        <button onClick={this.roll5}>5</button>
+                        <button onClick={this.roll6}>6</button>
+                    </DialogBox>
+                }
+
             </div>
         );
     }
