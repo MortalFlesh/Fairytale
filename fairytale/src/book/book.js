@@ -109,7 +109,7 @@ var Book = React.createClass({
 
                 <ChaptersMenu
                     chapters={chapterHeaders}
-                    defaultChapter={this.state.currentChapter}
+                    selectedChapter={this.state.currentChapter}
                     onChapterChanged={this.onChapterChanged}
                 />
 

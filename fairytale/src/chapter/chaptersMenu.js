@@ -3,9 +3,10 @@ import React from 'react';
 import ChapterMenuItem from './chapterMenuItem';
 import ChapterHeader from './chapterHeader';
 
-var ChaptersMenu = React.createClass({
+const ChaptersMenu = React.createClass({
     getDefaultProps() {
         return {
+            selectedChapter: 1,
             chapters: [
                 {
                     number: 1,
@@ -15,23 +16,21 @@ var ChaptersMenu = React.createClass({
             ],
         }
     },
-    getInitialState() {
-        return {
-            selectedChapter: this.props.defaultChapter,
-        };
-    },
     menuItemClick(chapterNumber) {
-        var newChapter = parseInt(chapterNumber, 10);
-        if (newChapter !== this.state.selectedChapter) {
-            this.setState({selectedChapter: newChapter});
-            this.props.onChapterChanged(chapterNumber);
+        const newChapter = parseInt(chapterNumber, 10);
+
+        if (newChapter !== this.props.selectedChapter) {
+            this.forceUpdate();
+            this.props.onChapterChanged(newChapter);
         }
     },
     render() {
-        var chapters = this.props.chapters.map(chapter =>
+        const selectedChapter = this.props.selectedChapter;
+
+        const chapters = this.props.chapters.map((chapter) =>
             <ChapterMenuItem
                 key={chapter.number}
-                isActive={this.state.selectedChapter == chapter.number}
+                isActive={chapter.number == selectedChapter}
                 number={chapter.number}
                 onClickHandler={this.menuItemClick}
             >
@@ -51,4 +50,4 @@ var ChaptersMenu = React.createClass({
     }
 });
 
-module.exports = ChaptersMenu;
+export default ChaptersMenu;
