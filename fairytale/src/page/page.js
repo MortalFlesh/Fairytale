@@ -5,21 +5,21 @@ import PageContent from './pageContent';
 import ResponsiveService from './../services/responsiveService';
 import Chapter from './../chapter/chapter';
 
-var Page = React.createClass({
+const Page = React.createClass({
     render() {
-        var scrollWidth = 17;
-        var pagePadding = 100;
-        var maxWidth = 794;
-        var maxHeight = 1122;
+        const scrollWidth = 17;
+        const maxWidth = 794;
+        const maxHeight = 1122;
+        let pagePadding = 100;
 
-        var width = ResponsiveService.getWidth(maxWidth);
-        var height = ResponsiveService.getHeight(maxHeight);
+        let width = ResponsiveService.getWidth(maxWidth);
+        const height = ResponsiveService.getHeight(maxHeight);
 
-        var pageRatio = width / maxWidth;
+        const pageRatio = width / maxWidth;
         pagePadding *= pageRatio;
         width += scrollWidth;
 
-        var style = {
+        const style = {
             padding: pagePadding,
             paddingRight: pagePadding - scrollWidth,
             border: '1px solid black',
@@ -37,4 +37,4 @@ var Page = React.createClass({
     }
 });
 
-module.exports = Page;
+export default Page;
