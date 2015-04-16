@@ -2,7 +2,7 @@ import React from 'react';
 
 import Style from './../services/styleService';
 
-import CookiesService from './../services/cookieService';
+import Cookies from './../services/cookieService';
 import ParagraphService from './../services/paragraphService';
 
 var ChapterParagraph = React.createClass({
@@ -18,9 +18,9 @@ var ChapterParagraph = React.createClass({
         };
     },
     getStyle() {
-        var bgColor = 'none';
-        var borderColor = 'transparent';
-        var textIdent = 30;
+        let bgColor = 'none';
+        let borderColor = 'transparent';
+        let textIdent = 30;
 
         if (this.props.paragraph.isNew == '1') {
             bgColor = Style.colors.newParagraph;
@@ -53,15 +53,15 @@ var ChapterParagraph = React.createClass({
         this.setState({hover: false});
     },
     onClickHandler() {
-        CookiesService.set('bookmark', {
+        Cookies.set('bookmark', {
             chapter: parseInt(this.props.paragraph.chapter),
             paragraph: parseInt(this.props.paragraph.id),
         });
         this.props.onBookmarked();
     },
     render() {
-        var style = this.getStyle();
-        var content = ParagraphService.buildContent(
+        const style = this.getStyle();
+        const content = ParagraphService.buildContent(
             this.props.children,
             this.props.bookmark,
             this.props.isFirstParagraph
@@ -81,4 +81,4 @@ var ChapterParagraph = React.createClass({
     }
 });
 
-module.exports = ChapterParagraph;
+export default ChapterParagraph;
