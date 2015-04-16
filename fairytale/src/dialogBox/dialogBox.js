@@ -8,6 +8,8 @@ var DialogBox = React.createClass({
     defaultProps() {
         return {
             visible: false,
+            onClose: () => {},
+            margin: 0,
         }
     },
     render() {
@@ -22,6 +24,7 @@ var DialogBox = React.createClass({
                 borderRadius: 10,
                 boxShadow: '5px 5px 5px RGBA(0, 0, 0, 0.5)',
                 zIndex: 1000,
+                margin: this.props.margin,
             },
             dialogBoxLine: {
                 display: 'flex',

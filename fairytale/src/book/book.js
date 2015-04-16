@@ -1,13 +1,14 @@
 import React from 'react';
-import jQuery from 'jquery-browserify';
 
 import Loader from './../services/loader';
+import Scroller from './../services/scroller';
 
 import BookHeader from './bookHeader';
 
 import ChaptersMenu from './../chapter/chaptersMenu';
 import Page from './../page/page';
 
+import DialogBox from './../dialogBox/dialogBox';
 import Ribbons from './../ribbon/ribbons';
 
 var Book = React.createClass({
@@ -27,7 +28,8 @@ var Book = React.createClass({
                     },
                 ],
             },
-            currentChapter: 1
+            currentChapter: 1,
+            flashMessage: '',
         }
     },
     loadBook() {
@@ -40,7 +42,7 @@ var Book = React.createClass({
         setInterval(this.loadBook, this.props.interval);
     },
     getCurrentChapter() {
-        var currentChapterIndex = this.state.currentChapter - 1;
+        const currentChapterIndex = this.state.currentChapter - 1;
         return this.state.book.chapters[currentChapterIndex];
     },
     onChapterChanged(chapterNumber) {
@@ -49,18 +51,11 @@ var Book = React.createClass({
     onBookmarkClick(chapterNumber) {
         this.onChapterChanged(chapterNumber);
 
-        setTimeout(function () {
-            var pageContent = jQuery('.PageContent_Scroll');
+        setTimeout(() => {
+            Scroller.scroll('.PageContent_Scroll', -150, 1000);
 
-            jQuery('html, body').animate({
-                scrollTop: pageContent.offset().top - 150
-            }, 1000);
-
-            var bookmarkedParagraph = jQuery('.ParagraphBookmark');
-            setTimeout(function () {
-                jQuery('.PageContent_Scroll').animate({
-                    scrollTop: bookmarkedParagraph.offset().top - 500
-                }, 1000);
+            setTimeout(() => {
+                Scroller.scroll('.ParagraphBookmark', -500, 1000, '.PageContent_Scroll');
             }, 1000);
         }, 200);
     },
@@ -70,12 +65,12 @@ var Book = React.createClass({
             {
                 roll: roll,
             },
-            response => {
-                var message = 'Hod bohužel nebyl správný :-(';
+            (response) => {
+                let message = 'Hod bohužel nebyl správný :-(';
 
                 if (response.status === 'ok') {
-                    var count = parseInt(response.publishedCount, 10);
-                    var publishedMessage = '';
+                    const count = parseInt(response.publishedCount, 10);
+                    let publishedMessage = '';
 
                     if (count === 1) {
                         publishedMessage += '1 nový odstavec';
@@ -94,14 +89,19 @@ var Book = React.createClass({
                     message = 'Dobrý pokus, ale zkus to až zítra!';
                 }
 
-                alert(message);
+                this.setState({flashMessage: message});
             }
         );
     },
+    onDialogBoxClose() {
+        this.setState({flashMessage: ''});
+    },
     render() {
-        var book = this.state.book;
-        var currentChapter = this.getCurrentChapter();
-        var chapterHeaders = book.chapters.map(chapter => chapter.header);
+        const book = this.state.book;
+        const currentChapter = this.getCurrentChapter();
+        const chapterHeaders = book.chapters.map(chapter => chapter.header);
+
+        const dialogBoxOpen = (this.state.flashMessage.length > 0);
 
         return (
             <div className="Book">
@@ -112,6 +112,10 @@ var Book = React.createClass({
                     defaultChapter={this.state.currentChapter}
                     onChapterChanged={this.onChapterChanged}
                 />
+
+                <DialogBox visible={dialogBoxOpen} onClose={this.onDialogBoxClose} margin={'10px 0 0 10px'}>
+                    <p>{this.state.flashMessage}</p>
+                </DialogBox>
 
                 <Ribbons
                     onDiceRibbonClick={this.onDiceRibbonClick}
