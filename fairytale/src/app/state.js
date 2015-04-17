@@ -3,6 +3,8 @@ import State from './../lib/state';
 
 import Loader from './../services/loader';
 
+import * as bookAction from './../book/actions';
+
 const basicData = Immutable.fromJS({
     book: {
         title: '',
@@ -37,5 +39,13 @@ export const reloadState = (url, key) => {
 
         currentState[key] = response;
         appState.load(currentState);
+    });
+};
+
+export const reloadBook = (url) => {
+    Loader.loadJson(url, (response) => {
+        bookAction.setTitle(response.title);
+        bookAction.setSubTitle(response.subTitle);
+        bookAction.setCover(response.cover);
     });
 };

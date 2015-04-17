@@ -3,6 +3,8 @@ import React from 'react';
 import Loader from './../services/loader';
 import Scroller from './../services/scroller';
 
+import * as store from './store';
+
 import BookHeader from './bookHeader';
 
 import ChaptersMenu from './../chaptersMenu/chaptersMenu';
@@ -31,15 +33,6 @@ var Book = React.createClass({
             currentChapter: 1,
             flashMessage: '',
         }
-    },
-    loadBook() {
-        Loader.loadJson(this.props.url, response => {
-            this.setState({book: response});
-        });
-    },
-    componentDidMount() {
-        this.loadBook();
-        setInterval(this.loadBook, this.props.interval);
     },
     getCurrentChapter() {
         const currentChapterIndex = this.state.currentChapter - 1;
@@ -85,8 +78,6 @@ var Book = React.createClass({
                     }
 
                     message = 'Hod byl správný! Máš navíc ' + publishedMessage + ' :-)';
-
-                    this.loadBook();
                 } else if (response.status === 'nothing-to-publish') {
                     message = 'Hod byl sice správný, ale není už víc napsané :-(';
                 } else if (response.status === 'hack') {
@@ -101,9 +92,17 @@ var Book = React.createClass({
         this.setState({flashMessage: ''});
     },
     render() {
-        const book = this.state.book;
+        const book = {
+            title: store.get('title'),
+            subTitle: store.get('subTitle'),
+            chapters: store.get('chapters'),
+        };
         const currentChapter = this.getCurrentChapter();
-        const chapterHeaders = book.chapters.map(chapter => chapter.header);
+
+        let chapterHeaders = [];
+        if (book.chapters.size > 1) {
+            chapterHeaders = book.chapters.take().map(chapter => chapter.header);
+        }
 
         const dialogBoxOpen = (this.state.flashMessage.length > 0);
 
@@ -111,11 +110,13 @@ var Book = React.createClass({
             <div className="Book">
                 <BookHeader title={book.title} subTitle={book.subTitle} />
 
-                <ChaptersMenu
-                    chapters={chapterHeaders}
-                    selectedChapter={this.state.currentChapter}
-                    onChapterChanged={this.onChapterChanged}
-                />
+                {chapterHeaders &&
+                    <ChaptersMenu
+                        chapters={chapterHeaders}
+                        selectedChapter={this.state.currentChapter}
+                        onChapterChanged={this.onChapterChanged}
+                    />
+                }
 
                 <DialogBox visible={dialogBoxOpen} onClose={this.onDialogBoxClose} margin={'10px 0 0 10px'}>
                     <p>{this.state.flashMessage}</p>
@@ -123,7 +124,7 @@ var Book = React.createClass({
 
                 <Ribbons
                     onDiceRibbonClick={this.onDiceRibbonClick}
-                    refreshRate={this.props.interval}
+                    refreshRate={60 * 1000}
                     onBookmarkClick={this.onBookmarkClick}
                 />
 

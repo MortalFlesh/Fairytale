@@ -1,7 +1,7 @@
 import React from 'react';
 import {RouterMixin} from 'react-mini-router';
 
-import {state, reloadState} from './state';
+import {state, reloadBook} from './state';
 import AppHeader from './appHeader';
 import AppContent from './appContent';
 
@@ -21,18 +21,15 @@ const App = React.createClass({
             interval: 60 * 1000,
         }
     },
-    componentWillMount() {
-        this.reloadApp();
-    },
     componentDidMount() {
         state.on('change', () => {
             this.forceUpdate();
         });
 
-        setInterval(this.reloadApp, this.props.interval);
+        this.reloadApp();
     },
     reloadApp() {
-        reloadState('./api/api.php?action=book', 'book');
+        reloadBook('./api/api.php?action=book');
     },
     getActive() {
         const path = this.state.path;
@@ -44,10 +41,7 @@ const App = React.createClass({
         }
     },
     book() {
-        return <Book
-            url={"./api/api.php?action=book"}
-            rollForNewChaptersUrl={"./api/api.php?action=roll-for-new-chapters"}
-            interval={60 * 1000} />;
+        return <Book rollForNewChaptersUrl={"./api/api.php?action=roll-for-new-chapters"}/>;
     },
     characters() {
         return <Characters url={"./api/api.php?action=characters"} />;
