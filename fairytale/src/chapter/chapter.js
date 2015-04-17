@@ -27,7 +27,7 @@ const Chapter = React.createClass({
 
         let i = 0;
 
-        const paragraphs = chapter.paragraphs.map(paragraph =>
+        const paragraphs = chapter.paragraphs.map((paragraph) =>
             <ChapterParagraph
                 key={paragraph.id}
                 paragraph={paragraph}

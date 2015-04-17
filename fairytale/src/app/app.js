@@ -1,6 +1,7 @@
 import React from 'react';
 import {RouterMixin} from 'react-mini-router';
 
+import {state, reloadState} from './state';
 import AppHeader from './appHeader';
 import AppContent from './appContent';
 
@@ -8,15 +9,33 @@ import Content from './../style/content';
 import Book from './../book/book';
 import Characters from './../character/characters';
 
-var App = React.createClass({
+const App = React.createClass({
     mixins: [RouterMixin],
     routes: {
         '/': 'book',
         '/characters/': 'characters',
         '/character/:name': 'character',
     },
+    defaultProps() {
+        return {
+            interval: 60 * 1000,
+        }
+    },
+    componentWillMount() {
+        this.reloadApp();
+    },
+    componentDidMount() {
+        state.on('change', () => {
+            this.forceUpdate();
+        });
+
+        setInterval(this.reloadApp, this.props.interval);
+    },
+    reloadApp() {
+        reloadState('./api/api.php?action=book', 'book');
+    },
     getActive() {
-        var path = this.state.path;
+        const path = this.state.path;
 
         if (path.indexOf('/character') === 0) {
             return 'characters';
@@ -53,4 +72,4 @@ var App = React.createClass({
     }
 });
 
-module.exports = App;
+export default App;

@@ -17,7 +17,11 @@
     "dependencies": {
         "react": "0.13.*",
         "react-mini-router": "1.*",
-        "jquery-browserify": "1.8.*"
+        "jquery-browserify": "1.8.*",
+        "eventemitter3": "~0.1.6",
+        "flux": "~2.0.1",
+        "immutable": "~3.6.2"
+
     },
     "devDependencies": {
         "babelify": "~5.0.3",
