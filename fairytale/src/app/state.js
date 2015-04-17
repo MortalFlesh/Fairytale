@@ -47,5 +47,6 @@ export const reloadBook = (url) => {
         bookAction.setTitle(response.title);
         bookAction.setSubTitle(response.subTitle);
         bookAction.setCover(response.cover);
+        bookAction.setChapters(response.chapters);
     });
 };

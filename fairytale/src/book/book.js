@@ -100,8 +100,12 @@ var Book = React.createClass({
         const currentChapter = this.getCurrentChapter();
 
         let chapterHeaders = [];
-        if (book.chapters.size > 1) {
-            chapterHeaders = book.chapters.take().map(chapter => chapter.header);
+        const chapterListSize = book.chapters.size;
+
+        if (chapterListSize > 1) {
+            const chapterList = book.chapters.take(chapterListSize);
+
+            chapterHeaders = chapterList.map(chapter => chapter.get('header'));
         }
 
         const dialogBoxOpen = (this.state.flashMessage.length > 0);
