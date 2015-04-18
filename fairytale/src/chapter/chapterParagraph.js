@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {setBookmark} from './actions';
+import {getBookmark} from './store';
+
 import Style from './../services/styleService';
 
 import Cookies from './../services/cookieService';
@@ -8,7 +11,6 @@ import ParagraphService from './../services/paragraphService';
 var ChapterParagraph = React.createClass({
     getDefaultProps() {
         return {
-            bookmark: false,
             isFirstParagraph: false
         }
     },
@@ -17,7 +19,7 @@ var ChapterParagraph = React.createClass({
             hover: false,
         };
     },
-    getStyle() {
+    getStyle(isBookmark) {
         let bgColor = 'none';
         let borderColor = 'transparent';
         let textIdent = 30;
@@ -26,7 +28,7 @@ var ChapterParagraph = React.createClass({
             bgColor = Style.colors.newParagraph;
         }
 
-        if (this.state.hover || this.props.bookmark) {
+        if (this.state.hover || isBookmark) {
             borderColor = Style.colors.bookmarkParagraphBorder;
         }
 
@@ -53,17 +55,27 @@ var ChapterParagraph = React.createClass({
         this.setState({hover: false});
     },
     onClickHandler() {
-        Cookies.set('bookmark', {
+        const bookmark = {
             chapter: parseInt(this.props.paragraph.chapter),
             paragraph: parseInt(this.props.paragraph.id),
-        });
-        this.props.onBookmarked();
+        };
+
+        Cookies.set('bookmark', bookmark);
+        setBookmark(bookmark);
+    },
+    isBookmark() {
+        const bookmark = getBookmark();
+        const paragraph = this.props.paragraph;
+
+        return (paragraph.chapter == bookmark.chapter && paragraph.id == bookmark.paragraph);
     },
     render() {
-        const style = this.getStyle();
+        const isBookmark = this.isBookmark();
+        const style = this.getStyle(isBookmark);
+
         const content = ParagraphService.buildContent(
             this.props.children,
-            this.props.bookmark,
+            isBookmark,
             this.props.isFirstParagraph
         );
 

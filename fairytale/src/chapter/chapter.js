@@ -3,12 +3,7 @@ import React from 'react';
 import ChapterParagraph from './chapterParagraph';
 import ChapterHeader from './../chaptersMenu/chapterHeader';
 
-import CookieService from './../services/cookieService';
-
 const Chapter = React.createClass({
-    onBookmarkedHandler() {
-        this.forceUpdate();
-    },
     markAsFirstParagraph(i, content) {
         const firstLetter = content[0];
         const isFirstLetterValid = new RegExp(/[a-záÁčČďĎéěÉĚíÍóÓřŘšŠťŤůŮúÚýÝžŽ]/i).test(firstLetter);
@@ -18,13 +13,6 @@ const Chapter = React.createClass({
     render() {
         const chapter = this.props.chapter.toJS();
 
-        const bookmark = CookieService.get('bookmark');
-        let bookmarkedId = 0;
-
-        if (bookmark !== null) {
-            bookmarkedId = bookmark.paragraph;
-        }
-
         let paragraphs = '';
 
         if (chapter.hasOwnProperty('paragraphs')) {
@@ -32,8 +20,6 @@ const Chapter = React.createClass({
                 <ChapterParagraph
                     key={paragraph.id}
                     paragraph={paragraph}
-                    bookmark={bookmarkedId == paragraph.id}
-                    onBookmarked={this.onBookmarkedHandler}
                     isFirstParagraph={this.markAsFirstParagraph(i, paragraph.content)}
                 >
                     {paragraph.content}

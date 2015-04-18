@@ -2,8 +2,10 @@ import Immutable from 'immutable';
 import State from './../lib/state';
 
 import Loader from './../services/loader';
+import Cookies from './../services/cookieService';
 
 import * as bookAction from './../book/actions';
+import * as chapterAction from './../chapter/actions';
 
 const basicData = Immutable.fromJS({
     book: {
@@ -27,6 +29,10 @@ const basicData = Immutable.fromJS({
             },
         ],
     },
+    bookmark: {
+        chapter: 0,
+        paragraph: 0,
+    },
 });
 
 const appState = new State(basicData);
@@ -35,6 +41,7 @@ export default appState;
 export const state = appState;
 
 export const bookCursor = appState.cursor(['book']);
+export const bookmarkCursor = appState.cursor(['bookmark']);
 
 export const reloadState = (url, key) => {
     Loader.loadJson(url, (response) => {
@@ -55,5 +62,8 @@ export const reloadBook = (url) => {
         bookAction.setSubTitle(response.subTitle);
         bookAction.setCover(response.cover);
         bookAction.setChapters(response.chapters);
+
+        const bookmark = Cookies.get('bookmark');
+        chapterAction.setBookmark(bookmark);
     });
 };
