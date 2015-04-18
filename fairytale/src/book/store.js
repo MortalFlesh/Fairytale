@@ -39,4 +39,13 @@ function setToCursor(key, value) {
     bookCursor((book) => book.set(key, value));
 }
 
-export const get = (key) => bookCursor().get(key);
+const get = (key) => bookCursor().get(key);
+
+export const getBook = () => {
+    return {
+        title: get('title'),
+        subTitle: get('subTitle'),
+        cover: get('cover'),
+        chapters: get('chapters'),
+    };
+};

@@ -3,7 +3,7 @@ import React from 'react';
 import Loader from './../services/loader';
 import Scroller from './../services/scroller';
 
-import * as store from './store';
+import {getBook} from './store';
 
 import BookHeader from './bookHeader';
 
@@ -79,11 +79,7 @@ var Book = React.createClass({
         this.setState({flashMessage: ''});
     },
     render() {
-        const book = {
-            title: store.get('title'),
-            subTitle: store.get('subTitle'),
-            chapters: store.get('chapters'),
-        };
+        const book = getBook();
 
         const currentChapter = this.getCurrentChapter(book.chapters);
 
