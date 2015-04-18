@@ -13,6 +13,7 @@ class RollForNewChapterAction
     const HOURS_FOR_COOKIE = 20;
     const COOKIE_NAME = 'dice-rolled';
     const ALREADY_ROLLED = 'Already rolled today';
+    const ROLL_BOUNDARY = 1;
 
     /** @var array */
     private $data;
@@ -73,7 +74,14 @@ class RollForNewChapterAction
      */
     private function isRollValid($roll)
     {
-        return ($roll >= 1 && $roll <= 6 && $this->dice->roll(6) === $roll);
+        $chance = $this->dice->roll(6);
+        $low = $chance - self::ROLL_BOUNDARY;
+        $high = $chance + self::ROLL_BOUNDARY;
+
+        $isValid = ($roll >= 1 && $roll <= 6);
+        $isInBoundaries = ($low <= $roll && $roll <= $high);
+
+        return ($isValid && $isInBoundaries);
     }
 
     /**
