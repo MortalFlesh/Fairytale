@@ -57,6 +57,10 @@ var Book = React.createClass({
             setTimeout(() => {
                 Scroller.scroll('.ParagraphBookmark', -500, 1000, '.PageContent_Scroll');
             }, 1000);
+
+            setTimeout(() => {
+                Scroller.scroll('.ParagraphBookmark', -250, 1000);
+            }, 1800);
         }, 200);
     },
     onDiceRibbonClick(roll) {
