@@ -16,7 +16,7 @@ const App = React.createClass({
         '/characters/': 'characters',
         '/character/:name': 'character',
     },
-    defaultProps() {
+    getDefaultProps() {
         return {
             interval: 60 * 1000,
         }
@@ -27,6 +27,7 @@ const App = React.createClass({
         });
 
         this.reloadApp();
+        setInterval(this.reloadApp, this.props.interval);
     },
     reloadApp() {
         reloadBook('./api/api.php?action=book');
