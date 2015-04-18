@@ -16,7 +16,14 @@ const basicData = Immutable.fromJS({
                     number: 1,
                     title: '',
                 },
-                paragraphs: [],
+                paragraphs: [
+                    {
+                        id: 1,
+                        content: '',
+                        isNew: 0,
+                        chapter: 1,
+                    }
+                ],
             },
         ],
     },

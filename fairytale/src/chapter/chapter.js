@@ -16,7 +16,7 @@ const Chapter = React.createClass({
         return (i === 0 && isFirstLetterValid);
     },
     render() {
-        const chapter = this.props.chapter;
+        const chapter = this.props.chapter.toJS();
 
         const bookmark = CookieService.get('bookmark');
         let bookmarkedId = 0;
@@ -25,23 +25,27 @@ const Chapter = React.createClass({
             bookmarkedId = bookmark.paragraph;
         }
 
-        let i = 0;
+        let paragraphs = '';
 
-        const paragraphs = chapter.paragraphs.map((paragraph) =>
-            <ChapterParagraph
-                key={paragraph.id}
-                paragraph={paragraph}
-                bookmark={bookmarkedId == paragraph.id}
-                onBookmarked={this.onBookmarkedHandler}
-                isFirstParagraph={this.markAsFirstParagraph(i++, paragraph.content)}
-            >
-                {paragraph.content}
-            </ChapterParagraph>
-        );
+        if (chapter.hasOwnProperty('paragraphs')) {
+            paragraphs = chapter.paragraphs.map((paragraph, i) =>
+                <ChapterParagraph
+                    key={paragraph.id}
+                    paragraph={paragraph}
+                    bookmark={bookmarkedId == paragraph.id}
+                    onBookmarked={this.onBookmarkedHandler}
+                    isFirstParagraph={this.markAsFirstParagraph(i, paragraph.content)}
+                >
+                    {paragraph.content}
+                </ChapterParagraph>
+            );
+        }
 
         return (
             <div className="Chapter" style={{paddingTop: 20}}>
-                <ChapterHeader number={chapter.header.number} title={chapter.header.title} inChapter={true} />
+                {chapter.hasOwnProperty('header') &&
+                    <ChapterHeader number={chapter.header.number} title={chapter.header.title} inChapter={true} />
+                }
 
                 {paragraphs}
             </div>

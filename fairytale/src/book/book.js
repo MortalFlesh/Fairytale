@@ -16,27 +16,14 @@ import Ribbons from './../ribbon/ribbons';
 var Book = React.createClass({
     getInitialState() {
         return {
-            book: {
-                title: '',
-                subTitle: '',
-                cover: '',
-                chapters: [
-                    {
-                        header: {
-                            number: 1,
-                            title: '',
-                        },
-                        paragraphs: [],
-                    },
-                ],
-            },
             currentChapter: 1,
             flashMessage: '',
         }
     },
-    getCurrentChapter() {
-        const currentChapterIndex = this.state.currentChapter - 1;
-        return this.state.book.chapters[currentChapterIndex];
+    getCurrentChapter(chapters) {
+        return chapters
+            .filter(chapter => chapter.toJS().header.number == this.state.currentChapter)
+            .first();
     },
     onChapterChanged(chapterNumber) {
         this.setState({currentChapter: chapterNumber});
@@ -97,18 +84,12 @@ var Book = React.createClass({
             subTitle: store.get('subTitle'),
             chapters: store.get('chapters'),
         };
-        const currentChapter = this.getCurrentChapter();
 
-        let chapterHeaders = [];
-        const chapterListSize = book.chapters.size;
+        const currentChapter = this.getCurrentChapter(book.chapters);
 
-        if (chapterListSize > 1) {
-            const chapterList = book.chapters.take(chapterListSize);
-
-            chapterHeaders = chapterList.map(chapter => chapter.get('header'));
-        }
-
-        const dialogBoxOpen = (this.state.flashMessage.length > 0);
+        const chapterHeaders = book.chapters
+            .map(chapter => chapter.get('header'))
+            .toJS();
 
         return (
             <div className="Book">
@@ -122,9 +103,11 @@ var Book = React.createClass({
                     />
                 }
 
-                <DialogBox visible={dialogBoxOpen} onClose={this.onDialogBoxClose} margin={'10px 0 0 10px'}>
-                    <p>{this.state.flashMessage}</p>
-                </DialogBox>
+                {this.state.flashMessage.length > 0 &&
+                    <DialogBox visible={true} onClose={this.onDialogBoxClose} margin={'10px 0 0 10px'}>
+                        <p>{this.state.flashMessage}</p>
+                    </DialogBox>
+                }
 
                 <Ribbons
                     onDiceRibbonClick={this.onDiceRibbonClick}
