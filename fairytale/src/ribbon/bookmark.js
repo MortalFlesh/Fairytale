@@ -1,25 +1,26 @@
 import React from 'react';
 
-import Cookie from './../services/cookieService';
+import {getBookmark} from './../chapter/store';
+
 import Style from './../services/styleService';
 import Json from './../services/jsonService';
 
 import RibbonLink from './ribbonLink';
 
-var Bookmark = React.createClass({
+const Bookmark = React.createClass({
     getDefaultProps() {
         return {
             baseStyle: {},
         };
     },
     onClickHandler() {
-        var bookmark = Cookie.get('bookmark');
+        const bookmark = getBookmark();
         this.props.onClick(bookmark.chapter);
     },
     render() {
-        var bookmark = Cookie.get('bookmark');
+        const bookmark = getBookmark();
 
-        var style = Json.extendsJson(this.props.baseStyle, {
+        let style = Json.extendsJson(this.props.baseStyle, {
             backgroundImage: 'url("./fairytale/images/bookmark.png")',
             display: 'none',
         });
