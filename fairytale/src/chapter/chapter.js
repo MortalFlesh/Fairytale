@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ChapterParagraph from './chapterParagraph';
-import ChapterHeader from './chapterHeader';
+import ChapterHeader from './../chaptersMenu/chapterHeader';
 
 import CookieService from './../services/cookieService';
 

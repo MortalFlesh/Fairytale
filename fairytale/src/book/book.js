@@ -5,7 +5,7 @@ import Scroller from './../services/scroller';
 
 import BookHeader from './bookHeader';
 
-import ChaptersMenu from './../chapter/chaptersMenu';
+import ChaptersMenu from './../chaptersMenu/chaptersMenu';
 import Page from './../page/page';
 
 import DialogBox from './../dialogBox/dialogBox';
