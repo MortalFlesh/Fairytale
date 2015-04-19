@@ -6,7 +6,7 @@ import BarMenuSeparator from './barMenuSeparator';
 import Loader from './../services/loader.js';
 import ReactComponentsService from './../services/reactComponentsService';
 
-var BarMenu = React.createClass({
+const BarMenu = React.createClass({
     getInitialState() {
         return {
             items: [],
@@ -22,20 +22,21 @@ var BarMenu = React.createClass({
         this.setState({active: pathName});
     },
     render() {
-        var style = {
+        const style = {
             float: 'right',
         };
 
-        var state = this.state;
-        var items = state.items.map((item, i) =>
+        const state = this.state;
+        let items = state.items.map((item, i) =>
             <BarMenuItem
                 key={i}
                 active={item.pathName === state.active}
                 item={item}
-                onClick={this.itemClickHandler} />
+                onClick={this.itemClickHandler}
+            />
         );
 
-        items = ReactComponentsService.join(items, key => <BarMenuSeparator key={key} />);
+        items = ReactComponentsService.join(items, (key) => <BarMenuSeparator key={key} />);
 
         return (
             <div className="BarMenu" style={style}>

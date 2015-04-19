@@ -1,8 +1,8 @@
 import React from 'react';
 
-var Clear = React.createClass({
+const Clear = React.createClass({
     render() {
-        var style = {
+        const style = {
             clear: 'both',
             height: 1,
         };

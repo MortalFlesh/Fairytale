@@ -2,9 +2,9 @@ import React from 'react';
 
 import Style from './../services/styleService';
 
-var ChapterFirstLetter = React.createClass({
+const ChapterFirstLetter = React.createClass({
     render() {
-        var style = {
+        const style = {
             color: Style.colors.title,
             textShadow: Style.shadow.title,
             float: 'left',

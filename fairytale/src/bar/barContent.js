@@ -1,8 +1,8 @@
 import React from 'react';
 
-var BarContent = React.createClass({
+const BarContent = React.createClass({
     render() {
-        var style = {
+        const style = {
             padding: '8px 0',
         };
 

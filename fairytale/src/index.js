@@ -21,7 +21,7 @@ Characters
         [infos]
  */
 
-var appElement = document.getElementById('app');
+const appElement = document.getElementById('app');
 
 React.render(
     <App/>,

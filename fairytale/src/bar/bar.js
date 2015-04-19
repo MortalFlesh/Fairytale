@@ -8,9 +8,9 @@ import BarMenu from './barMenu';
 import Content from './../style/content';
 import Clear from './../style/clear';
 
-var Bar = React.createClass({
+const Bar = React.createClass({
     render() {
-        var logoStyle = {
+        const logoStyle = {
             float: 'left',
             width: 26,
             height: 26,

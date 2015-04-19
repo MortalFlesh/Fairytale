@@ -1,6 +1,10 @@
 import React from 'react';
 
-var DiceIcon = React.createClass({
+const DiceIcon = React.createClass({
+    propTypes: {
+        onClick: React.PropTypes.func.isRequired,
+        number: React.PropTypes.number.isRequired,
+    },
     onClickHandler(event) {
         event.preventDefault();
 

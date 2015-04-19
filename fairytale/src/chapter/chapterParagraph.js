@@ -8,7 +8,7 @@ import Style from './../services/styleService';
 import Cookies from './../services/cookieService';
 import ParagraphService from './../services/paragraphService';
 
-var ChapterParagraph = React.createClass({
+const ChapterParagraph = React.createClass({
     getDefaultProps() {
         return {
             isFirstParagraph: false

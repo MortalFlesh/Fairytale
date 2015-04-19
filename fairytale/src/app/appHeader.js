@@ -2,9 +2,9 @@ import React from 'react';
 
 import Bar from './../bar/bar';
 
-var AppHeader = React.createClass({
+const AppHeader = React.createClass({
     render() {
-        var style = {
+        const style = {
             position: 'fixed',
             top: 0,
             right: 0,

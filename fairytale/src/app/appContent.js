@@ -1,8 +1,8 @@
 import React from 'react';
 
-var AppContent = React.createClass({
+const AppContent = React.createClass({
     render() {
-        var style = {
+        const style = {
             marginTop: 43,
         };
 

@@ -2,23 +2,27 @@ import React from 'react';
 
 import CharacterInfoTitle from './characterInfoTitle';
 
-var CharacterInfo = React.createClass({
+const CharacterInfo = React.createClass({
     render() {
-        var style = {
-            margin: '20px 0',
+        const style = {
+            info: {
+                margin: '20px 0',
+            },
+            list: {
+                marginTop: 0,
+            },
+            item: {
+                lineHeight: '20px',
+            },
         };
 
-        var itemStyle = {
-            lineHeight: '20px',
-        };
-
-        var info = this.props.info;
-        var infos = info.items.map((item, i) => <li key={i} style={itemStyle}>{item}</li>);
+        const info = this.props.info;
+        const infos = info.items.map((item, i) => <li key={i} style={style.item}>{item}</li>);
 
         return (
-            <div className="CharacterInfo" style={style}>
+            <div className="CharacterInfo" style={style.info}>
                 <CharacterInfoTitle name={info.name} />
-                <ul style={{marginTop: 0,}}>
+                <ul style={style.list}>
                     {infos}
                 </ul>
             </div>

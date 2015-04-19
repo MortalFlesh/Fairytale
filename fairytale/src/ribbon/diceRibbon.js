@@ -8,11 +8,11 @@ import DiceIcon from './diceIcon';
 
 import DialogBox from './../dialogBox/dialogBox';
 
-var DiceRibbon = React.createClass({
-    getDefaultProps() {
-        return {
-            baseStyle: {},
-        };
+const DiceRibbon = React.createClass({
+    propTypes: {
+        refreshRate: React.PropTypes.number.isRequired,
+        onClick: React.PropTypes.func.isRequired,
+        baseStyle: React.PropTypes.object.isRequired,
     },
     getInitialState() {
         return {
@@ -54,8 +54,10 @@ var DiceRibbon = React.createClass({
         }
     },
     render() {
+        const imageSuffix = this.state.ableToRoll ? '' : '-inactive';
+
         let style = Json.extendsJson(this.props.baseStyle, {
-            backgroundImage: 'url("./fairytale/images/dice-ribbon-inactive.png")',
+            backgroundImage: 'url("./fairytale/images/dice-ribbon' + imageSuffix + '.png")',
         });
 
         const dicesContainerStyle = {
@@ -64,11 +66,8 @@ var DiceRibbon = React.createClass({
         };
 
         let dices = [];
-
         if (this.state.ableToRoll) {
-            style.backgroundImage = 'url("./fairytale/images/dice-ribbon.png")';
-
-            dices = [1, 2, 3, 4, 5, 6].map(number =>
+            dices = [1, 2, 3, 4, 5, 6].map((number) =>
                 <DiceIcon key={number} onClick={this.roll} number={number} />
             );
         }

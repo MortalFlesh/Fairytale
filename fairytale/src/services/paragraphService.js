@@ -3,13 +3,13 @@ import React from 'react';
 import ParagraphBookmark from './../chapter/paragraphBookmark';
 import ChapterFirstLetter from './../chapter/chapterFirstLetter';
 
-var paragraphService = {
+const paragraphService = {
     buildContent(rawContent, isBookmarked, isFirstParagraph) {
         if (isFirstParagraph) {
             rawContent = this.makeFirstLetterNice(rawContent);
         }
 
-        var content = this.transformContentStyle(rawContent);
+        let content = this.transformContentStyle(rawContent);
 
         if (isBookmarked) {
             content = this.addBookmark(content);
@@ -18,13 +18,13 @@ var paragraphService = {
         return content;
     },
     makeFirstLetterNice(rawContent) {
-        var first = rawContent[0];
+        let first = rawContent[0];
         if (first === '@') {
             // first is @ so it's @* or @# -> bold or em, and we need letter
             first = rawContent[2];
         }
 
-        var markedLetter = this.markLetter(first);
+        const markedLetter = this.markLetter(first);
 
         return rawContent.replace(first, markedLetter);
     },
@@ -44,32 +44,31 @@ var paragraphService = {
         const italic = '*';
         const empty = '*';
 
-        var transformed = part;
-        var firstLetter = part[0];
-        var realPart = part.substring(1);
+        const firstLetter = part[0];
+        const realPart = part.substring(1);
 
         switch(firstLetter) {
             case chapterFirstLetter:
-                transformed = <ChapterFirstLetter>{realPart}</ChapterFirstLetter>;
-                break;
-            case bold:
-                transformed = <strong>{realPart}</strong>;
-                break;
-            case italic:
-                transformed = <em>{realPart}</em>;
-                break;
-            case empty:
-                transformed = <br />;
-                break;
-        }
+                return <ChapterFirstLetter>{realPart}</ChapterFirstLetter>;
 
-        return transformed;
+            case bold:
+                return <strong>{realPart}</strong>;
+
+            case italic:
+                return <em>{realPart}</em>;
+
+            case empty:
+                return <br />;
+
+            default:
+                return part;
+        }
     },
     addBookmark(content) {
-        var contentWithBookmark = [];
+        let contentWithBookmark = [];
         contentWithBookmark.push(<ParagraphBookmark />);
 
-        for (var i in content) {
+        for (let i in content) {
             contentWithBookmark.push(content[i]);
         }
 

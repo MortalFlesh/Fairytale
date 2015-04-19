@@ -1,6 +1,6 @@
 import jQuery from 'jquery-browserify';
 
-var jsonService = {
+const jsonService = {
     extendsJson(json, extension) {
         return jQuery.extend(true, {}, json, extension);
     },

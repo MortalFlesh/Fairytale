@@ -13,7 +13,7 @@ import Page from './../page/page';
 import DialogBox from './../dialogBox/dialogBox';
 import Ribbons from './../ribbon/ribbons';
 
-var Book = React.createClass({
+const Book = React.createClass({
     getInitialState() {
         return {
             currentChapter: 1,

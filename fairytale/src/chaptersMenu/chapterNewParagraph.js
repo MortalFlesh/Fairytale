@@ -1,6 +1,6 @@
 import React from 'react';
 
-var ChapterNewParagraph = React.createClass({
+const ChapterNewParagraph = React.createClass({
     render() {
         const style = {
             position: 'relative',

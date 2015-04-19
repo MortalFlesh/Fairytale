@@ -2,9 +2,9 @@ import React from 'react';
 
 import Style from './../services/styleService';
 
-var BookHeader = React.createClass({
+const BookHeader = React.createClass({
     render() {
-        var style = {
+        const style = {
             header: {
                 padding: '20px 0',
                 borderBottom: '1px solid black',

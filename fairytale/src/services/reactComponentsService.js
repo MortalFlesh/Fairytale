@@ -1,10 +1,10 @@
-var reactComponentsService = {
+const reactComponentsService = {
     join(components, separator) {
-        var componentsLength = components.length;
-        var lastItemIndex = componentsLength - 1;
-        var joined = [];
+        const componentsLength = components.length;
+        const lastItemIndex = componentsLength - 1;
+        let joined = [];
 
-        for (var i in components) {
+        for (let i in components) {
             joined.push(components[i]);
 
             if (i < lastItemIndex) {

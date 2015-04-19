@@ -32,7 +32,7 @@ const ChaptersMenu = React.createClass({
                 key={chapter.number}
                 isActive={chapter.number == selectedChapter}
                 number={chapter.number}
-                onClickHandler={this.menuItemClick}
+                onClick={this.menuItemClick}
             >
                 <ChapterHeader
                     number={chapter.number}

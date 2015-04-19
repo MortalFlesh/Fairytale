@@ -4,18 +4,21 @@ import Style from './../services/styleService';
 
 import DialogBoxClose from './dialogBoxClose';
 
-var DialogBox = React.createClass({
+const DialogBox = React.createClass({
+    propTypes: {
+        visible: React.PropTypes.bool,
+        onClose: React.PropTypes.func.isRequired,
+    },
     defaultProps() {
         return {
             visible: false,
-            onClose: () => {},
             margin: 0,
-        }
+        };
     },
     render() {
-        let style = {
+        const style = {
             dialogBox: {
-                display: 'flex',
+                display: this.props.visible ? 'flex' : 'none',
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 position: 'absolute',
@@ -33,10 +36,6 @@ var DialogBox = React.createClass({
                 paddingBottom: 10,
             },
         };
-
-        if (!this.props.visible) {
-            style.dialogBox.display = 'none';
-        }
 
         return (
             <div className="DialogBox gradient-background" style={style.dialogBox}>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-var CharacterInfoTitle = React.createClass({
+const CharacterInfoTitle = React.createClass({
     translateTitle(originalName) {
         switch(originalName) {
             case 'role': return 'Role';
@@ -22,7 +22,7 @@ var CharacterInfoTitle = React.createClass({
         }
     },
     render() {
-        var style = {
+        const style = {
             marginBottom: 5,
         };
 

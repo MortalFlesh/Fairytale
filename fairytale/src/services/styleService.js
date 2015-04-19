@@ -1,4 +1,4 @@
-var style = {
+const style = {
     colors: {
         title: '#956722',
         titleActive: '#fdd9ae',

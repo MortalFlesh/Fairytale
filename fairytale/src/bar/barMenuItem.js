@@ -2,30 +2,40 @@ import React from 'react';
 
 import Style from './../services/styleService';
 
-var BarMenuItem = React.createClass({
-    clickHandler() {
-        this.props.onClick(this.props.item.pathName);
+const BarMenuItem = React.createClass({
+    getDefaultProps() {
+        return {
+            active: false,
+        };
     },
-    render() {
-        var item = this.props.item;
+    getStyle() {
+        let color = Style.colors.title;
+        let textDecoration = 'none';
 
-        var style = {
+        if (this.props.active) {
+            color = Style.colors.titleActive;
+            textDecoration = 'underline';
+        }
+
+        return {
             display: 'inline-block',
             padding: '0 15px',
             lineHeight: '26px',
-            color: Style.colors.title,
+            color: color,
             textShadow: Style.shadow.title,
             border: '1px solid black',
             borderRadius: 3,
             verticalAlign: 'top',
 
-            textDecoration: 'none',
+            textDecoration: textDecoration,
         };
-
-        if (this.props.active) {
-            style.textDecoration = 'underline';
-            style.color = Style.colors.titleActive;
-        }
+    },
+    clickHandler() {
+        this.props.onClick(this.props.item.pathName);
+    },
+    render() {
+        const item = this.props.item;
+        const style = this.getStyle();
 
         return (
             <a className="BarMenuItem gradient-background" href={item.link} style={style} onClick={this.clickHandler}>

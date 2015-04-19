@@ -1,8 +1,17 @@
 import React from 'react';
 
-var RibbonLink = React.createClass({
+const RibbonLink = React.createClass({
+    propTypes: {
+        onClick: React.PropTypes.func.isRequired,
+        title: React.PropTypes.string,
+    },
+    getDefaultProps() {
+        return {
+            title: '',
+        };
+    },
     render() {
-        var style = {
+        const style = {
             display: 'inline-block',
             width: 78,
             height: 95,

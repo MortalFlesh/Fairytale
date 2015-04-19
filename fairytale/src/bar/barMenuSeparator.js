@@ -2,9 +2,9 @@ import React from 'react';
 
 import Style from './../services/styleService';
 
-var BarMenuSeparator = React.createClass({
+const BarMenuSeparator = React.createClass({
     render() {
-        var style = {
+        const style = {
             display: 'inline-block',
             width: 1,
             background: Style.colors.title,

@@ -1,6 +1,6 @@
 import jQuery from 'jquery-browserify';
 
-var Loader = {
+const Loader = {
     loadJson(url, done) {
         this.loadJsonWithData(url, {}, done);
     },

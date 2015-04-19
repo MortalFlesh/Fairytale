@@ -1,8 +1,8 @@
 import React from 'react';
 
-var Content = React.createClass({
+const Content = React.createClass({
     render() {
-        var style = {
+        const style = {
             maxWidth: 800,
             margin: '0 auto',
         };

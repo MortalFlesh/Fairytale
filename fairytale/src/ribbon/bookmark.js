@@ -8,10 +8,9 @@ import Json from './../services/jsonService';
 import RibbonLink from './ribbonLink';
 
 const Bookmark = React.createClass({
-    getDefaultProps() {
-        return {
-            baseStyle: {},
-        };
+    propTypes: {
+        onClick: React.PropTypes.func.isRequired,
+        baseStyle: React.PropTypes.object.isRequired,
     },
     onClickHandler() {
         const bookmark = getBookmark();
@@ -20,14 +19,10 @@ const Bookmark = React.createClass({
     render() {
         const bookmark = getBookmark();
 
-        let style = Json.extendsJson(this.props.baseStyle, {
+        const style = Json.extendsJson(this.props.baseStyle, {
             backgroundImage: 'url("./fairytale/images/bookmark.png")',
-            display: 'none',
+            display: bookmark !== null && bookmark.chapter > 0 ? 'block' : 'none',
         });
-
-        if (bookmark !== null) {
-            style.display = 'block';
-        }
 
         return (
             <div className="Bookmark" style={style}>

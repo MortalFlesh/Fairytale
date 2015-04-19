@@ -1,8 +1,8 @@
 import React from 'react';
 
-var ParagraphBookmark = React.createClass({
+const ParagraphBookmark = React.createClass({
     render() {
-        var style = {
+        const style = {
             display: 'inline-block',
             background: 'url("./fairytale/images/bookmark-paragraph.png") no-repeat top right',
             float: 'right',

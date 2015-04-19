@@ -3,7 +3,7 @@ import React from 'react';
 import Style from './../services/styleService';
 import ChapterNewParagraph from './chapterNewParagraph';
 
-var ChapterHeader = React.createClass({
+const ChapterHeader = React.createClass({
     getDefaultProps() {
         return {
             inChapter: false,

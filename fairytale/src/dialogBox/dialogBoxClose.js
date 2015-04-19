@@ -2,9 +2,9 @@ import React from 'react';
 
 import Style from './../services/styleService';
 
-var DialogBoxClose = React.createClass({
+const DialogBoxClose = React.createClass({
     render() {
-        let closeStyle = {
+        const style = {
             display: 'block',
             background: Style.colors.title,
             border: '1px solid black',
@@ -19,7 +19,7 @@ var DialogBoxClose = React.createClass({
         };
 
         return (
-            <a style={closeStyle} onClick={this.props.onClick}>X</a>
+            <a style={style} onClick={this.props.onClick}>X</a>
         );
     }
 });
