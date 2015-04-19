@@ -10,4 +10,4 @@ var style = {
     },
 };
 
-module.exports = style;
+export default style;

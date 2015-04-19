@@ -15,4 +15,4 @@ var Content = React.createClass({
     }
 });
 
-module.exports = Content;
+export default Content;

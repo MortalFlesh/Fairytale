@@ -24,4 +24,4 @@ var AppHeader = React.createClass({
     }
 });
 
-module.exports = AppHeader;
+export default AppHeader;

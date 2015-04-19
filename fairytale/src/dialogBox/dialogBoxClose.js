@@ -24,4 +24,4 @@ var DialogBoxClose = React.createClass({
     }
 });
 
-module.exports = DialogBoxClose;
+export default DialogBoxClose;

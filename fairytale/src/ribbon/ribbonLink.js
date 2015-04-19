@@ -16,4 +16,4 @@ var RibbonLink = React.createClass({
     }
 });
 
-module.exports = RibbonLink;
+export default RibbonLink;

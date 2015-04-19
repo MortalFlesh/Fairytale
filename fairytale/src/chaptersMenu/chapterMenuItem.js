@@ -28,4 +28,4 @@ var ChapterMenuItem = React.createClass({
     }
 });
 
-module.exports = ChapterMenuItem;
+export default ChapterMenuItem;

@@ -77,4 +77,4 @@ var paragraphService = {
     },
 };
 
-module.exports = paragraphService;
+export default paragraphService;

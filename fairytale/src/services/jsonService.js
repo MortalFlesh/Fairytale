@@ -6,4 +6,4 @@ var jsonService = {
     },
 };
 
-module.exports = jsonService;
+export default jsonService;

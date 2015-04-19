@@ -20,4 +20,4 @@ var reactComponentsService = {
     },
 };
 
-module.exports = reactComponentsService;
+export default reactComponentsService;

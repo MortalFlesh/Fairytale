@@ -39,4 +39,4 @@ var Character = React.createClass({
     }
 });
 
-module.exports = Character;
+export default Character;

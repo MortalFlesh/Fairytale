@@ -38,4 +38,4 @@ var BookHeader = React.createClass({
     }
 });
 
-module.exports = BookHeader;
+export default BookHeader;

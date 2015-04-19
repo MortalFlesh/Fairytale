@@ -19,4 +19,4 @@ var ChapterNewParagraph = React.createClass({
     }
 });
 
-module.exports = ChapterNewParagraph;
+export default ChapterNewParagraph;

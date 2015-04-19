@@ -34,4 +34,4 @@ var CharacterInfoTitle = React.createClass({
     }
 });
 
-module.exports = CharacterInfoTitle;
+export default CharacterInfoTitle;

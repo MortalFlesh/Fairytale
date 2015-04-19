@@ -14,4 +14,4 @@ var AppContent = React.createClass({
     }
 });
 
-module.exports = AppContent;
+export default AppContent;

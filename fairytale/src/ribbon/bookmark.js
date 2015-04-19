@@ -37,4 +37,4 @@ const Bookmark = React.createClass({
     }
 });
 
-module.exports = Bookmark;
+export default Bookmark;

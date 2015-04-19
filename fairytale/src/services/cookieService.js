@@ -44,4 +44,4 @@ var cookieService = {
     }
 };
 
-module.exports = cookieService;
+export default cookieService;

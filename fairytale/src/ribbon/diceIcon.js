@@ -24,4 +24,4 @@ var DiceIcon = React.createClass({
     }
 });
 
-module.exports = DiceIcon;
+export default DiceIcon;

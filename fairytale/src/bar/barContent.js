@@ -14,4 +14,4 @@ var BarContent = React.createClass({
     }
 });
 
-module.exports = BarContent;
+export default BarContent;

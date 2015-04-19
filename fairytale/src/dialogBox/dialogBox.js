@@ -51,4 +51,4 @@ var DialogBox = React.createClass({
     }
 });
 
-module.exports = DialogBox;
+export default DialogBox;

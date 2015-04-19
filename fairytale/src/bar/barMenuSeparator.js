@@ -20,4 +20,4 @@ var BarMenuSeparator = React.createClass({
     }
 });
 
-module.exports = BarMenuSeparator;
+export default BarMenuSeparator;

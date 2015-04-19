@@ -17,4 +17,4 @@ var ParagraphBookmark = React.createClass({
     }
 });
 
-module.exports = ParagraphBookmark;
+export default ParagraphBookmark;

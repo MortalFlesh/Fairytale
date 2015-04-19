@@ -37,4 +37,4 @@ var ChapterHeader = React.createClass({
     }
 });
 
-module.exports = ChapterHeader;
+export default ChapterHeader;

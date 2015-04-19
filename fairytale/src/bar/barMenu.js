@@ -45,4 +45,4 @@ var BarMenu = React.createClass({
     }
 });
 
-module.exports = BarMenu;
+export default BarMenu;

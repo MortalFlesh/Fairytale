@@ -11,4 +11,4 @@ var ResponsiveService = {
     },
 };
 
-module.exports = ResponsiveService;
+export default ResponsiveService;

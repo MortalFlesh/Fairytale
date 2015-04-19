@@ -35,4 +35,4 @@ var BarMenuItem = React.createClass({
     }
 });
 
-module.exports = BarMenuItem;
+export default BarMenuItem;

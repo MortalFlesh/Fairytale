@@ -121,4 +121,4 @@ var Book = React.createClass({
     }
 });
 
-module.exports = Book;
+export default Book;

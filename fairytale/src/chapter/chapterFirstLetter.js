@@ -21,4 +21,4 @@ var ChapterFirstLetter = React.createClass({
     }
 });
 
-module.exports = ChapterFirstLetter;
+export default ChapterFirstLetter;

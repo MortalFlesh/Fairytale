@@ -36,4 +36,4 @@ var Ribbons = React.createClass({
     }
 });
 
-module.exports = Ribbons;
+export default Ribbons;

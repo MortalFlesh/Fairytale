@@ -26,4 +26,4 @@ var CharacterInfo = React.createClass({
     }
 });
 
-module.exports = CharacterInfo;
+export default CharacterInfo;

@@ -93,4 +93,4 @@ var DiceRibbon = React.createClass({
     }
 });
 
-module.exports = DiceRibbon;
+export default DiceRibbon;

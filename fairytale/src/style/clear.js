@@ -13,4 +13,4 @@ var Clear = React.createClass({
     }
 });
 
-module.exports = Clear;
+export default Clear;
