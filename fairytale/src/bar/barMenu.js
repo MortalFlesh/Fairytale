@@ -21,11 +21,13 @@ const BarMenu = React.createClass({
             float: 'right',
         };
 
-        let items = getMenuItems().map((item, i) =>
+        const menuItems = getMenuItems().toJS();
+
+        let items = menuItems.map((item, i) =>
             <BarMenuItem
                 key={i}
-                active={item.get('pathName') === this.state.active}
-                item={item.toJS()}
+                active={item.pathName === this.state.active}
+                item={item}
                 onClick={this.itemClickHandler}
             />
         );

@@ -4,6 +4,11 @@ import ChapterMenuItem from './chapterMenuItem';
 import ChapterHeader from './chapterHeader';
 
 const ChaptersMenu = React.createClass({
+    propTypes: {
+        selectedChapter: React.PropTypes.number,
+        chapters: React.PropTypes.array,
+        onChapterChanged: React.PropTypes.func.isRequired,
+    },
     getDefaultProps() {
         return {
             selectedChapter: 1,
@@ -20,7 +25,6 @@ const ChaptersMenu = React.createClass({
         const newChapter = parseInt(chapterNumber, 10);
 
         if (newChapter !== this.props.selectedChapter) {
-            this.forceUpdate();
             this.props.onChapterChanged(newChapter);
         }
     },
