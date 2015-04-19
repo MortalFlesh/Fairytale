@@ -4,8 +4,8 @@ const reactComponentsService = {
         const lastItemIndex = componentsLength - 1;
         let joined = [];
 
-        for (let i in components) {
-            joined.push(components[i]);
+        components.forEach((component, i) => {
+            joined.push(component);
 
             if (i < lastItemIndex) {
                 if (separator instanceof Function) {
@@ -14,7 +14,7 @@ const reactComponentsService = {
                     joined.push(separator);
                 }
             }
-        }
+        });
 
         return joined;
     },

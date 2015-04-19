@@ -1,7 +1,7 @@
 import React from 'react';
 import {RouterMixin} from 'react-mini-router';
 
-import {state, reloadBook, reloadCharacters} from './state';
+import * as state from './state';
 import AppHeader from './appHeader';
 import AppContent from './appContent';
 
@@ -22,7 +22,7 @@ const App = React.createClass({
         }
     },
     componentDidMount() {
-        state.on('change', () => {
+        state.state.on('change', () => {
             this.forceUpdate();
         });
 
@@ -30,8 +30,9 @@ const App = React.createClass({
         setInterval(this.reloadApp, this.props.interval);
     },
     reloadApp() {
-        reloadBook('./api/api.php?action=book');
-        reloadCharacters('./api/api.php?action=characters');
+        state.reloadBook('./api/api.php?action=book');
+        state.reloadCharacters('./api/api.php?action=characters');
+        state.reloadAppHeader("./api/api.php?action=menu-items");
     },
     getActive() {
         const path = this.state.path;
@@ -57,7 +58,7 @@ const App = React.createClass({
     render() {
         return (
             <div className="App">
-                <AppHeader url={"./api/api.php?action=menu-items"} active={this.getActive()} />
+                <AppHeader active={this.getActive()} />
                 <AppContent>
                     <Content>
                         {this.renderCurrentRoute()}

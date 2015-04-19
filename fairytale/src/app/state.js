@@ -7,8 +7,18 @@ import Cookies from './../services/cookieService';
 import * as bookAction from './../book/actions';
 import * as chapterAction from './../chapter/actions';
 import * as charactersAction from './../character/actions';
+import * as appAction from './actions';
 
 const basicData = Immutable.fromJS({
+    app: {
+        menuItems: [
+            {
+                name: 'Pohádka',
+                pathName: 'book',
+                link: '/',
+            },
+        ],
+    },
     book: {
         title: '',
         subTitle: '',
@@ -57,6 +67,7 @@ export const state = appState;
 export const bookCursor = appState.cursor(['book']);
 export const bookmarkCursor = appState.cursor(['bookmark']);
 export const charactersCursor = appState.cursor(['characters']);
+export const appCursor = appState.cursor(['app']);
 
 export const reloadBook = (url) => {
     Loader.loadJson(url, (response) => {
@@ -73,5 +84,11 @@ export const reloadBook = (url) => {
 export const reloadCharacters = (url) => {
     Loader.loadJson(url, (response) => {
         charactersAction.setCharacters(response);
+    });
+};
+
+export const reloadAppHeader = (url) => {
+    Loader.loadJson(url, (response) => {
+        appAction.setAppMenuItems(response);
     });
 };

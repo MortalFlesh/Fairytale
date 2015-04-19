@@ -26,7 +26,7 @@ const Bar = React.createClass({
                         <div style={logoStyle}>
                             <img src="./fairytale/images/logo.png" alt="MF" />
                         </div>
-                        <BarMenu url={this.props.url} active={this.props.active} />
+                        <BarMenu active={this.props.active} />
                         <Clear/>
                     </BarContent>
                 </Content>
