@@ -58,19 +58,6 @@ export const bookCursor = appState.cursor(['book']);
 export const bookmarkCursor = appState.cursor(['bookmark']);
 export const charactersCursor = appState.cursor(['characters']);
 
-export const reloadState = (url, key) => {
-    Loader.loadJson(url, (response) => {
-        if (response.hasOwnProperty(key)) {
-            response = response[key];
-        }
-
-        let currentState = appState.get();
-
-        currentState[key] = response;
-        appState.load(currentState);
-    });
-};
-
 export const reloadBook = (url) => {
     Loader.loadJson(url, (response) => {
         bookAction.setTitle(response.title);
