@@ -1,7 +1,7 @@
 import React from 'react';
 import {RouterMixin} from 'react-mini-router';
 
-import {state, reloadBook} from './state';
+import {state, reloadBook, reloadCharacters} from './state';
 import AppHeader from './appHeader';
 import AppContent from './appContent';
 
@@ -31,6 +31,7 @@ const App = React.createClass({
     },
     reloadApp() {
         reloadBook('./api/api.php?action=book');
+        reloadCharacters('./api/api.php?action=characters');
     },
     getActive() {
         const path = this.state.path;
@@ -42,13 +43,13 @@ const App = React.createClass({
         }
     },
     book() {
-        return <Book rollForNewChaptersUrl={"./api/api.php?action=roll-for-new-chapters"}/>;
+        return <Book rollForNewChaptersUrl={"./api/api.php?action=roll-for-new-chapters"} />;
     },
     characters() {
-        return <Characters url={"./api/api.php?action=characters"} />;
+        return <Characters/>;
     },
     character(name) {
-        return <Characters url={"./api/api.php?action=characters"} selected={name} />;
+        return <Characters selected={name} />;
     },
     notFound(path) {
         return <div className="not-found">Page Not Found: {path}</div>;

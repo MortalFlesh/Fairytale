@@ -1,38 +1,31 @@
 import React from 'react';
 
+import {getCharacters} from './store';
+
 import Character from './character';
 
-import Loader from './../services/loader';
-
-var Characters = React.createClass({
-    getInitialState() {
+const Characters = React.createClass({
+    getDefaultProps() {
         return {
-            characters: [],
-            selected: this.props.selected || '',
-        }
-    },
-    loadCharacters() {
-        Loader.loadJson(this.props.url, response => {
-            this.setState({characters: response});
-        });
-    },
-    componentDidMount() {
-        this.loadCharacters();
+            selected: '',
+        };
     },
     isSelected(characterName) {
-        var selected = this.state.selected.toLocaleLowerCase();
-        var name = characterName.toLocaleLowerCase();
+        const selected = this.props.selected.toLocaleLowerCase();
+        const name = characterName.toLocaleLowerCase();
 
         return (selected === '' || selected === name);
     },
     render() {
-        var characters = this.state.characters.map((character, i) => {
+        let characters = getCharacters().toJS();
+
+        characters = characters.map((character, i) => {
             if (this.isSelected(character.name)) {
                 return <Character key={i} character={character} />;
             }
         });
 
-        var style = {
+        const style = {
             paddingTop: 1,
         };
 
@@ -44,4 +37,4 @@ var Characters = React.createClass({
     }
 });
 
-module.exports = Characters;
+export default Characters;
