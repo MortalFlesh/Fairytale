@@ -17,13 +17,9 @@ const Characters = React.createClass({
         return (selected === '' || selected === name);
     },
     render() {
-        let characters = getCharacters().toJS();
-
-        characters = characters.map((character, i) => {
-            if (this.isSelected(character.name)) {
-                return <Character key={i} character={character} />;
-            }
-        });
+        const characters = getCharacters()
+            .filter((character) => this.isSelected(character.get('name')))
+            .map((character, i) => <Character key={i} character={character.toJS()} />);
 
         const style = {
             paddingTop: 1,
