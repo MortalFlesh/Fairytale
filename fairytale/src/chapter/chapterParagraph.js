@@ -19,7 +19,7 @@ const ChapterParagraph = React.createClass({
             hover: false,
         };
     },
-    getStyle(isBookmark) {
+    getStyle(isBookmark, hover) {
         let bgColor = 'none';
         let borderColor = 'transparent';
         let textIdent = 30;
@@ -28,7 +28,7 @@ const ChapterParagraph = React.createClass({
             bgColor = Style.colors.newParagraph;
         }
 
-        if (this.state.hover || isBookmark) {
+        if (hover || isBookmark) {
             borderColor = Style.colors.bookmarkParagraphBorder;
         }
 
@@ -70,8 +70,9 @@ const ChapterParagraph = React.createClass({
         return (paragraph.chapter == bookmark.chapter && paragraph.id == bookmark.paragraph);
     },
     render() {
+        const hover = this.state.hover;
         const isBookmark = this.isBookmark();
-        const style = this.getStyle(isBookmark);
+        const style = this.getStyle(isBookmark, hover);
 
         const content = ParagraphService.buildContent(
             this.props.children,

@@ -42,9 +42,11 @@ const basicData = Immutable.fromJS({
         selectedChapter: 1,
         flashMessage: '',
     },
-    bookmark: {
-        chapter: 0,
-        paragraph: 0,
+    chapter: {
+        bookmark: {
+            chapter: 0,
+            paragraph: 0,
+        },
     },
     characters: {
         data: [
@@ -67,7 +69,7 @@ export default appState;
 export const state = appState;
 
 export const bookCursor = appState.cursor(['book']);
-export const bookmarkCursor = appState.cursor(['bookmark']);
+export const chapterCursor = appState.cursor(['chapter']);
 export const charactersCursor = appState.cursor(['characters']);
 export const appCursor = appState.cursor(['app']);
 

@@ -9,7 +9,7 @@ import ReactComponentsService from './../services/reactComponentsService';
 
 const BarMenu = React.createClass({
     propTypes: {
-        active: React.PropTypes.bool,
+        active: React.PropTypes.string,
     },
     getDefaultProps() {
         return {
