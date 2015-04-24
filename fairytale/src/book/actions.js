@@ -15,3 +15,7 @@ export function setCover(cover: string) {
 export function setChapters(chapters: array) {
     dispatcher.dispatch(setChapters, chapters);
 }
+
+export function setSelectedChapter(chapter: number) {
+    dispatcher.dispatch(setSelectedChapter, chapter);
+}

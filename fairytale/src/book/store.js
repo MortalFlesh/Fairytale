@@ -32,6 +32,12 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
 
             setToCursor('chapters', chapters);
             break;
+
+        case actions
+
+            .setSelectedChapter:
+            setToCursor('selectedChapter', data);
+            break;
     }
 });
 
@@ -39,9 +45,11 @@ function setToCursor(key, value) {
     bookCursor((book) => book.set(key, value));
 }
 
-const get = (key) => bookCursor().get(key);
+function get(key) {
+    return bookCursor().get(key);
+}
 
-export const getBook = () => {
+export function getBook() {
     return {
         title: get('title'),
         subTitle: get('subTitle'),
@@ -49,3 +57,7 @@ export const getBook = () => {
         chapters: get('chapters'),
     };
 };
+
+export function getSelectedChapter() {
+    return get('selectedChapter');
+}

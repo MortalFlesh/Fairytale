@@ -39,6 +39,7 @@ const basicData = Immutable.fromJS({
                 ],
             },
         ],
+        selectedChapter: 1,
     },
     bookmark: {
         chapter: 0,

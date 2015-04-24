@@ -8,11 +8,12 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             const chapter = (data !== null && data.hasOwnProperty('chapter')) ? data.chapter : 0;
             const paragraph = (data !== null && data.hasOwnProperty('paragraph')) ? data.paragraph : 0;
 
-            bookmarkCursor((bookmark) => bookmark.set('chapter', chapter));
-            bookmarkCursor((bookmark) => bookmark.set('paragraph', paragraph));
+            bookmarkCursor((bookmark) => {
+                return bookmark
+                    .set('chapter', chapter)
+                    .set('paragraph', paragraph)
+            });
             break;
-
-
     }
 });
 

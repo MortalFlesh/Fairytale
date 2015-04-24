@@ -3,6 +3,10 @@ import React from 'react';
 import Style from './../services/styleService';
 
 const BarMenuItem = React.createClass({
+    propTypes: {
+        active: React.PropTypes.bool,
+        item: React.PropTypes.object.isRequired,
+    },
     getDefaultProps() {
         return {
             active: false,
@@ -30,15 +34,12 @@ const BarMenuItem = React.createClass({
             textDecoration: textDecoration,
         };
     },
-    clickHandler() {
-        this.props.onClick(this.props.item.pathName);
-    },
     render() {
         const item = this.props.item;
         const style = this.getStyle();
 
         return (
-            <a className="BarMenuItem gradient-background" href={item.link} style={style} onClick={this.clickHandler}>
+            <a className="BarMenuItem gradient-background" href={item.link} style={style}>
                 {item.name}
             </a>
         );

@@ -1,10 +1,9 @@
 import React from 'react';
 import {RouterMixin} from 'react-mini-router';
-
 import * as state from './state';
+
 import AppHeader from './appHeader';
 import AppContent from './appContent';
-
 import Content from './../style/content';
 import Book from './../book/book';
 import Characters from './../character/characters';

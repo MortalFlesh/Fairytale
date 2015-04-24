@@ -8,13 +8,13 @@ import BarMenuSeparator from './barMenuSeparator';
 import ReactComponentsService from './../services/reactComponentsService';
 
 const BarMenu = React.createClass({
-    getInitialState() {
-        return {
-            active: this.props.active,
-        };
+    propTypes: {
+        active: React.PropTypes.bool,
     },
-    itemClickHandler(pathName) {
-        this.setState({active: pathName});
+    getDefaultProps() {
+        return {
+            active: false,
+        };
     },
     render() {
         const style = {
@@ -26,9 +26,8 @@ const BarMenu = React.createClass({
         let items = menuItems.map((item, i) =>
             <BarMenuItem
                 key={i}
-                active={item.pathName === this.state.active}
+                active={item.pathName === this.props.active}
                 item={item}
-                onClick={this.itemClickHandler}
             />
         );
 

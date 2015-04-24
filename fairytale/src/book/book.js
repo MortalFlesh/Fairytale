@@ -3,7 +3,8 @@ import React from 'react';
 import Loader from './../services/loader';
 import Scroller from './../services/scroller';
 
-import {getBook} from './store';
+import {getBook, getSelectedChapter} from './store';
+import {setSelectedChapter} from './actions';
 
 import BookHeader from './bookHeader';
 
@@ -14,19 +15,21 @@ import DialogBox from './../dialogBox/dialogBox';
 import Ribbons from './../ribbon/ribbons';
 
 const Book = React.createClass({
+    propTypes: {
+        rollForNewChaptersUrl: React.PropTypes.string.isRequired,
+    },
     getInitialState() {
         return {
-            currentChapter: 1,
             flashMessage: '',
         }
     },
-    getCurrentChapter(chapters) {
+    getCurrentChapter(chapters, selectedChapter) {
         return chapters
-            .filter(chapter => chapter.toJS().header.number == this.state.currentChapter)
+            .filter((chapter) => chapter.toJS().header.number == selectedChapter)
             .first();
     },
     onChapterChanged(chapterNumber) {
-        this.setState({currentChapter: chapterNumber});
+        setSelectedChapter(chapterNumber);
     },
     onBookmarkClick(chapterNumber) {
         this.onChapterChanged(chapterNumber);
@@ -80,8 +83,9 @@ const Book = React.createClass({
     },
     render() {
         const book = getBook();
+        const selectedChapter = getSelectedChapter();
 
-        const currentChapter = this.getCurrentChapter(book.chapters);
+        const currentChapter = this.getCurrentChapter(book.chapters, selectedChapter);
 
         const chapterHeaders = book.chapters
             .map(chapter => chapter.get('header'))
@@ -94,7 +98,7 @@ const Book = React.createClass({
                 {chapterHeaders &&
                     <ChaptersMenu
                         chapters={chapterHeaders}
-                        selectedChapter={this.state.currentChapter}
+                        selectedChapter={selectedChapter}
                         onChapterChanged={this.onChapterChanged}
                     />
                 }
