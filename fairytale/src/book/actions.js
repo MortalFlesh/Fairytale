@@ -19,3 +19,7 @@ export function setChapters(chapters: array) {
 export function setSelectedChapter(chapter: number) {
     dispatcher.dispatch(setSelectedChapter, chapter);
 }
+
+export function setFlashMessage(message: string) {
+    dispatcher.dispatch(setFlashMessage, message);
+}

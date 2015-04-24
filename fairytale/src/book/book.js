@@ -3,8 +3,8 @@ import React from 'react';
 import Loader from './../services/loader';
 import Scroller from './../services/scroller';
 
-import {getBook, getSelectedChapter} from './store';
-import {setSelectedChapter} from './actions';
+import {getBook, getSelectedChapter, getFlashMessage} from './store';
+import {setSelectedChapter, setFlashMessage} from './actions';
 
 import BookHeader from './bookHeader';
 
@@ -17,11 +17,6 @@ import Ribbons from './../ribbon/ribbons';
 const Book = React.createClass({
     propTypes: {
         rollForNewChaptersUrl: React.PropTypes.string.isRequired,
-    },
-    getInitialState() {
-        return {
-            flashMessage: '',
-        }
     },
     getCurrentChapter(chapters, selectedChapter) {
         return chapters
@@ -74,16 +69,17 @@ const Book = React.createClass({
                     message = 'Dobrý pokus, ale zkus to až zítra!';
                 }
 
-                this.setState({flashMessage: message});
+                setFlashMessage(message);
             }
         );
     },
     onDialogBoxClose() {
-        this.setState({flashMessage: ''});
+        setFlashMessage('');
     },
     render() {
         const book = getBook();
         const selectedChapter = getSelectedChapter();
+        const flashMessage = getFlashMessage();
 
         const currentChapter = this.getCurrentChapter(book.chapters, selectedChapter);
 
@@ -103,9 +99,9 @@ const Book = React.createClass({
                     />
                 }
 
-                {this.state.flashMessage.length > 0 &&
+                {flashMessage.length > 0 &&
                     <DialogBox visible={true} onClose={this.onDialogBoxClose} margin={'10px 0 0 10px'}>
-                        <p>{this.state.flashMessage}</p>
+                        <p>{flashMessage}</p>
                     </DialogBox>
                 }
 

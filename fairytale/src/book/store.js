@@ -33,10 +33,12 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             setToCursor('chapters', chapters);
             break;
 
-        case actions
-
-            .setSelectedChapter:
+        case actions.setSelectedChapter:
             setToCursor('selectedChapter', data);
+            break;
+
+        case actions.setFlashMessage:
+            setToCursor('flashMessage', data);
             break;
     }
 });
@@ -61,3 +63,8 @@ export function getBook() {
 export function getSelectedChapter() {
     return get('selectedChapter');
 }
+
+export function getFlashMessage() {
+    return get('flashMessage');
+}
+

@@ -40,6 +40,7 @@ const basicData = Immutable.fromJS({
             },
         ],
         selectedChapter: 1,
+        flashMessage: '',
     },
     bookmark: {
         chapter: 0,
