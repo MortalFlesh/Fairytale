@@ -61,6 +61,9 @@ const basicData = Immutable.fromJS({
             },
         ],
     },
+    ribbon: {
+        dialogBoxOpen: false,
+    }
 });
 
 const appState = new State(basicData);
@@ -72,6 +75,7 @@ export const bookCursor = appState.cursor(['book']);
 export const chapterCursor = appState.cursor(['chapter']);
 export const charactersCursor = appState.cursor(['characters']);
 export const appCursor = appState.cursor(['app']);
+export const ribbonCursor = appState.cursor(['ribbon']);
 
 export const reloadBook = (url) => {
     Loader.loadJson(url, (response) => {

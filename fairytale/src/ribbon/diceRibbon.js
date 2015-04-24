@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {setDialogBoxOpen} from './actions';
+import {getDialogBoxOpen} from './store';
+
 import Cookie from './../services/cookieService';
 import Json from './../services/jsonService';
 
@@ -17,7 +20,6 @@ const DiceRibbon = React.createClass({
     getInitialState() {
         return {
             ableToRoll: false,
-            dialogBoxOpen: false,
         };
     },
     componentDidMount() {
@@ -34,14 +36,14 @@ const DiceRibbon = React.createClass({
         const diceRolled = Cookie.get('dice-rolled');
         return (diceRolled === null);
     },
-    dialogBoxOpen() {
-        this.setState({dialogBoxOpen: true});
+    openDialogBox() {
+        setDialogBoxOpen(true);
     },
-    dialogBoxClose() {
-        this.setState({dialogBoxOpen: false});
+    closeDialogBox() {
+        setDialogBoxOpen(false);
     },
     roll(diceResult) {
-        this.dialogBoxClose();
+        this.closeDialogBox();
 
         const roll = parseInt(diceResult, 10);
 
@@ -54,7 +56,9 @@ const DiceRibbon = React.createClass({
         }
     },
     render() {
-        const imageSuffix = this.state.ableToRoll ? '' : '-inactive';
+        const ableToRoll = this.state.ableToRoll;
+        const dialogBoxOpen = getDialogBoxOpen();
+        const imageSuffix = ableToRoll ? '' : '-inactive';
 
         let style = Json.extendsJson(this.props.baseStyle, {
             backgroundImage: 'url("./fairytale/images/dice-ribbon' + imageSuffix + '.png")',
@@ -66,7 +70,7 @@ const DiceRibbon = React.createClass({
         };
 
         let dices = [];
-        if (this.state.ableToRoll) {
+        if (ableToRoll) {
             dices = [1, 2, 3, 4, 5, 6].map((number) =>
                 <DiceIcon key={number} onClick={this.roll} number={number} />
             );
@@ -74,12 +78,12 @@ const DiceRibbon = React.createClass({
 
         return (
             <div className="DiceRibbon" style={style}>
-                {this.state.ableToRoll &&
-                    <RibbonLink title="Hodit kostkou" onClick={this.dialogBoxOpen} />
+                {ableToRoll &&
+                    <RibbonLink title="Hodit kostkou" onClick={this.openDialogBox} />
                 }
 
-                {this.state.ableToRoll &&
-                    <DialogBox visible={this.state.dialogBoxOpen} onClose={this.dialogBoxClose}>
+                {ableToRoll &&
+                    <DialogBox visible={dialogBoxOpen} onClose={this.closeDialogBox}>
                         <strong>Zadej výsledek hodu:</strong>
 
                         <div style={dicesContainerStyle}>
