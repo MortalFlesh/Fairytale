@@ -5,10 +5,13 @@ import {getBookmark} from './store';
 
 import Style from './../services/styleService';
 
-import Cookies from './../services/cookieService';
 import ParagraphService from './../services/paragraphService';
 
 const ChapterParagraph = React.createClass({
+    propTypes: {
+        isFirstParagraph: React.PropTypes.bool,
+        paragraph: React.PropTypes.object.isRequired,
+    },
     getDefaultProps() {
         return {
             isFirstParagraph: false
@@ -60,7 +63,6 @@ const ChapterParagraph = React.createClass({
             paragraph: parseInt(this.props.paragraph.id),
         };
 
-        Cookies.set('bookmark', bookmark);
         setBookmark(bookmark);
     },
     isBookmark() {

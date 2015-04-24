@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {setDialogBoxOpen, setAbleToRoll} from './actions';
+import {setDialogBoxOpen, setAbleToRoll, setDiceRoll} from './actions';
 import {getDialogBoxOpen, getAbleToRoll} from './store';
 
-import Cookie from './../services/cookieService';
 import Json from './../services/jsonService';
 
 import RibbonLink from './ribbonLink';
@@ -28,10 +27,9 @@ const DiceRibbon = React.createClass({
         const roll = parseInt(diceResult, 10);
 
         if (roll >= 1 && roll <= 6) {
-            const hours = 20;
-
-            Cookie.set('dice-rolled', {roll: roll}, hours);
             setAbleToRoll(false);
+            setDiceRoll(roll);
+
             this.props.onClick(roll);
         }
     },

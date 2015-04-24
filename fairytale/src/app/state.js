@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 import State from './../lib/state';
 
 import Loader from './../services/loader';
-import Cookies from './../services/cookieService';
+import * as cookieStore from './cookieStore';
 
 import * as bookActions from './../book/actions';
 import * as chapterActions from './../chapter/actions';
@@ -86,10 +86,10 @@ export const reloadBook = (url) => {
         bookActions.setCover(response.cover);
         bookActions.setChapters(response.chapters);
 
-        const bookmark = Cookies.get('bookmark');
+        const bookmark = cookieStore.getBookmark();
         chapterActions.setBookmark(bookmark);
 
-        const diceRolled = Cookies.get('dice-rolled');
+        const diceRolled = cookieStore.getDiceRoll();
         const ableToRoll = (diceRolled === null);
         ribbonActions.setAbleToRoll(ableToRoll);
     });
