@@ -107,7 +107,6 @@ const Book = React.createClass({
 
                 <Ribbons
                     onDiceRibbonClick={this.onDiceRibbonClick}
-                    refreshRate={60 * 1000}
                     onBookmarkClick={this.onBookmarkClick}
                 />
 

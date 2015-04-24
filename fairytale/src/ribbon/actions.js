@@ -4,4 +4,6 @@ export function setDialogBoxOpen(isOpen: boolean) {
     dispatcher.dispatch(setDialogBoxOpen, isOpen);
 }
 
-
+export function setAbleToRoll(ableToRoll: boolean) {
+    dispatcher.dispatch(setAbleToRoll, ableToRoll);
+}

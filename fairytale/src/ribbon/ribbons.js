@@ -7,12 +7,6 @@ const Ribbons = React.createClass({
     propTypes: {
         onBookmarkClick: React.PropTypes.func.isRequired,
         onDiceRibbonClick: React.PropTypes.func.isRequired,
-        refreshRate: React.PropTypes.number,
-    },
-    getDefaultProps() {
-        return {
-            refreshRate: 60 * 1000,
-        };
     },
     render() {
         const style = {
@@ -39,7 +33,6 @@ const Ribbons = React.createClass({
                 <DiceRibbon
                     baseStyle={style.ribbonBase}
                     onClick={this.props.onDiceRibbonClick}
-                    refreshRate={this.props.refreshRate}
                 />
             </div>
         );

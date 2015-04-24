@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {setDialogBoxOpen} from './actions';
-import {getDialogBoxOpen} from './store';
+import {setDialogBoxOpen, setAbleToRoll} from './actions';
+import {getDialogBoxOpen, getAbleToRoll} from './store';
 
 import Cookie from './../services/cookieService';
 import Json from './../services/jsonService';
@@ -13,28 +13,8 @@ import DialogBox from './../dialogBox/dialogBox';
 
 const DiceRibbon = React.createClass({
     propTypes: {
-        refreshRate: React.PropTypes.number.isRequired,
         onClick: React.PropTypes.func.isRequired,
         baseStyle: React.PropTypes.object.isRequired,
-    },
-    getInitialState() {
-        return {
-            ableToRoll: false,
-        };
-    },
-    componentDidMount() {
-        this.checkRollAvailability();
-        setInterval(this.checkRollAvailability, this.props.refreshRate);
-    },
-    checkRollAvailability() {
-        const isAbleToRoll = this.isAbleToRollADice();
-        if (isAbleToRoll !== this.state.ableToRoll) {
-            this.setState({ableToRoll: isAbleToRoll});
-        }
-    },
-    isAbleToRollADice() {
-        const diceRolled = Cookie.get('dice-rolled');
-        return (diceRolled === null);
     },
     openDialogBox() {
         setDialogBoxOpen(true);
@@ -49,18 +29,18 @@ const DiceRibbon = React.createClass({
 
         if (roll >= 1 && roll <= 6) {
             const hours = 20;
-            Cookie.set('dice-rolled', {roll: roll}, hours);
 
-            this.checkRollAvailability();
+            Cookie.set('dice-rolled', {roll: roll}, hours);
+            setAbleToRoll(false);
             this.props.onClick(roll);
         }
     },
     render() {
-        const ableToRoll = this.state.ableToRoll;
+        const ableToRoll = getAbleToRoll();
         const dialogBoxOpen = getDialogBoxOpen();
         const imageSuffix = ableToRoll ? '' : '-inactive';
 
-        let style = Json.extendsJson(this.props.baseStyle, {
+        const style = Json.extendsJson(this.props.baseStyle, {
             backgroundImage: 'url("./fairytale/images/dice-ribbon' + imageSuffix + '.png")',
         });
 

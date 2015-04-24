@@ -4,10 +4,11 @@ import State from './../lib/state';
 import Loader from './../services/loader';
 import Cookies from './../services/cookieService';
 
-import * as bookAction from './../book/actions';
-import * as chapterAction from './../chapter/actions';
-import * as charactersAction from './../character/actions';
-import * as appAction from './actions';
+import * as bookActions from './../book/actions';
+import * as chapterActions from './../chapter/actions';
+import * as charactersActions from './../character/actions';
+import * as appActions from './actions';
+import * as ribbonActions from './../ribbon/actions';
 
 const basicData = Immutable.fromJS({
     app: {
@@ -63,6 +64,7 @@ const basicData = Immutable.fromJS({
     },
     ribbon: {
         dialogBoxOpen: false,
+        ableToRoll: false,
     }
 });
 
@@ -79,24 +81,28 @@ export const ribbonCursor = appState.cursor(['ribbon']);
 
 export const reloadBook = (url) => {
     Loader.loadJson(url, (response) => {
-        bookAction.setTitle(response.title);
-        bookAction.setSubTitle(response.subTitle);
-        bookAction.setCover(response.cover);
-        bookAction.setChapters(response.chapters);
+        bookActions.setTitle(response.title);
+        bookActions.setSubTitle(response.subTitle);
+        bookActions.setCover(response.cover);
+        bookActions.setChapters(response.chapters);
 
         const bookmark = Cookies.get('bookmark');
-        chapterAction.setBookmark(bookmark);
+        chapterActions.setBookmark(bookmark);
+
+        const diceRolled = Cookies.get('dice-rolled');
+        const ableToRoll = (diceRolled === null);
+        ribbonActions.setAbleToRoll(ableToRoll);
     });
 };
 
 export const reloadCharacters = (url) => {
     Loader.loadJson(url, (response) => {
-        charactersAction.setCharacters(response);
+        charactersActions.setCharacters(response);
     });
 };
 
 export const reloadAppHeader = (url) => {
     Loader.loadJson(url, (response) => {
-        appAction.setAppMenuItems(response);
+        appActions.setAppMenuItems(response);
     });
 };
