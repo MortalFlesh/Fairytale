@@ -1,14 +1,19 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 
 import BarContent from './barContent';
 import BarMenu from './barMenu';
-
 import Content from './../style/content';
 import Clear from './../style/clear';
 
 const Bar = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        active: React.PropTypes.string.isRequired,
+        menuItems: React.PropTypes.array.isRequired,
+    },
     render() {
         const logoStyle = {
             float: 'left',
@@ -26,7 +31,9 @@ const Bar = React.createClass({
                         <div style={logoStyle}>
                             <img src="./fairytale/images/logo.png" alt="MF" />
                         </div>
-                        <BarMenu active={this.props.active} />
+
+                        <BarMenu menuItems={this.props.menuItems} active={this.props.active} />
+
                         <Clear/>
                     </BarContent>
                 </Content>

@@ -1,8 +1,10 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 
 const BarMenuItem = React.createClass({
+    mixins: [addons.PureRenderMixin],
     propTypes: {
         active: React.PropTypes.bool,
         item: React.PropTypes.object.isRequired,

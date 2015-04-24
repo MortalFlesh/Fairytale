@@ -2,6 +2,8 @@ import React from 'react';
 import {RouterMixin} from 'react-mini-router';
 import * as state from './state';
 
+import * as appStore from './../app/store';
+
 import AppHeader from './appHeader';
 import AppContent from './appContent';
 import Content from './../style/content';
@@ -55,9 +57,11 @@ const App = React.createClass({
         return <div className="not-found">Page Not Found: {path}</div>;
     },
     render() {
+        const menuItems = appStore.getMenuItems().toJS();
+
         return (
             <div className="App">
-                <AppHeader active={this.getActive()} />
+                <AppHeader menuItems={menuItems} active={this.getActive()} />
                 <AppContent>
                     <Content>
                         {this.renderCurrentRoute()}

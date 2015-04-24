@@ -1,8 +1,14 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Bar from './../bar/bar';
 
 const AppHeader = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        active: React.PropTypes.string.isRequired,
+        menuItems: React.PropTypes.array.isRequired,
+    },
     render() {
         const style = {
             position: 'fixed',
@@ -18,7 +24,7 @@ const AppHeader = React.createClass({
 
         return (
             <div className="AppHeader gradient-background" style={style}>
-                <Bar active={this.props.active} />
+                <Bar menuItems={this.props.menuItems} active={this.props.active} />
             </div>
         );
     }

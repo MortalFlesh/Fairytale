@@ -1,6 +1,5 @@
 import React from 'react';
-
-import {getMenuItems} from './../app/store';
+import {addons} from 'react/addons';
 
 import BarMenuItem from './barMenuItem';
 import BarMenuSeparator from './barMenuSeparator';
@@ -8,8 +7,10 @@ import BarMenuSeparator from './barMenuSeparator';
 import ReactComponentsService from './../services/reactComponentsService';
 
 const BarMenu = React.createClass({
+    mixins: [addons.PureRenderMixin],
     propTypes: {
         active: React.PropTypes.string,
+        menuItems: React.PropTypes.array.isRequired,
     },
     getDefaultProps() {
         return {
@@ -21,9 +22,7 @@ const BarMenu = React.createClass({
             float: 'right',
         };
 
-        const menuItems = getMenuItems().toJS();
-
-        let items = menuItems.map((item, i) =>
+        let items = this.props.menuItems.map((item, i) =>
             <BarMenuItem
                 key={i}
                 active={item.pathName === this.props.active}
