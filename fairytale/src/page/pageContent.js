@@ -1,6 +1,12 @@
 import React from 'react';
 
 const PageContent = React.createClass({
+    propTypes: {
+        pagePadding: React.PropTypes.number.isRequired,
+        width: React.PropTypes.number.isRequired,
+        height: React.PropTypes.number.isRequired,
+        scrollWidth: React.PropTypes.number.isRequired,
+    },
     render() {
         const chapterParagraphPadding = 12;
 

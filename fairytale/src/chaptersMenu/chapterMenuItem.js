@@ -1,8 +1,15 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 
 const ChapterMenuItem = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        onClick: React.PropTypes.func.isRequired,
+        number: React.PropTypes.number.isRequired,
+        isActive: React.PropTypes.bool,
+    },
     getDefaultProps() {
         return {
             isActive: false,

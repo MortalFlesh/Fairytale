@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Content from './../style/content';
+
 const AppContent = React.createClass({
     render() {
         const style = {
@@ -8,7 +10,9 @@ const AppContent = React.createClass({
 
         return (
             <div className="AppContent" style={style}>
-                {this.props.children}
+                <Content>
+                    {this.props.children}
+                </Content>
             </div>
         );
     }

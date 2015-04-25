@@ -1,9 +1,17 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 import ChapterNewParagraph from './chapterNewParagraph';
 
-const ChapterHeader = React.createClass({
+const ChapterTitle = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        inChapter: React.PropTypes.bool,
+        newParagraphsCount: React.PropTypes.number,
+        number: React.PropTypes.number.isRequired,
+        title: React.PropTypes.string.isRequired,
+    },
     getDefaultProps() {
         return {
             inChapter: false,
@@ -31,10 +39,12 @@ const ChapterHeader = React.createClass({
             <h3 className="ChapterHeader" style={style}>
                 <strong>{this.props.number}.</strong>{' ' + this.props.title}
 
-                {showCount && <ChapterNewParagraph count={this.props.newPargraphsCount} />}
+                {showCount &&
+                    <ChapterNewParagraph count={this.props.newPargraphsCount} />
+                }
             </h3>
         );
     }
 });
 
-export default ChapterHeader;
+export default ChapterTitle;

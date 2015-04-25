@@ -6,7 +6,6 @@ import * as appStore from './../app/store';
 
 import AppHeader from './appHeader';
 import AppContent from './appContent';
-import Content from './../style/content';
 import Book from './../book/book';
 import Characters from './../character/characters';
 
@@ -63,9 +62,7 @@ const App = React.createClass({
             <div className="App">
                 <AppHeader menuItems={menuItems} active={this.getActive()} />
                 <AppContent>
-                    <Content>
-                        {this.renderCurrentRoute()}
-                    </Content>
+                    {this.renderCurrentRoute()}
                 </AppContent>
             </div>
         )

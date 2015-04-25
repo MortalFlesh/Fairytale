@@ -65,12 +65,12 @@ const paragraphService = {
         }
     },
     addBookmark(content) {
-        let contentWithBookmark = [];
+        const contentWithBookmark = [];
         contentWithBookmark.push(<ParagraphBookmark />);
 
-        for (let i in content) {
-            contentWithBookmark.push(content[i]);
-        }
+        content.forEach((item) => {
+            contentWithBookmark.push(item);
+        });
 
         return contentWithBookmark;
     },

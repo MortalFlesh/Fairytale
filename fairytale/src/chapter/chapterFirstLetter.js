@@ -1,8 +1,10 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 
 const ChapterFirstLetter = React.createClass({
+    mixins: [addons.PureRenderMixin],
     render() {
         const style = {
             color: Style.colors.title,

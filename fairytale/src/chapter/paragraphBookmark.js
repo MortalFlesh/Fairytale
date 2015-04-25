@@ -1,6 +1,8 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 const ParagraphBookmark = React.createClass({
+    mixins: [addons.PureRenderMixin],
     render() {
         const style = {
             display: 'inline-block',

@@ -1,8 +1,14 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 
 const BookHeader = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        title: React.PropTypes.string.isRequired,
+        subTitle: React.PropTypes.string.isRequired,
+    },
     render() {
         const style = {
             header: {

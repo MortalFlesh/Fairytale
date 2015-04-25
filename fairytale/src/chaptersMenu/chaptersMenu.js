@@ -1,9 +1,11 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import ChapterMenuItem from './chapterMenuItem';
-import ChapterHeader from './chapterHeader';
+import ChapterTitle from './../chapter/chapterTitle';
 
 const ChaptersMenu = React.createClass({
+    mixins: [addons.PureRenderMixin],
     propTypes: {
         selectedChapter: React.PropTypes.number,
         chapters: React.PropTypes.array,
@@ -22,29 +24,34 @@ const ChaptersMenu = React.createClass({
         }
     },
     menuItemClick(chapterNumber) {
-        const newChapter = parseInt(chapterNumber, 10);
-
-        if (newChapter !== this.props.selectedChapter) {
-            this.props.onChapterChanged(newChapter);
+        if (chapterNumber !== this.props.selectedChapter) {
+            this.props.onChapterChanged(chapterNumber);
         }
+    },
+    getChapterNumber(chapter) {
+       return parseInt(chapter.number, 10);
     },
     render() {
         const selectedChapter = this.props.selectedChapter;
 
-        const chapters = this.props.chapters.map((chapter) =>
-            <ChapterMenuItem
-                key={chapter.number}
-                isActive={chapter.number == selectedChapter}
-                number={chapter.number}
-                onClick={this.menuItemClick}
-            >
-                <ChapterHeader
-                    number={chapter.number}
-                    title={chapter.title}
-                    newPargraphsCount={chapter.newPargraphsCount}
-                />
-            </ChapterMenuItem>
-        );
+        const chapters = this.props.chapters.map((chapter) => {
+            const chapterNumber = this.getChapterNumber(chapter);
+
+            return (
+                <ChapterMenuItem
+                    key={chapterNumber}
+                    isActive={chapterNumber === selectedChapter}
+                    number={chapterNumber}
+                    onClick={this.menuItemClick}
+                >
+                    <ChapterTitle
+                        number={chapterNumber}
+                        title={chapter.title}
+                        newPargraphsCount={chapter.newPargraphsCount}
+                    />
+                </ChapterMenuItem>
+            );
+        });
 
         return (
             <div className="ChaptersMenu">

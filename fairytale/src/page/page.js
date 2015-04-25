@@ -6,6 +6,10 @@ import ResponsiveService from './../services/responsiveService';
 import Chapter from './../chapter/chapter';
 
 const Page = React.createClass({
+    propTypes: {
+        background: React.PropTypes.string.isRequired,
+        chapter: React.PropTypes.object.isRequired,
+    },
     render() {
         const scrollWidth = 17;
         const maxWidth = 794;

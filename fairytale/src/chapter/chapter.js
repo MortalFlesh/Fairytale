@@ -1,17 +1,25 @@
 import React from 'react';
+import immutable from 'immutable';
 
 import ChapterParagraph from './chapterParagraph';
-import ChapterHeader from './../chaptersMenu/chapterHeader';
+import ChapterTitle from './chapterTitle';
 
 const Chapter = React.createClass({
+    propTypes: {
+        chapter: React.PropTypes.instanceOf(immutable.Map).isRequired,
+    },
     markAsFirstParagraph(i, content) {
         const firstLetter = content[0];
         const isFirstLetterValid = new RegExp(/[a-záÁčČďĎéěÉĚíÍóÓřŘšŠťŤůŮúÚýÝžŽ]/i).test(firstLetter);
 
         return (i === 0 && isFirstLetterValid);
     },
+    getChapterNumber(chapter) {
+        return parseInt(chapter.header.number, 10);
+    },
     render() {
         const chapter = this.props.chapter.toJS();
+        const chapterNumber = this.getChapterNumber(chapter);
 
         let paragraphs = '';
 
@@ -30,7 +38,7 @@ const Chapter = React.createClass({
         return (
             <div className="Chapter" style={{paddingTop: 20}}>
                 {chapter.hasOwnProperty('header') &&
-                    <ChapterHeader number={chapter.header.number} title={chapter.header.title} inChapter={true} />
+                    <ChapterTitle number={chapterNumber} title={chapter.header.title} inChapter={true} />
                 }
 
                 {paragraphs}

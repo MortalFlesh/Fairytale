@@ -1,6 +1,11 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 const ChapterNewParagraph = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        count: React.PropTypes.number.isRequired,
+    },
     render() {
         const style = {
             position: 'relative',
