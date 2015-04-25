@@ -6,6 +6,7 @@ const PageContent = React.createClass({
         width: React.PropTypes.number.isRequired,
         height: React.PropTypes.number.isRequired,
         scrollWidth: React.PropTypes.number.isRequired,
+        children: React.PropTypes.element.isRequired,
     },
     render() {
         const chapterParagraphPadding = 12;

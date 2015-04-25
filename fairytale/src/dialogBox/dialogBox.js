@@ -14,6 +14,10 @@ const DialogBox = React.createClass({
             React.PropTypes.string,
             React.PropTypes.number,
         ]),
+        children: React.PropTypes.oneOfType([
+            React.PropTypes.element,
+            React.PropTypes.arrayOf(React.PropTypes.element),
+        ]).isRequired,
     },
     defaultProps() {
         return {

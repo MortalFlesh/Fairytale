@@ -5,6 +5,9 @@ import Style from './../services/styleService';
 
 const ChapterFirstLetter = React.createClass({
     mixins: [addons.PureRenderMixin],
+    propTypes: {
+        children: React.PropTypes.string.isRequired,
+    },
     render() {
         const style = {
             color: Style.colors.title,

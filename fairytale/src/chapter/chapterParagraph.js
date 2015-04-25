@@ -77,7 +77,7 @@ const ChapterParagraph = React.createClass({
         const style = this.getStyle(isBookmark, hover);
 
         const content = ParagraphService.buildContent(
-            this.props.children,
+            this.props.paragraph.content,
             isBookmark,
             this.props.isFirstParagraph
         );

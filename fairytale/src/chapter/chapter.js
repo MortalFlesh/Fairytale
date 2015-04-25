@@ -8,7 +8,7 @@ const Chapter = React.createClass({
     propTypes: {
         chapter: React.PropTypes.instanceOf(immutable.Map).isRequired,
     },
-    markAsFirstParagraph(i, content) {
+    shouldMarkAsFirstParagraph(i, content) {
         const firstLetter = content[0];
         const isFirstLetterValid = new RegExp(/[a-záÁčČďĎéěÉĚíÍóÓřŘšŠťŤůŮúÚýÝžŽ]/i).test(firstLetter);
 
@@ -28,10 +28,8 @@ const Chapter = React.createClass({
                 <ChapterParagraph
                     key={paragraph.id}
                     paragraph={paragraph}
-                    isFirstParagraph={this.markAsFirstParagraph(i, paragraph.content)}
-                >
-                    {paragraph.content}
-                </ChapterParagraph>
+                    isFirstParagraph={this.shouldMarkAsFirstParagraph(i, paragraph.content)}
+                />
             );
         }
 

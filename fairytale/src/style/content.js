@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Content = React.createClass({
+    propTypes: {
+        children: React.PropTypes.element.isRequired,
+    },
     render() {
         const style = {
             maxWidth: 800,

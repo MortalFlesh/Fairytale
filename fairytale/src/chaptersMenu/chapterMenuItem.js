@@ -9,6 +9,7 @@ const ChapterMenuItem = React.createClass({
         onClick: React.PropTypes.func.isRequired,
         number: React.PropTypes.number.isRequired,
         isActive: React.PropTypes.bool,
+        children: React.PropTypes.element.isRequired,
     },
     getDefaultProps() {
         return {
