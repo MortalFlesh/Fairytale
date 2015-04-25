@@ -1,6 +1,11 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 const CharacterInfoTitle = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        name: React.PropTypes.string.isRequired,
+    },
     translateTitle(originalName) {
         switch(originalName) {
             case 'role': return 'Role';

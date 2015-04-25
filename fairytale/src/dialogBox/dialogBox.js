@@ -1,13 +1,19 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 
 import DialogBoxClose from './dialogBoxClose';
 
 const DialogBox = React.createClass({
+    mixins: [addons.PureRenderMixin],
     propTypes: {
         visible: React.PropTypes.bool,
         onClose: React.PropTypes.func.isRequired,
+        marging: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.number,
+        ]),
     },
     defaultProps() {
         return {

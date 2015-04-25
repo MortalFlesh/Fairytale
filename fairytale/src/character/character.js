@@ -1,4 +1,5 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import CharacterInfo from './characterInfo';
 import Clear from './../style/clear';
@@ -6,6 +7,10 @@ import Clear from './../style/clear';
 import Style from './../services/styleService';
 
 const Character = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        character: React.PropTypes.object.isRequired,
+    },
     render() {
         const character = this.props.character;
         const infos = character.infos.map((info, i) => <CharacterInfo key={i} info={info} />);

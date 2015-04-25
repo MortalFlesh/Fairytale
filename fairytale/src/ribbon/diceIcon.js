@@ -1,6 +1,8 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 const DiceIcon = React.createClass({
+    mixins: [addons.PureRenderMixin],
     propTypes: {
         onClick: React.PropTypes.func.isRequired,
         number: React.PropTypes.number.isRequired,

@@ -1,8 +1,13 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
 
 const DialogBoxClose = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        onClick: React.PropTypes.func.isRequired,
+    },
     render() {
         const style = {
             display: 'block',

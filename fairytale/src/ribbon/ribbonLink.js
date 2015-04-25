@@ -1,6 +1,8 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 const RibbonLink = React.createClass({
+    mixins: [addons.PureRenderMixin],
     propTypes: {
         onClick: React.PropTypes.func.isRequired,
         title: React.PropTypes.string,

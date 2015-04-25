@@ -1,8 +1,13 @@
 import React from 'react';
+import {addons} from 'react/addons';
 
 import CharacterInfoTitle from './characterInfoTitle';
 
 const CharacterInfo = React.createClass({
+    mixins: [addons.PureRenderMixin],
+    propTypes: {
+        info: React.PropTypes.object.isRequired,
+    },
     render() {
         const style = {
             info: {

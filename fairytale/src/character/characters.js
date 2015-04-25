@@ -5,6 +5,9 @@ import {getCharacters} from './store';
 import Character from './character';
 
 const Characters = React.createClass({
+    propTypes: {
+        selected: React.PropTypes.string,
+    },
     getDefaultProps() {
         return {
             selected: '',
@@ -14,7 +17,7 @@ const Characters = React.createClass({
         const selected = this.props.selected.toLocaleLowerCase();
         const name = characterName.toLocaleLowerCase();
 
-        return (selected === '' || selected === name);
+        return (!selected || selected === name);
     },
     render() {
         const characters = getCharacters()
