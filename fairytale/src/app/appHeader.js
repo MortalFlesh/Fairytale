@@ -24,7 +24,7 @@ const AppHeader = React.createClass({
 
         return (
             <div className="AppHeader gradient-background" style={style}>
-                <Bar menuItems={this.props.menuItems} active={this.props.active} />
+                <Bar {...this.props}/>
             </div>
         );
     }

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {getCharacters} from './store';
 
 import Character from './character';

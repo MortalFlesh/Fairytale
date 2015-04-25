@@ -1,7 +1,6 @@
 import React from 'react';
 import {RouterMixin} from 'react-mini-router';
 import * as state from './state';
-
 import * as appStore from './../app/store';
 
 import AppHeader from './appHeader';
@@ -15,6 +14,9 @@ const App = React.createClass({
         '/': 'book',
         '/characters/': 'characters',
         '/character/:name': 'character',
+    },
+    propTypes: {
+        interval: React.PropTypes.number,
     },
     getDefaultProps() {
         return {

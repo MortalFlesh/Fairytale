@@ -2,7 +2,7 @@ const reactComponentsService = {
     join(components, separator) {
         const componentsLength = components.length;
         const lastItemIndex = componentsLength - 1;
-        let joined = [];
+        const joined = [];
 
         components.forEach((component, i) => {
             joined.push(component);

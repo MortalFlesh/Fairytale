@@ -1,8 +1,8 @@
 import React from 'react';
 
-import PageContent from './pageContent';
-
 import ResponsiveService from './../services/responsiveService';
+
+import PageContent from './pageContent';
 import Chapter from './../chapter/chapter';
 
 const Page = React.createClass({
@@ -10,7 +10,7 @@ const Page = React.createClass({
         background: React.PropTypes.string.isRequired,
         chapter: React.PropTypes.object.isRequired,
     },
-    render() {
+    getPageContentSettings() {
         const scrollWidth = 17;
         const maxWidth = 794;
         const maxHeight = 1122;
@@ -23,17 +23,27 @@ const Page = React.createClass({
         pagePadding *= pageRatio;
         width += scrollWidth;
 
+        return {
+            pagePadding,
+            width,
+            height,
+            scrollWidth,
+        };
+    },
+    render() {
+        const pageContentSettings = this.getPageContentSettings();
+
         const style = {
-            padding: pagePadding,
-            paddingRight: pagePadding - scrollWidth,
+            padding: pageContentSettings.pagePadding,
+            paddingRight: pageContentSettings.pagePadding - pageContentSettings.scrollWidth,
             border: '1px solid black',
 
-            background: 'url(' + this.props.background + ')',
+            background: `url(${this.props.background})`,
         };
 
         return (
             <div className="Page" style={style}>
-                <PageContent pagePadding={pagePadding} width={width} height={height} scrollWidth={scrollWidth}>
+                <PageContent {...pageContentSettings}>
                     <Chapter chapter={this.props.chapter} />
                 </PageContent>
             </div>

@@ -5,11 +5,11 @@ export default {
         const element = jQuery(selector);
 
         let scrollableContainer = 'html, body';
-        if (typeof scrollable === 'string' && scrollable.length > 0) {
+        if (typeof scrollable === 'string' && scrollable.length) {
             scrollableContainer = scrollable;
         }
 
-        if (element.length > 0) {
+        if (element.length) {
             jQuery(scrollableContainer).animate({
                 scrollTop: element.offset().top + offset
             }, time);

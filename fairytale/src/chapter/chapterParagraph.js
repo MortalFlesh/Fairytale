@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {setBookmark} from './actions';
 import {getBookmark} from './store';
 

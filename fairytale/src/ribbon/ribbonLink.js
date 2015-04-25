@@ -22,7 +22,7 @@ const RibbonLink = React.createClass({
         };
 
         return (
-            <a title={this.props.title} style={style} onClick={this.props.onClick} />
+            <a style={style} {...this.props}/>
         );
     }
 });

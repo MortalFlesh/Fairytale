@@ -6,9 +6,9 @@ const Loader = {
     },
     loadJsonWithData(url, data, done) {
         jQuery.ajax({
+            url,
+            data,
             method: 'POST',
-            url: url,
-            data: data,
             dataType: 'json',
         })
         .done(done);

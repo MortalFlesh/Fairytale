@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {setDialogBoxOpen, setAbleToRoll, setDiceRoll} from './actions';
 import {getDialogBoxOpen, getAbleToRoll} from './store';
 
@@ -7,7 +6,6 @@ import Json from './../services/jsonService';
 
 import RibbonLink from './ribbonLink';
 import DiceIcon from './diceIcon';
-
 import DialogBox from './../dialogBox/dialogBox';
 
 const DiceRibbon = React.createClass({

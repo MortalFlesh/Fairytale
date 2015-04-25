@@ -1,10 +1,10 @@
 import React from 'react';
 import {addons} from 'react/addons';
 
+import Style from './../services/styleService';
+
 import CharacterInfo from './characterInfo';
 import Clear from './../style/clear';
-
-import Style from './../services/styleService';
 
 const Character = React.createClass({
     mixins: [addons.PureRenderMixin],

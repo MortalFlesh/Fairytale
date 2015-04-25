@@ -23,6 +23,7 @@ const cookieService = {
                 return encode(value);
             }
         }
+
         return null;
     },
     clear(name) {

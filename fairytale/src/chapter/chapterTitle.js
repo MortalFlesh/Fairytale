@@ -2,6 +2,7 @@ import React from 'react';
 import {addons} from 'react/addons';
 
 import Style from './../services/styleService';
+
 import ChapterNewParagraph from './chapterNewParagraph';
 
 const ChapterTitle = React.createClass({

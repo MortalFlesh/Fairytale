@@ -1,10 +1,10 @@
 import React from 'react';
 import {addons} from 'react/addons';
 
+import ReactComponentsService from './../services/reactComponentsService';
+
 import BarMenuItem from './barMenuItem';
 import BarMenuSeparator from './barMenuSeparator';
-
-import ReactComponentsService from './../services/reactComponentsService';
 
 const BarMenu = React.createClass({
     mixins: [addons.PureRenderMixin],

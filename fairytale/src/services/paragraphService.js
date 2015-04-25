@@ -36,7 +36,7 @@ const paragraphService = {
             return <br />;
         }
 
-        return rawContent.split('@').map(part => this.transformPart(part));
+        return rawContent.split('@').map((part) => this.transformPart(part));
     },
     transformPart(part) {
         const chapterFirstLetter = '^';

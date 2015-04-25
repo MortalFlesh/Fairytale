@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {getBookmark} from './../chapter/store';
 
 import Style from './../services/styleService';

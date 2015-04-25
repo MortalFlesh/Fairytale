@@ -1,16 +1,13 @@
 import React from 'react';
+import {getBook, getSelectedChapter, getFlashMessage} from './store';
+import {setSelectedChapter, setFlashMessage} from './actions';
 
 import Loader from './../services/loader';
 import Scroller from './../services/scroller';
 
-import {getBook, getSelectedChapter, getFlashMessage} from './store';
-import {setSelectedChapter, setFlashMessage} from './actions';
-
 import BookHeader from './bookHeader';
-
 import ChaptersMenu from './../chaptersMenu/chaptersMenu';
 import Page from './../page/page';
-
 import DialogBox from './../dialogBox/dialogBox';
 import Ribbons from './../ribbon/ribbons';
 
