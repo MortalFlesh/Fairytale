@@ -9,9 +9,9 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             Cookies.set('bookmark', data);
             break;
 
-        case ribbonActions.diceRoll:
+        case ribbonActions.setDiceRoll:
             const hours = 20;
-            Cookie.set('dice-rolled', {roll: data}, hours);
+            Cookies.set('dice-rolled', {roll: data}, hours);
             break;
     }
 });
