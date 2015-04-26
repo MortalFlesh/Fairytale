@@ -38,7 +38,7 @@ const ChapterTitle = React.createClass({
 
         return (
             <h3 className="ChapterHeader" style={style}>
-                <strong>{this.props.number}.</strong>{' ' + this.props.title}
+                <strong>{this.props.number}.</strong>{` ${this.props.title}`}
 
                 {showCount &&
                     <ChapterNewParagraph count={this.props.newPargraphsCount} />

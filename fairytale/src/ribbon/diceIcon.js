@@ -24,7 +24,7 @@ const DiceIcon = React.createClass({
 
         return (
             <a href="#" className="DiceIcon" onClick={this.onClickHandler} style={style}>
-                <img src={'./fairytale/images/dice/' + number + '.png'} alt={number} />
+                <img src={`./fairytale/images/dice/${number}.png`} alt={number} />
             </a>
         );
     }

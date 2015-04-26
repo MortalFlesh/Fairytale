@@ -54,12 +54,12 @@ const Book = React.createClass({
                     if (count === 1) {
                         publishedMessage += '1 nový odstavec';
                     } else if (count >= 2 && count <= 4) {
-                        publishedMessage += count + ' nové odstavce';
+                        publishedMessage += `${count} nové odstavce`;
                     } else if (count >= 5) {
-                        publishedMessage += count + ' nových odstavců';
+                        publishedMessage += `${count} nových odstavců`;
                     }
 
-                    message = 'Hod byl správný! Máš navíc ' + publishedMessage + ' :-)';
+                    message = `Hod byl správný! Máš navíc ${publishedMessage} :-)`;
                 } else if (response.status === 'nothing-to-publish') {
                     message = 'Hod byl sice správný, ale není už víc napsané :-(';
                 } else if (response.status === 'hack') {

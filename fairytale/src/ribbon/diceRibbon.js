@@ -37,7 +37,7 @@ const DiceRibbon = React.createClass({
         const imageSuffix = ableToRoll ? '' : '-inactive';
 
         const style = Json.extendsJson(this.props.baseStyle, {
-            backgroundImage: 'url("./fairytale/images/dice-ribbon' + imageSuffix + '.png")',
+            backgroundImage: `url("./fairytale/images/dice-ribbon${imageSuffix}.png")`,
         });
 
         const dicesContainerStyle = {

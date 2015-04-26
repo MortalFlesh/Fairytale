@@ -29,7 +29,7 @@ const paragraphService = {
         return rawContent.replace(first, markedLetter);
     },
     markLetter(letter) {
-        return '@^' + letter + '@';
+        return `@^${letter}@`;
     },
     transformContentStyle(rawContent) {
         if (rawContent.length < 2) {
