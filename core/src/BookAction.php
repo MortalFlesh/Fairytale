@@ -51,7 +51,7 @@ class BookAction
     {
         $chapters = [];
 
-        $chaptersQ = $this->pdo->query("SELECT * FROM chapter WHERE book_id = " . $bookId);
+        $chaptersQ = $this->pdo->query("SELECT * FROM chapter WHERE book_id = " . $bookId . " ORDER BY number");
         foreach($chaptersQ->fetchAll(PDO::FETCH_ASSOC) as $chapterR) {
             $paragraphs = $this->loadParagraphs($chapterR['number']);
 

@@ -45,8 +45,8 @@ if ($_SESSION['logged'] !== true) {
 
 function repairText($rawText) {
     $text = $rawText;
-    $text = str_replace(['<i>', '</i>'], ['@*', '@'], $text);
-    $text = str_replace(['<b>', '</b>'], ['@#', '@'], $text);
+    $text = str_replace(['<i>', '<em>', '</i>', '</em>'], ['@*', '@*', '@', '@'], $text);
+    $text = str_replace(['<b>', '<strong>', '</b>', '</strong>'], ['@#', '@#', '@', '@'], $text);
     $text = str_replace(['<p>', '</p>'], '', $text);
 
     return $text;
