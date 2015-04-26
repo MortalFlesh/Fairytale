@@ -21,7 +21,8 @@ const CharacterInfo = React.createClass({
             },
         };
 
-        const infos = this.props.items.map((item, i) =>
+        const info = this.props.info;
+        const infos = info.items.map((item, i) =>
             <li key={i} style={style.item}>{item}</li>
         );
 

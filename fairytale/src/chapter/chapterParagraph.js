@@ -51,7 +51,7 @@ const ChapterParagraph = React.createClass({
             padding: 5,
             borderRadius: 5,
             cursor: 'alias',
-            marginLeft: 6,
+            margin: '12px 8px 12px 4px',
         };
     },
     mouseEnterHandler(event) {

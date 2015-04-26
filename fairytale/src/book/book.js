@@ -85,7 +85,7 @@ const Book = React.createClass({
             .toJS();
 
         return (
-            <div className="Book">
+            <div className="Book" style={{paddingBottom: 50}}>
                 <BookHeader title={book.title} subTitle={book.subTitle} />
 
                 {chapterHeaders &&

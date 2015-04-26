@@ -38,6 +38,7 @@ const basicData = Immutable.fromJS({
                         chapter: 1,
                     }
                 ],
+                image: '',
             },
         ],
         selectedChapter: 1,

@@ -6,7 +6,7 @@ const Content = React.createClass({
     },
     render() {
         const style = {
-            maxWidth: 800,
+            maxWidth: 798,
             margin: '0 auto',
         };
 

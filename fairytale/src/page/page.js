@@ -13,7 +13,7 @@ const Page = React.createClass({
     getPageContentSettings() {
         const scrollWidth = 17;
         const maxWidth = 794;
-        const maxHeight = 1122;
+        const maxHeight = 1112;
         let pagePadding = 100;
 
         let width = ResponsiveService.getWidth(maxWidth);

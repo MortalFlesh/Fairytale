@@ -3,6 +3,7 @@ import immutable from 'immutable';
 
 import ChapterParagraph from './chapterParagraph';
 import ChapterTitle from './chapterTitle';
+import ChapterImage from './chapterImage';
 
 const Chapter = React.createClass({
     propTypes: {
@@ -40,6 +41,10 @@ const Chapter = React.createClass({
                 }
 
                 {paragraphs}
+
+                {chapter.image.length > 0 &&
+                    <ChapterImage image={chapter.image} />
+                }
             </div>
         );
     }
