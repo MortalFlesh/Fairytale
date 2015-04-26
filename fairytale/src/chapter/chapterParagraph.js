@@ -22,32 +22,36 @@ const ChapterParagraph = React.createClass({
         };
     },
     getStyle(isBookmark, hover) {
-        let bgColor = 'none';
+        let background = 'none';
+        let textIndent = 30;
         let borderColor = 'transparent';
-        let textIdent = 30;
+        let boxShadow = 'none';
 
         if (this.props.paragraph.isNew == '1') {
-            bgColor = Style.colors.newParagraph;
+            background = Style.colors.newParagraph;
         }
 
         if (hover || isBookmark) {
             borderColor = Style.colors.bookmarkParagraphBorder;
+            boxShadow = `${Style.colors.title} 2px 2px 10px`;
         }
 
         if (this.props.isFirstParagraph) {
-            textIdent = 0;
+            textIndent = 0;
         }
 
         return {
-            background: bgColor,
+            background,
+            textIndent,
+            boxShadow,
+            border: '1px solid',
+            borderColor,
             lineHeight: '20px',
-            textIndent: textIdent,
             textAlign: 'justify',
             padding: 5,
-            border: '1px solid',
-            borderColor: borderColor,
             borderRadius: 5,
             cursor: 'alias',
+            marginLeft: 6,
         };
     },
     mouseEnterHandler(event) {
